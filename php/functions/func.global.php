@@ -2,6 +2,7 @@
 
 /**
  * Magic function called whenever an unknown class is to be loaded
+ * This function will then call the autoloader which will include this file if configured so
  * @param $className
  */
 function __autoload($className)

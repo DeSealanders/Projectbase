@@ -1,8 +1,8 @@
 <?php
 /**
+ * Class DatabaseManager
  * This class is used for establishing a database connection and executing queries
  */
-
 class DatabaseManager
 {
 
@@ -86,6 +86,11 @@ class DatabaseManager
         }
     }
 
+    /**
+     * When this function is called, all debug info will be vardumped on screen
+     * @param $query the query to be printed
+     * @param $params the parameters linked to the query
+     */
     private function printDebugInfo($query, $params) {
         echo 'Query: ';
         var_dump($query);

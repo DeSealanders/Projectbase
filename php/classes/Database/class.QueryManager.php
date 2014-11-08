@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Class QueryManager
+ * This class is responsible for executing all database queries
+ */
 class QueryManager {
 
     private function __construct() {
@@ -44,14 +47,6 @@ class QueryManager {
         $query = "SELECT itemid FROM events";
         return DatabaseManager::getInstance()->executeQuery($query);
     }
-
-    /*
-     *
-     * ---------------------- Users ----------------------
-     *
-     *
-     */
-
 
 
 } 

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Class DatabaseConfig
  * This class is the config file for the database
  */
 class DatabaseConfig {
@@ -20,6 +21,10 @@ class DatabaseConfig {
         }
     }
 
+    /**
+     * Returns a list of local database settings
+     * @return array
+     */
     private function getLocalDetails() {
         return array(
             'username' => 'root',
@@ -29,6 +34,10 @@ class DatabaseConfig {
         );
     }
 
+    /**
+     * Returns a list of live database settings
+     * @return array
+     */
     private function getLiveDetails() {
         return array(
             'password' => 'abc',

@@ -1,9 +1,16 @@
 <?php
-
+/**
+ * Class Autoloader
+ * This class is repsonsible for auto loading classes if enabled
+ * It will check a list of directories and filenames to see wether a class can be found
+ */
 class Autoloader {
 
     private $autoloadActive;
 
+    /**
+     * The constructor disables autoloading by default
+     */
     private function __construct() {
         $this->autoloadActive = false;
     }
@@ -21,6 +28,11 @@ class Autoloader {
         return $instance;
     }
 
+    /**
+     * This function is called whenever a classfile cannot be found while it is called
+     * This function will then search for the specified class within the /php/ directory
+     * @param $className the classname of the class which should be included
+     */
     public function autoload($className) {
         if($this->autoloadActive) {
             // Folders to search
@@ -45,6 +57,8 @@ class Autoloader {
             // Loop all folder & filename combinations and include if a file is found
             foreach ($folders as $filepath) {
                 foreach($filenames as $filename) {
+
+                    // Include the correct file if it is found
                     if (file_exists($filepath . $filename)) {
                         include $filepath . $filename;
                         break;
