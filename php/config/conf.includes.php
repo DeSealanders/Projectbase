@@ -12,6 +12,7 @@ class IncludesConfig {
         $this->addJsInclude('js/documentready.js');
 
         // Add all Css includes here
+        $this->addCssInclude('css/variables.php.css');
         $this->addCssInclude('css/default.css');
 
     }

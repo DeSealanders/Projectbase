@@ -1,0 +1,5 @@
+# Parse all .php.css files as if they were php files
+# This will enable using php variables in css files
+<Files ~ "\.php.css">
+AddType application/x-httpd-php .css
+</Files>

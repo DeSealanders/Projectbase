@@ -1,0 +1,10 @@
+<?php
+/* In this file PHP can be used aswell as CSS
+ * For example:
+ * ol { color: <?php echo 'green'; ?>; }
+ * will be parsed as
+ * ol { color: green; }
+ */
+header("Content-type: text/css");
+?>
+
