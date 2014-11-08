@@ -6,19 +6,58 @@
  */
 class DefaultConfig {
 
+    private $initialized;
     private $pageNotFoundMessage;
+    private $logfile;
 
-    public function __construct() {
-        require_once('php/functions/func.global.php');
+    public function init() {
+        if(!$this->initialized) {
 
-        /* --- Configuration options here --- */
+            require_once('php/functions/func.global.php');
 
-        // Enable the auto including of class files
-        $this->setAutoInclude(true);
+            // Only initialize once
+            $this->initialized = true;
 
-        // The messsage for the 404 page
-        $this->pageNotFoundMessage = 'Unable to find the specified page';
 
+            /*
+             * --- Configuration options here ---
+             */
+
+            // Enable the auto including of class files
+            $this->setAutoInclude(true);
+
+            // The messsage for the 404 page
+            $this->pageNotFoundMessage = 'Unable to find the specified page';
+
+            // Log file for errors
+            $this->logfile = 'txt/errorlog.txt';
+
+            // Set the default timezone
+            date_default_timezone_set('Europe/Amsterdam');
+
+            /*
+             * --- End of configuration options ---
+             */
+
+        }
+    }
+
+    /**
+     * Function for creating only 1 instance and return that each time its called (singleton)
+     * @return DefaultConfig
+     */
+    public static function getInstance()
+    {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new DefaultConfig();
+        }
+        return $instance;
+    }
+
+    private function __construct() {
+        $this->initialized = false;
+        $this->init();
     }
 
     private function setAutoInclude($value) {
@@ -29,6 +68,10 @@ class DefaultConfig {
 
     public function getPageNotFoundMessage() {
         return $this->pageNotFoundMessage;
+    }
+
+    public function getLogfile() {
+        return $this->logfile;
     }
 }
 

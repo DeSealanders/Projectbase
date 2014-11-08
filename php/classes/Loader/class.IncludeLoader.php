@@ -33,7 +33,6 @@ class IncludeLoader {
 
     /**
      * Print all css includes from conf.includes.php
-     * @throws Exception An exception is thrown when the specified css file is not found
      */
     private function printCssIncludes() {
         foreach($this->includeConfig->getCssIncludes() as $file) {
@@ -41,14 +40,13 @@ class IncludeLoader {
                 echo "\t" . '<link rel="stylesheet" type="text/css" href="' . $file . '">' . "\n";
             }
             else {
-                Throw new Exception('Unable to find specified include: ' . $file);
+                Logger::getInstance()->writeMessage('Unable to find specified include: ' . $file);
             }
         }
     }
 
     /**
      * Print all js includes from conf.includes.php
-     * @throws Exception An exception is thrown when the specified js file is not found
      */
     private function printJsIncludes() {
         foreach($this->includeConfig->getJsIncludes() as $file) {
@@ -56,7 +54,7 @@ class IncludeLoader {
                 echo "\t" . '<script src="' . $file . '"></script>' . "\n";
             }
             else {
-                Throw new Exception('Unable to find specified include: ' . $file);
+                Logger::getInstance()->writeMessage('Unable to find specified include: ' . $file);
             }
         }
     }

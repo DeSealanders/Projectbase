@@ -1,7 +1,7 @@
 <?php
 // Load default config
 require('php/config/conf.default.php');
-$defaultConfig = new DefaultConfig();
+DefaultConfig::getInstance()->init();
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,13 +12,10 @@ IncludeLoader::getInstance()->printIncludes();
 ?>
 </head>
 <body>
-<?php
-$db = DatabaseManager::getInstance();
-?>
 <p>
     Todo features:
     <ol>
-    <li><strike>Config file for inclues (css/js)</strike></li>
+    <li><strike>Config file for includes (css/js)</strike></li>
     <li><strike>Auto include config files</strike></li>
     <li><strike>Php css files</strike></li>
     <li><strike>Class documentation</strike></li>
@@ -33,7 +30,15 @@ $db = DatabaseManager::getInstance();
     <li>Content pages?</li>
     <li>Visitor tracking</li>
     <li>Dataprovider</li>
+    <li>Querybuilder</li>
+    <li>Modules + module config</li>
+    <li>Standaard libraries/fonts</li>
     </ol>
 </p>
 </body>
 </html>
+<?php
+if(!isLive()) {
+    echo Logger::getInstance()->printMessages();
+}
+?>

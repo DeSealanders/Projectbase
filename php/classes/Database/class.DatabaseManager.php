@@ -41,7 +41,7 @@ class DatabaseManager
             $dbDetails['database']
         );
         if (mysqli_connect_errno()) {
-            Throw new Exception("Failed to connect to MySQL: " . mysqli_connect_error());
+            Logger::getInstance()->writeMessage("Failed to connect to MySQL: " . mysqli_connect_error());
         }
     }
 
@@ -81,8 +81,14 @@ class DatabaseManager
             }
         }
         else {
-            $this->printDebugInfo($query, $params);
-            throw new Exception('Unable to execute query: "' . $query . '", please review');
+            if($params) {
+                $params = ', with parameters: ' . implode(',', $params);
+            }
+            else {
+                $params = '';
+            }
+            Logger::getInstance()->writeMessage('Unable to execute query: "' . $query . '"' . $params);
+            //$this->printDebugInfo($query, $params);
         }
     }
 

@@ -29,7 +29,7 @@ class DatabaseConfig {
         return array(
             'username' => 'root',
             'password' => 'usbw',
-            'database' => 'planner',
+            'database' => 'lolstatus',
             'address' => 'localhost'
         );
     }
