@@ -5,7 +5,32 @@
  */
 class DatabaseConfig {
 
+    private $localDetails;
+    private $liveDetails;
+
     public function __construct() {
+
+        /*
+         * --- Configuration options here ---
+         */
+
+        $this->localDetails = array(
+            'username' => 'root',
+            'password' => 'usbw',
+            'database' => 'lolstatus',
+            'address' => 'localhost'
+        );
+        $this->liveDetails = array(
+            'password' => 'abc',
+            'username' => 'abc',
+            'database' => 'abc',
+            'address' => 'localhost'
+        );
+
+        /*
+         * --- End of configuration options ---
+         */
+
     }
 
     /**
@@ -26,12 +51,7 @@ class DatabaseConfig {
      * @return array
      */
     private function getLocalDetails() {
-        return array(
-            'username' => 'root',
-            'password' => 'usbw',
-            'database' => 'lolstatus',
-            'address' => 'localhost'
-        );
+        return $this->localDetails;
     }
 
     /**
@@ -39,11 +59,6 @@ class DatabaseConfig {
      * @return array
      */
     private function getLiveDetails() {
-        return array(
-            'password' => 'abc',
-            'username' => 'abc',
-            'database' => 'abc',
-            'address' => 'localhost'
-        );
+        return $this->liveDetails;
     }
 }
