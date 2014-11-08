@@ -36,7 +36,7 @@ class IncludeLoader {
      */
     private function printCssIncludes() {
         foreach($this->includeConfig->getCssIncludes() as $file) {
-            if(file_exists($file)) {
+            if(count(parse_url($file)) > 1 || file_exists($file)) {
                 echo "\t" . '<link rel="stylesheet" type="text/css" href="' . $file . '">' . "\n";
             }
             else {

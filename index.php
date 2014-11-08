@@ -20,19 +20,19 @@ IncludeLoader::getInstance()->printIncludes();
     <li><strike>Php css files</strike></li>
     <li><strike>Class documentation</strike></li>
     <li><strike>Default htaccess options (404 etc)</strike></li>
-    <li>Abstract classes (factory & manager)</li>
+    <li><strike>Improved logger</strike></li>
+    <li><strike>Standaard libraries/fonts</strike></li>
+    <li>Modules + module config</li>
+    <li>Visitor tracking</li>
+    <li>Dataprovider</li>
+    <li>Querybuilder</li>
     <li>Formbuilder</li>
     <li>Better database debugging</li>
-    <li>Improved logger</li>
+    <li>Abstract classes (factory & manager)</li>
     <li>Phpstorm template comments</li>
     <li>Improved get parameters</li>
     <li>Javascript default functions/setups</li>
     <li>Content pages?</li>
-    <li>Visitor tracking</li>
-    <li>Dataprovider</li>
-    <li>Querybuilder</li>
-    <li>Modules + module config</li>
-    <li>Standaard libraries/fonts</li>
     </ol>
 </p>
 </body>
