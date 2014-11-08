@@ -2,9 +2,6 @@
 // Load default config
 require('php/config/conf.default.php');
 $defaultConfig = new DefaultConfig();
-
-// Enable the auto including of class files
-$defaultConfig->setAutoInclude(true);
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,8 +22,8 @@ $db = DatabaseManager::getInstance();
     <li><strike>Auto include config files</strike></li>
     <li><strike>Php css files</strike></li>
     <li><strike>Class documentation</strike></li>
-    <li>Abstract classes (factory & manaager)</li>
-    <li>Default htaccess options (404 etc)</li>
+    <li><strike>Default htaccess options (404 etc)</strike></li>
+    <li>Abstract classes (factory & manager)</li>
     <li>Formbuilder</li>
     <li>Better database debugging</li>
     <li>Improved logger</li>
