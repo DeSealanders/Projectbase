@@ -8,13 +8,13 @@ class AnalyticsConfig {
     private $analyticsId;
     private $enabled;
 
-    public function init() {
+    public function __construct() {
         /*
          * --- Configuration options here ---
          */
 
         $this->analyticsId = '';
-        $this->enabled = true;
+        $this->enabled = false;
 
         /*
          * --- End of configuration options ---
@@ -26,12 +26,16 @@ class AnalyticsConfig {
      * @return bool
      */
     public function getAnalyticsId() {
-        if(!empty($this->analyticsId) && $this->enabled) {
+        if(!empty($this->analyticsId)) {
             return $this->analyticsId;
         }
         else {
             return false;
         }
+    }
+
+    public function isEnabled() {
+        return $this->enabled;
     }
 }
 

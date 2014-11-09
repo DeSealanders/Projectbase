@@ -31,9 +31,17 @@ class AnalyticsLoader
      */
     public function printTrackingCode()
     {
-        if (isLive()) {
-            if ($this->analyticsConfig->getAnalyticsId()) {
-                $code = "
+        // Only print if enabled
+        if($this->analyticsConfig->isEnabled()) {
+
+            // Only print on live
+            if (isLive()) {
+
+                // Only print if an id has been entered
+                if ($this->analyticsConfig->getAnalyticsId()) {
+
+                    // Print tracking code using id from config
+                    echo "
                         <script>
                           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -45,14 +53,18 @@ class AnalyticsLoader
 
                         </script>
                         ";
-                echo $code;
+                }
+                else {
+
+                    // Message if no id has been entered
+                    Logger::getInstance()->writeMessage('Not printing tracking code (no code has been entered)');
+                }
             }
             else {
-                Logger::getInstance()->writeMessage('Not printing tracking code (no code has been entered)');
+
+                // Message if not using when live
+                Logger::getInstance()->writeMessage('Not printing tracking code (not live)');
             }
-        }
-        else {
-            Logger::getInstance()->writeMessage('Not printing tracking code (not live)');
         }
     }
 
