@@ -54,6 +54,7 @@ class Autoloader {
                 $filenames['config'] = 'conf.' . strtolower(substr($className, 0, strlen($className)-6)) . '.php';
             }
 
+
             // Loop all folder & filename combinations and include if a file is found
             foreach ($folders as $filepath) {
                 foreach($filenames as $filename) {
@@ -81,14 +82,14 @@ class Autoloader {
      * @param $folder the parent folder of which subfolders should be retrieved from
      * @return array a list of subfolders
      */
-    private function getSubfolders($folder) {
+    private function getSubfolders($root) {
         $folderList = array();
-        foreach(scandir($folder) as $file) {
-            $folderString = $folder . $file . '/';
-            if(is_dir($folderString)) {
-                if($file != '.' && $file != '..') {
-                    $folderList[] = $folderString;
-                    $folderList = array_merge($folderList, $this->getSubfolders($folderString));
+        foreach(scandir($root) as $subFolder) {
+            $folderPath = $root . $subFolder . '/';
+            if(is_dir($folderPath)) {
+                if($subFolder != '.' && $subFolder != '..') {
+                    $folderList[] = $folderPath;
+                    $folderList = array_merge($folderList, $this->getSubfolders($folderPath));
                 }
             }
         }

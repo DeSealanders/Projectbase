@@ -109,8 +109,8 @@ class Logger {
             'Message' => $message,
             'File' => $debuginfo[1]['file'],
             'Line' => $debuginfo[1]['line'],
-            'Class' => $debuginfo[1]['class'],
-            'Function' => $debuginfo[1]['function'],
+            'Class' => $debuginfo[2]['class'],
+            'Function' => $debuginfo[2]['function'],
             'Timestamp' => date('Y-m-d H:i:s')
         );
 

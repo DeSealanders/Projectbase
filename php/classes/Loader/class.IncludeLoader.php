@@ -5,6 +5,8 @@
  */
 class IncludeLoader {
 
+    private $includeConfig;
+
     private function __construct() {
         $this->includeConfig = new IncludesConfig();
     }
