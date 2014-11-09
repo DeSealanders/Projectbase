@@ -9,6 +9,8 @@ DefaultConfig::getInstance()->init();
 <?php
 // Print all css and js includes
 IncludeLoader::getInstance()->printIncludes();
+
+// Print analytics tracking code
 AnalyticsLoader::getInstance()->printTrackingCode();
 ?>
 </head>

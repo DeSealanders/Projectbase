@@ -3,11 +3,13 @@
  * Class AnalyticsLoader
  * This class is responsible for printing the google analytics tracking code
  */
-class AnalyticsLoader {
+class AnalyticsLoader
+{
 
     private $analyticsConfig;
 
-    private function __construct() {
+    private function __construct()
+    {
         $this->analyticsConfig = new AnalyticsConfig();
     }
 
@@ -27,24 +29,30 @@ class AnalyticsLoader {
     /**
      * This function prints the analytics tracking code using the analytics id set in conf.analytics.php
      */
-    public function printTrackingCode() {
-        if($this->analyticsConfig->getAnalyticsId() && isLive()) {
-            $code = "
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    public function printTrackingCode()
+    {
+        if (isLive()) {
+            if ($this->analyticsConfig->getAnalyticsId()) {
+                $code = "
+                        <script>
+                          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          ga('create', '" . $this->analyticsConfig->getAnalyticsId() . "', 'auto');
-          ga('send', 'pageview');
+                          ga('create', '" . $this->analyticsConfig->getAnalyticsId() . "', 'auto');
+                          ga('send', 'pageview');
 
-        </script>
-        ";
-        echo $code;
+                        </script>
+                        ";
+                echo $code;
+            }
+            else {
+                Logger::getInstance()->writeMessage('Not printing tracking code (no code has been entered)');
+            }
         }
         else {
-            Logger::getInstance()->writeMessage('Not printing tracking code');
+            Logger::getInstance()->writeMessage('Not printing tracking code (not live)');
         }
     }
 

@@ -129,3 +129,23 @@ Class -  FacebookManager
 Function -  post
 Timestamp -  2014-11-09 14:39:43
 
+
+
+------- Page refreshed -------
+Message -  Not printing tracking code
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Loader\class.AnalyticsLoader.php
+Line -  47
+Class -  AnalyticsLoader
+Function -  printTrackingCode
+Timestamp -  2014-11-09 15:19:37
+
+
+
+------- Page refreshed -------
+Message -  Not printing tracking code (not live)
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Loader\class.AnalyticsLoader.php
+Line -  55
+Class -  AnalyticsLoader
+Function -  printTrackingCode
+Timestamp -  2014-11-09 15:20:56
+
