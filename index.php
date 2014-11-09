@@ -9,6 +9,7 @@ DefaultConfig::getInstance()->init();
 <?php
 // Print all css and js includes
 IncludeLoader::getInstance()->printIncludes();
+AnalyticsLoader::getInstance()->printTrackingCode();
 ?>
 </head>
 <body>
@@ -22,8 +23,8 @@ IncludeLoader::getInstance()->printIncludes();
     <li><strike>Default htaccess options (404 etc)</strike></li>
     <li><strike>Improved logger</strike></li>
     <li><strike>Standaard libraries/fonts</strike></li>
-    <li>Modules + module config</li>
-    <li>Visitor tracking</li>
+    <li><strike>Modules</strike></li>
+    <li><strike>Visitor tracking</strike></li>
     <li>Dataprovider</li>
     <li>Querybuilder</li>
     <li>Formbuilder</li>
