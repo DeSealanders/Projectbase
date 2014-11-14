@@ -1,0 +1,87 @@
+/** General form options **/
+.customForm {
+    width: 100%;
+    clear: both;
+    overflow: auto;
+}
+.customForm .component {
+    clear: both;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: auto;
+}
+.customForm label {
+    float: left;
+    display: inline-block;
+    width: 40%;
+}
+.customForm .inputwrapper,
+.customForm .checkboxgroup {
+    float: left;
+    width: 60%;
+}
+
+
+/** Borders **/
+.customForm input[type=text],
+.customForm input[type=email],
+.customForm textarea {
+    border: 2px solid #ddd;
+    border-radius: 3px;
+}
+
+.customForm input[type=text]:focus,
+.customForm input[type=email]:focus,
+.customForm textarea:focus {
+    border-color: #b2b2b2;
+}
+
+/** Layout **/
+.customForm input[type=text],
+.customForm input[type=email],
+.customForm textarea {
+    font: 14px "Lato",sans-serif;
+    width: 96%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/** Specific options **/
+.customForm input[type=text],
+.customForm input[type=email],
+.customForm textarea {
+    padding-left: 10px;
+}
+
+/** Textarea **/
+.customForm textarea {
+    height: 100px;
+}
+
+/** Checkbox **/
+.customForm .checkbox {
+    clear: both;
+}
+.customForm .checkbox label {
+    padding-left: 20px;
+    float: left;
+    width: inherit;
+}
+.customForm input[type=checkbox] {
+    float: left;
+}
+
+/** Button **/
+.customForm button {
+    line-height: 1.5em;
+    float: right;
+    background-color: #ddd;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 2px solid #ddd;
+}
+.customForm button:hover {
+    border-color: #b2b2b2;
+}

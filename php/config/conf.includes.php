@@ -33,6 +33,7 @@ class IncludesConfig {
         // Add all Css includes here
         $this->addCssInclude('css/variables.php.css');
         $this->addCssInclude('css/default.css');
+        $this->addCssInclude('css/forms.css');
 
         /*
          * --- End of configuration options ---

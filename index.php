@@ -15,6 +15,23 @@ AnalyticsLoader::getInstance()->printTrackingCode();
 ?>
 </head>
 <body>
+<div class="testformulier">
+<?php
+$form = new Form('Testformulier', 'testform');
+$form->addComponent(new Textfield('Voornaam', 'firstname', 'Peter'));
+$form->addComponent(new Textfield('Achternaam', 'lastname', 'Ton'));
+$form->addComponent(new Emailfield('E-mail adres', 'email', 'mail@peterton.nl'));
+$form->addComponent(new Checkbox('Favoriete drank', 'drinks', array(
+        'Cola' => 'cola',
+        'Bier' => 'beer',
+        'Koffie' => 'coffee'
+    )));
+$form->addComponent(new Textbox('Bericht', 'message', 'Type hier uw bericht'));
+$form->addComponent(new Button('Versturen', 'send'));
+$form->printHtml();
+?>
+</div>
+
 <p>
     Todo features:
     <ol>
@@ -27,9 +44,10 @@ AnalyticsLoader::getInstance()->printTrackingCode();
     <li><strike>Standaard libraries/fonts</strike></li>
     <li><strike>Modules</strike></li>
     <li><strike>Visitor tracking</strike></li>
+    <li><strike>Formbuilder basiselementen</strike></li>
+    <li>Formbuilder uitbreiden</li>
     <li>Dataprovider</li>
     <li>Querybuilder</li>
-    <li>Formbuilder</li>
     <li>Better database debugging</li>
     <li>Abstract classes (factory & manager)</li>
     <li>Phpstorm template comments</li>
