@@ -34,7 +34,6 @@ $form->addComponent(new Radiobutton('Geslacht', 'gender', array(
         'Vrouw' => 'female',
     ), true));
 $form->addComponent(new Dropdown('Automerk', 'brand', array(
-        'Selecteer een optie' => '',
         'Volkswagen' => 'vw',
         'Seat' => 'seat',
         'Audi' => 'audi'

@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * Class Button
+ * This class represents a clickable button in a generated form
+ */
 class Button extends FormComponent{
 
     private $type;
