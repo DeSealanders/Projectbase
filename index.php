@@ -15,33 +15,6 @@ AnalyticsLoader::getInstance()->printTrackingCode();
 ?>
 </head>
 <body>
-<div class="testformulier">
-<?php
-var_dump($_POST);
-$form = new Form('Testformulier', 'testform');
-$form->addComponent(new Textfield('Voornaam', 'firstname', 'Peter'));
-$form->addComponent(new Textfield('Achternaam', 'lastname', 'Ton'));
-$form->addComponent(new Emailfield('E-mail adres', 'email', 'mail@peterton.nl'));
-$form->addComponent(new Textbox('Bericht', 'message', 'Type hier uw bericht'));
-$form->addComponent(new CustomHtml('subtitle', '<h3>Persoonlijke voorkeuren</h3>'));
-$form->addComponent(new Checkbox('Favoriete drank', 'drinks', array(
-        'Cola' => 'cola',
-        'Bier' => 'beer',
-        'Koffie' => 'coffee'
-    )));
-$form->addComponent(new Radiobutton('Geslacht', 'gender', array(
-        'Man' => 'male',
-        'Vrouw' => 'female',
-    )));
-$form->addComponent(new Dropdown('Automerk', 'brand', array(
-        'Volkswagen' => 'vw',
-        'Seat' => 'seat',
-        'Audi' => 'audi'
-    )));
-$form->addComponent(new Button('Versturen', 'send'));
-$form->printHtml();
-?>
-</div>
 
 <p>
     Todo features:
@@ -57,10 +30,12 @@ $form->printHtml();
     <li><strike>Visitor tracking</strike></li>
     <li><strike>Formbuilder basiselementen</strike></li>
     <li><strike>Formbuilder uitbreiden met meer elementen</strike></li>
+    <li>Formbulider fileupload</li>
     <li>Formbulider config</li>
     <li>Formbuilder ajax submit</li>
     <li>Formbulider validatie</li>
     <li>Dataprovider</li>
+    <li>Frontend helpers (image, menu, footer etc)</li>
     <li>Querybuilder</li>
     <li>Better database debugging</li>
     <li>Abstract classes (factory & manager)</li>

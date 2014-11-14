@@ -5,8 +5,8 @@ class Radiobutton extends FormComponent{
 
     private $options;
 
-    public function __construct($label, $id, $options = array()) {
-        parent::__construct($id, $label);
+    public function __construct($label, $id, $options = array(), $required = false) {
+        parent::__construct($id, $label, $required);
         $this->options = $options;
     }
 
@@ -16,7 +16,7 @@ class Radiobutton extends FormComponent{
         echo '<div class="checkboxgroup">';
         foreach($this->options as $label => $option) {
             echo '<div class="checkbox">';
-            echo '<input type="radio" name="' . $this->id . '" value="' . $option . '">';
+            echo '<input  ' . $this->getRequiredHtml() . ' type="radio" name="' . $this->id . '" value="' . $option . '">';
             echo '<label for id="' . $option . '">' . $label . '</label>';
             echo '</div>';
         }

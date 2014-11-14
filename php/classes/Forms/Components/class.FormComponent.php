@@ -4,10 +4,12 @@ class FormComponent {
 
     protected $id;
     protected $label;
+    protected $required;
 
-    public function __construct($id, $label = '') {
+    public function __construct($id, $label = '', $required = false) {
         $this->id = $id;
         $this->label = $label;
+        $this->required = $required;
 
     }
 
@@ -17,6 +19,15 @@ class FormComponent {
 
     public function getId() {
         return $this->id;
+    }
+
+    protected function getRequiredHtml() {
+        if($this->required) {
+            return 'required';
+        }
+        else {
+            return '';
+        }
     }
 
 } 

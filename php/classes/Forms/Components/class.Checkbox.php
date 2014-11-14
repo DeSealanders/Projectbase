@@ -5,8 +5,8 @@ class Checkbox extends FormComponent{
 
     private $options;
 
-    public function __construct($label, $id, $options = array()) {
-        parent::__construct($id, $label);
+    public function __construct($label, $id, $options = array(), $required = false) {
+        parent::__construct($id, $label, $required);
         $this->options = $options;
     }
 
@@ -16,7 +16,7 @@ class Checkbox extends FormComponent{
         echo '<div class="checkboxgroup">';
         foreach($this->options as $label => $option) {
             echo '<div class="checkbox">';
-            echo '<input type="checkbox" name="' . $option . '" value="checked">';
+            echo '<input  ' . $this->getRequiredHtml() . ' type="checkbox" name="' . $option . '" value="checked">';
             echo '<label for id="' . $option . '">' . $label . '</label>';
             echo '</div>';
         }
