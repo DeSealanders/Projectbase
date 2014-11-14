@@ -29,23 +29,27 @@ class QueryManager {
      *
      */
 
-    public function saveEvent(Event $event) {
-        $query = "INSERT INTO events (itemid, name, description, location, startDate, endDate, userid) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $params = array(
-            $event->getId(),
-            $event->getName(),
-            $event->getDescription(),
-            $event->getLocation(),
-            $event->getStart(),
-            $event->getEnd(),
-            $event->getUserid()
+    public function saveEvent() {
+        $data = array(
+            'firstname' => 'Henk',
+            'lastname' => 'De tank',
+            'dob' => '26-10-1991',
+            'email' => 'henk@tank.de'
         );
-        return DatabaseManager::getInstance()->executeQuery($query , $params);
+        $query = QueryBuilder::getInstance()->buildInsert('people', $data);
+        return DatabaseManager::getInstance()->executeQuery($query->getSql() , $query->getParameters());
     }
 
-    public function getEventIds() {
-        $query = "SELECT itemid FROM events";
-        return DatabaseManager::getInstance()->executeQuery($query);
+    public function saveEventOld() {
+        $query = 'INSERT INTO people (firstname, lastname, dob, email) VALUES (?, ?, ?, ?);';
+        $params = array(
+            'Henk',
+            'De tank',
+            '26-10-1991',
+            'henk@tank.de'
+        );
+        return DatabaseManager::getInstance()->executeQuery($query , $params);
+
     }
 
 

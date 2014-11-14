@@ -15,7 +15,12 @@ AnalyticsLoader::getInstance()->printTrackingCode();
 ?>
 </head>
 <body>
+<?php
 
+QueryManager::getInstance()->saveEvent();
+QueryManager::getInstance()->saveEventOld();
+
+?>
 <p>
     Todo features:
     <ol>
@@ -30,19 +35,23 @@ AnalyticsLoader::getInstance()->printTrackingCode();
     <li><strike>Visitor tracking</strike></li>
     <li><strike>Formbuilder basiselementen</strike></li>
     <li><strike>Formbuilder uitbreiden met meer elementen</strike></li>
+    <li><strike>Formbulider validatie</strike></li>
+    <li>Querybuilder</li>
     <li>Formbulider fileupload</li>
     <li>Formbulider config</li>
     <li>Formbuilder ajax submit</li>
-    <li>Formbulider validatie</li>
     <li>Dataprovider</li>
     <li>Frontend helpers (image, menu, footer etc)</li>
-    <li>Querybuilder</li>
     <li>Better database debugging</li>
     <li>Abstract classes (factory & manager)</li>
     <li>Phpstorm template comments</li>
     <li>Improved get parameters</li>
     <li>Javascript default functions/setups</li>
     <li>Content pages?</li>
+    <li>Router (voor page redirects)</li>
+    <li>Logger naar db (file fallback)</li>
+    <li>Image resizer</li>
+    <li>Templating gebruiken</li>
     </ol>
 </p>
 </body>

@@ -17,7 +17,7 @@ class DatabaseConfig {
         $this->localDetails = array(
             'username' => 'root',
             'password' => 'usbw',
-            'database' => 'lolstatus',
+            'database' => 'test',
             'address' => 'localhost'
         );
         $this->liveDetails = array(
