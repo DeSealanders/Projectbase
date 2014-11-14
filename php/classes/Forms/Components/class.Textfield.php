@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * Class Textfield
+ * This class represents an input textfield in a generated form
+ */
 class Textfield extends FormComponent{
 
     private $placeholder;

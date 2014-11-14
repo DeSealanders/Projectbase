@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * Class Emailfield
+ * This class represents an e-mail input field in a generated form
+ */
 class Emailfield extends FormComponent{
 
     private $placeholder;

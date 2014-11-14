@@ -1,8 +1,12 @@
 <?php
 
-
+/**
+ * Class Checkbox
+ * This class represents a list of checkboxes in a generated form
+ */
 class Checkbox extends FormComponent{
 
+    // An array of options with the key as label and the value as option
     private $options;
 
     public function __construct($label, $id, $options = array(), $required = false) {

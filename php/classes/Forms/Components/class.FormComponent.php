@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Class FormComponent
+ * This class represent a single component in a generated form
+ * It has certain properties built in which apply to all form elements
+ */
 class FormComponent {
 
     protected $id;

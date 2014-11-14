@@ -1,6 +1,10 @@
 <?php
 
-
+/**
+ * Class CustomHtml
+ * This class represents bit of custom html in a generated form
+ * It can be used for headings, sidenotes and more
+ */
 class CustomHtml extends FormComponent{
 
     private $html;
