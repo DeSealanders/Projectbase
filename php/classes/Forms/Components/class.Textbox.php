@@ -3,14 +3,11 @@
 
 class Textbox extends FormComponent{
 
-    private $label;
-    private $id;
     private $placeholder;
     private $value;
 
     public function __construct($label, $id, $placeholder = '', $value = '') {
-        $this->label = $label;
-        $this->id = $id;
+        parent::__construct($id, $label);
         $this->placeholder = $placeholder;
         $this->value = $value;
     }

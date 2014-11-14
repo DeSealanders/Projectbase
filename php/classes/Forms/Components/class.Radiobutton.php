@@ -1,7 +1,7 @@
 <?php
 
 
-class Checkbox extends FormComponent{
+class Radiobutton extends FormComponent{
 
     private $options;
 
@@ -16,7 +16,7 @@ class Checkbox extends FormComponent{
         echo '<div class="checkboxgroup">';
         foreach($this->options as $label => $option) {
             echo '<div class="checkbox">';
-            echo '<input type="checkbox" name="' . $option . '" value="checked">';
+            echo '<input type="radio" name="' . $this->id . '" value="' . $option . '">';
             echo '<label for id="' . $option . '">' . $label . '</label>';
             echo '</div>';
         }

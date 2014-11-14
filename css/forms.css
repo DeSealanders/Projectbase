@@ -25,14 +25,16 @@
 /** Borders **/
 .customForm input[type=text],
 .customForm input[type=email],
-.customForm textarea {
+.customForm textarea,
+.customForm select {
     border: 2px solid #ddd;
     border-radius: 3px;
 }
 
 .customForm input[type=text]:focus,
 .customForm input[type=email]:focus,
-.customForm textarea:focus {
+.customForm textarea:focus,
+.customForm select:focus {
     border-color: #b2b2b2;
 }
 
@@ -84,4 +86,17 @@
 }
 .customForm button:hover {
     border-color: #b2b2b2;
+}
+
+/** Dropdown **/
+.customForm select {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/** Radio button **/
+.customForm input[type=radio] {
+    float: left;
 }

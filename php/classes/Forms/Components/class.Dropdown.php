@@ -1,7 +1,7 @@
 <?php
 
 
-class Checkbox extends FormComponent{
+class Dropdown extends FormComponent{
 
     private $options;
 
@@ -13,13 +13,12 @@ class Checkbox extends FormComponent{
     public function printHtml() {
         echo '<div class="component">';
         echo '<label for="'. $this->id . '">' . $this->label . '</label>';
-        echo '<div class="checkboxgroup">';
+        echo '<div class="inputwrapper">';
+        echo '<select name="' . $this->id . '" id="' . $this->id . '">';
         foreach($this->options as $label => $option) {
-            echo '<div class="checkbox">';
-            echo '<input type="checkbox" name="' . $option . '" value="checked">';
-            echo '<label for id="' . $option . '">' . $label . '</label>';
-            echo '</div>';
+            echo '<option value="' . $option . '">' . $label . '</option>';
         }
+        echo '</select>';
         echo '</div>';
         echo '</div>';
     }

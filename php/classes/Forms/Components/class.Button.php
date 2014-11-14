@@ -3,13 +3,10 @@
 
 class Button extends FormComponent{
 
-    private $label;
-    private $id;
     private $type;
 
     public function __construct($label = 'Submit', $id, $type="submit") {
-        $this->label = $label;
-        $this->id = $id;
+        parent::__construct($id, $label);
         $this->type = $type;
     }
 
