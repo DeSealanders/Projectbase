@@ -24,7 +24,8 @@ class IncludesConfig {
         $this->setDefaultIncludes(array(
                 'jquery' => true,
                 'twitterbootstrap' => false,
-                'fontawesome' => false
+                'fontawesome' => false,
+                'lightbox' => true
             ));
 
         // Add all Javascript includes here
@@ -58,6 +59,10 @@ class IncludesConfig {
             ),
             'fontawesome' => array(
                 'css' => '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
+            ),
+            'lightbox' => array(
+                'css' => 'css/lightbox.css',
+                'js' => 'js/lightbox.js'
             )
         );
 
