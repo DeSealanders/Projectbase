@@ -17,9 +17,6 @@ AnalyticsLoader::getInstance()->printTrackingCode();
 <body>
 <?php
 
-QueryManager::getInstance()->saveEvent();
-QueryManager::getInstance()->saveEventOld();
-
 ?>
 <p>
     Todo features:

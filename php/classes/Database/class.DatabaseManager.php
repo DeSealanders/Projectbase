@@ -8,9 +8,11 @@ class DatabaseManager
 
     private $connection;
     private $databaseConfig;
+    private $connected;
 
     private function __construct()
     {
+        $this->connected = false;
         $this->init();
     }
 
@@ -30,19 +32,41 @@ class DatabaseManager
     /**
      * Setup the database connection using the config file
      */
-    private function init()
-    {
+    private function init() {
+
+        // Throw erors instead of warnings
+        mysqli_report(MYSQLI_REPORT_STRICT);
+
+        // Load config
         $this->databaseConfig = new DatabaseConfig();
         $dbDetails = $this->databaseConfig->getDbDetails();
-        $this->connection = mysqli_connect(
-            $dbDetails['address'],
-            $dbDetails['username'],
-            $dbDetails['password'],
-            $dbDetails['database']
-        );
-        if (mysqli_connect_errno()) {
-            Logger::getInstance()->writeMessage("Failed to connect to MySQL: " . mysqli_connect_error());
+        try {
+            $this->connection = mysqli_connect(
+                $dbDetails['address'],
+                $dbDetails['username'],
+                $dbDetails['password'],
+                $dbDetails['database']
+            );
         }
+        catch(Exception $e) {
+            // Do nothing
+        }
+
+        // Log the error
+        if (mysqli_connect_errno()) {
+            Logger::getInstance()->writeMessage("Failed to connect to MySQL: " . mysqli_connect_error(), false);
+        }
+        else {
+            $this->connected = true;
+        }
+    }
+
+    /**
+     * Getter to see wether a database connection has been made
+     * @return bool true if a database connection is found
+     */
+    public function isConnected() {
+        return $this->connected;
     }
 
     /**

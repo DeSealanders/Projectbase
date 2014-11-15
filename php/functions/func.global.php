@@ -22,3 +22,21 @@ function isLive()
     }
     return true;
 }
+
+/**
+ * Creates a file path if for a specified file if it does not exist yet
+ * @param $file the file for which the folder structure should be created
+ */
+function createIfNotExists($file) {
+
+    // Retrieve detailed information about the specified file
+    $pathinfo = pathinfo($file);
+
+    // Retrieve the folder path
+    $folderstructure = $pathinfo['dirname'];
+
+    // Create the folder path if it does not exist yet
+    if (!file_exists($folderstructure)) {
+        mkdir($folderstructure, 0777, true);
+    }
+}

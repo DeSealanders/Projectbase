@@ -22,35 +22,15 @@ class QueryManager {
         return $instance;
     }
 
-    /*
-     *
-     * ---------------------- Examples ----------------------
-     *
-     *
+    /**
+     * Save the debugreport array to the database
+     * @param $debugreport the array which will be inserted in the database
+     * @return array|null true if executed successfully
      */
+    public function saveDebugReport($debugreport) {
 
-    public function saveEvent() {
-        $data = array(
-            'firstname' => 'Henk',
-            'lastname' => 'De tank',
-            'dob' => '26-10-1991',
-            'email' => 'henk@tank.de'
-        );
-        $query = QueryBuilder::getInstance()->buildInsert('people', $data);
+        // Create an insert statement based on input array
+        $query = QueryBuilder::getInstance()->buildInsert('debug', $debugreport);
         return DatabaseManager::getInstance()->executeQuery($query->getSql() , $query->getParameters());
     }
-
-    public function saveEventOld() {
-        $query = 'INSERT INTO people (firstname, lastname, dob, email) VALUES (?, ?, ?, ?);';
-        $params = array(
-            'Henk',
-            'De tank',
-            '26-10-1991',
-            'henk@tank.de'
-        );
-        return DatabaseManager::getInstance()->executeQuery($query , $params);
-
-    }
-
-
 } 
