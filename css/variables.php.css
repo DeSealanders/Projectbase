@@ -3,8 +3,7 @@
  * For example:
  * ol { color: <?php echo 'green'; ?> }
  * will be parsed as
- * ol { color: green'; ?>; }
+ * ol { color: green; }
  */
 header("Content-type: text/css");
 ?>
-

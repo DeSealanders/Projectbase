@@ -30,7 +30,8 @@ class QueryManager {
     public function saveDebugReport($debugreport) {
 
         // Create an insert statement based on input array
-        $query = QueryBuilder::getInstance()->buildInsert('debug', $debugreport);
-        return DatabaseManager::getInstance()->executeQuery($query->getSql() , $query->getParameters());
+        $query = new Query();
+        $query->insert('debug', $debugreport);
+        return DatabaseManager::getInstance()->executeQuery($query);
     }
 } 

@@ -44,6 +44,9 @@ class Logger {
         else {
             $this->writeToFile($message);
         }
+
+        // Add the report to this session log
+        $this->sessionLog[] = $this->generateDebugReport($message, true);
     }
 
     /**
@@ -64,9 +67,6 @@ class Logger {
 
         // Write the formated message to the logfile
         file_put_contents($this->logFile, $debugReport . "\r\n\r\n", FILE_APPEND);
-
-        // Add the report to this session log
-        $this->sessionLog[] = $debugReport;
     }
     /**
      * Write the debug report to the database

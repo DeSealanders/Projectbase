@@ -33,7 +33,8 @@ AnalyticsLoader::getInstance()->printTrackingCode();
     <li><strike>Formbuilder basiselementen</strike></li>
     <li><strike>Formbuilder uitbreiden met meer elementen</strike></li>
     <li><strike>Formbulider validatie</strike></li>
-    <li>Querybuilder</li>
+    <li><strike>Querybuilder</strike></li>
+    <li><strike>Logger naar db (file fallback)</strike></li>
     <li>Formbulider fileupload</li>
     <li>Formbulider config</li>
     <li>Formbuilder ajax submit</li>
@@ -46,7 +47,6 @@ AnalyticsLoader::getInstance()->printTrackingCode();
     <li>Javascript default functions/setups</li>
     <li>Content pages?</li>
     <li>Router (voor page redirects)</li>
-    <li>Logger naar db (file fallback)</li>
     <li>Image resizer</li>
     <li>Templating gebruiken</li>
     </ol>
