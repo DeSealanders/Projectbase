@@ -12,3 +12,10 @@ ErrorDocument 500 /projectbase/404.php
 <Files ~ "\.php.css">
 AddType application/x-httpd-php .css
 </Files>
+
+# Redirect all files which are not found to index.php
+Options +FollowSymLinks
+IndexIgnore */
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php

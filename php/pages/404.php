@@ -1,7 +1,3 @@
-<?php
-// Load default config
-require('php/config/conf.default.php');
-?>
 <!DOCTYPE html>
 <html>
 <head>

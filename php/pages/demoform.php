@@ -1,20 +1,3 @@
-<?php
-// Load default config
-require('php/config/conf.default.php');
-DefaultConfig::getInstance()->init();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<?php
-// Print all css and js includes
-IncludeLoader::getInstance()->printIncludes();
-
-// Print analytics tracking code
-AnalyticsLoader::getInstance()->printTrackingCode();
-?>
-</head>
-<body>
 <div class="testformulier">
 <?php
 var_dump($_POST);
@@ -42,12 +25,3 @@ $form->addComponent(new Button('Versturen', 'send'));
 $form->printHtml();
 ?>
 </div>
-
-</body>
-</html>
-<?php
-// Display logged messages (only on dev)
-if(!isLive()) {
-    echo Logger::getInstance()->printMessages();
-}
-?>
