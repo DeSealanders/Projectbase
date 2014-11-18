@@ -16,18 +16,19 @@
     <li><strike>Querybuilder</strike></li>
     <li><strike>Logger naar db (file fallback)</strike></li>
     <li><strike>Router (voor page redirects)</strike></li>
+    <li>Image resizer</li>
+    <li>Frontend helpers (image, menu, footer etc)</li>
     <li>Formbulider fileupload</li>
     <li>Formbulider config</li>
     <li>Formbuilder ajax submit</li>
     <li>Dataprovider</li>
-    <li>Frontend helpers (image, menu, footer etc)</li>
     <li>Better database debugging</li>
     <li>Abstract classes (factory & manager)</li>
     <li>Phpstorm template comments</li>
     <li>Improved get parameters</li>
     <li>Javascript default functions/setups</li>
     <li>Content pages?</li>
-    <li>Image resizer</li>
     <li>Templating gebruiken</li>
     </ol>
+<a href="demoform/">demoform</a>
 </p>

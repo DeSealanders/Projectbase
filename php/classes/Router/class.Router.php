@@ -68,6 +68,11 @@ class Router {
         // Then compare them (case-insensitive)
         $parsedUrl = array_udiff($request, $script, 'strcasecmp');
 
+        // When no directory is found, send to root
+        if(empty($parsedUrl)) {
+            $parsedUrl[0] = 'index';
+        }
+
         // Return the remainder of the url
         return implode('/', $parsedUrl);
     }
@@ -80,12 +85,15 @@ class Router {
      */
     private function matchRoute($route) {
 
-        // Use default route if none has been found
+        // Check for configured routes first
         if(!($matchedRoute = $this->isConfiguredRoute($route))) {
+
+            // Use default route if no configured routes have been found
             if(!($matchedRoute = $this->isDefaultRoute($route))) {
 
                 // No route could be found
                 $matchedRoute = false;
+
             }
         }
         return $matchedRoute;

@@ -30,11 +30,14 @@ class IncludesConfig {
 
         // Add all Javascript includes here
         $this->addJsInclude('js/documentready.js');
+        $this->addJsInclude('js/index.js');
+        $this->addJsInclude('https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js');
 
         // Add all Css includes here
         $this->addCssInclude('css/variables.php.css');
         $this->addCssInclude('css/default.css');
         $this->addCssInclude('css/forms.css');
+        $this->addCssInclude('css/content.css');
 
         /*
          * --- End of configuration options ---
