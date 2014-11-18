@@ -58,7 +58,7 @@ class TweetManager {
      * @param $link a link which will be attached to the tweet
      * @throws Exception an exception will be thrown when no config has been loaded
      */
-    public function tweet($message, $link) {
+    public function tweet($message, $link = false) {
         if($this->hasConfig) {
             $tweet = new Tweet($message, $link, $this->urlLength);
             if(is_array($tweet->getTweet())) {

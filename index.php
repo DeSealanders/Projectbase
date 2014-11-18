@@ -8,6 +8,6 @@ Router::getInstance()->route($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']);
 
 // Display logged messages (only on dev)
 if(!isLive()) {
-    echo Logger::getInstance()->printMessages();
+    Logger::getInstance()->printMessages();
 }
 ?>
