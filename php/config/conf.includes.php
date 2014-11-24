@@ -7,6 +7,7 @@ class IncludesConfig {
 
     private $cssIncludes;
     private $jsIncludes;
+    private $defaultIncludes;
 
     /**
      * The constructor contains a list of all includes which should be printed by the IncludeLoader
@@ -50,9 +51,10 @@ class IncludesConfig {
      * @param $includes a list of plugins to be included
      */
     private function setDefaultIncludes($includes) {
+        $this->defaultIncludes = $includes;
 
         // Setup the default includes list
-        $this->defaultIncludes = array(
+        $includelist = array(
             'jquery' => array(
                 'js' => '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'
             ),
@@ -76,8 +78,8 @@ class IncludesConfig {
             if($doInclude) {
 
                 // Loop through all default includes and match it to the specified include
-                foreach($this->defaultIncludes as $plugin => $includePaths) {
-                    if($include == $plugin) {
+                foreach($includelist as $name => $includePaths) {
+                    if($include == $name) {
 
                         // Add each file required by the plugin
                         foreach($includePaths as $type => $path) {
@@ -128,6 +130,20 @@ class IncludesConfig {
      */
     public function getJsIncludes() {
         return $this->jsIncludes;
+    }
+
+    /**
+     * Search through all default includes to see if a plugin is enabled
+     * @param $pluginName the name of the plugin for which will be determined wether or not it is enabled
+     * @return bool true if enabled, false otherwise
+     */
+    public function isEnabled($pluginName) {
+        foreach($this->defaultIncludes as $name => $doInclude) {
+            if($pluginName == $name) {
+                return $doInclude;
+            }
+        }
+        return false;
     }
 }
 

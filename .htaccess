@@ -15,7 +15,4 @@ AddType application/x-httpd-php .css
 
 # Redirect all files which are not found to index.php
 Options +FollowSymLinks
-IndexIgnore */
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.php
