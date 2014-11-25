@@ -102,6 +102,29 @@
         </p>
     </div>
 
+    <h3 class="clickable">Dynamisch afbeeldingen resizen</h3>
+    <div class="infoblock">
+        <p>
+            Verder is er de mogelijkheid ingebouwd om afbeeldingen dynamisch te herschalen. Dat kan gedaan worden door
+            het aanroepen van de juiste url. Daarmee wordt dan een afbeelding (indien niet aanwezig in de cache)
+            herschaald en opgeslagen voor later gebruik. Zie hieronder een voorbeeld daarvan.
+        </p>
+        <code class="prettyprint">
+            <xmp>
+                <img src="image/100x150/redlobster.jpg">
+                <img src="image/150x225/redlobster.jpg">
+            </xmp>
+        </code>
+        <p>
+            Heeft het volgende resultaat:
+        </p>
+            <img src="image/100x150/redlobster.jpg">
+            <img src="image/150x225/redlobster.jpg">
+        <p>
+            Hiermee kan dus heel eenvoudig een afbeelding op een bepaald formaat in de website geladen worden.
+        </p>
+    </div>
+
     <h3 class="clickable">Google analytics</h3>
     <div class="infoblock">
         <p>
