@@ -57,7 +57,8 @@ class Router {
         else if($route->getType() == 'image') {
 
             // Let the image loader handle the rest of this request
-            ImageLoader::getInstance()->loadImage($route->getMatchedRoute(), $route->getImageDetails());
+            $imageDetails = $route->getImageDetails();
+            ImageLoader::getInstance()->loadImage($route->getMatchedRoute(), $imageDetails['width'], $imageDetails['height']);
         }
 
         // Load a configured or regular page

@@ -29,6 +29,7 @@
     <li>Javascript default functions/setups</li>
     <li>Content pages?</li>
     <li>Templating gebruiken</li>
+    <li>Required sterretjes bij formuliervelden</li>
     </ol>
 <a href="demoform/">demoform</a>
 </p>

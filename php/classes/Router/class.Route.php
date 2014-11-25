@@ -138,7 +138,7 @@ class Route {
         if(isset($route[0]) && $route[0] == 'image') {
 
             // Check for right amount of parameters
-            if(count($route) == 4) {
+            if(count($route) >= 3) {
 
                 // If a width and height can be found
                 $dimensions = explode('x', $route[1]);
