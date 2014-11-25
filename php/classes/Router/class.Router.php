@@ -72,7 +72,7 @@ class Router {
 
         // When no directory is found, send to root
         if(empty($parsedUrl)) {
-            $parsedUrl[0] = 'index.php';
+            $parsedUrl[0] = 'index';
         }
 
         // Return the remainder of the url
@@ -195,6 +195,11 @@ class Router {
      * @return bool|string the route if one could be found, false otherwise
      */
     private function isDefaultRoute($route) {
+
+        // Add .php extension if not present
+        if(pathinfo($route, PATHINFO_EXTENSION) == '') {
+            $route .= '.php';
+        }
 
         // See if default route exists
         $defaultRoute = 'php/pages/' . $route;

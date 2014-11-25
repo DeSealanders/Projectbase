@@ -24,7 +24,7 @@ class RouterConfig {
          *      'henk/de/tank' => 'php/pages/sjonbontebal.php'
          */
         $this->routes = array(
-            
+
         );
 
         /*
