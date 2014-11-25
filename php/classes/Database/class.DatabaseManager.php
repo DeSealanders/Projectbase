@@ -38,8 +38,7 @@ class DatabaseManager
         mysqli_report(MYSQLI_REPORT_STRICT);
 
         // Load config
-        $this->databaseConfig = new DatabaseConfig();
-        $dbDetails = $this->databaseConfig->getDbDetails();
+        $dbDetails = DatabaseConfig::getInstance()->getDbDetails();
         try {
             $this->connection = mysqli_connect(
                 $dbDetails['address'],

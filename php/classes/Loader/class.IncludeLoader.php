@@ -5,10 +5,8 @@
  */
 class IncludeLoader {
 
-    private $includeConfig;
-
     private function __construct() {
-        $this->includeConfig = new IncludesConfig();
+
     }
 
     /**
@@ -37,7 +35,7 @@ class IncludeLoader {
      * Print all css includes from conf.includes.php
      */
     private function printCssIncludes() {
-        foreach($this->includeConfig->getCssIncludes() as $file) {
+        foreach(IncludesConfig::getInstance()->getCssIncludes() as $file) {
             if(count(parse_url($file)) > 1 || file_exists($file)) {
                 echo "\t" . '<link rel="stylesheet" type="text/css" href="' . $file . '">' . "\n";
             }
@@ -51,7 +49,7 @@ class IncludeLoader {
      * Print all js includes from conf.includes.php
      */
     private function printJsIncludes() {
-        foreach($this->includeConfig->getJsIncludes() as $file) {
+        foreach(IncludesConfig::getInstance()->getJsIncludes() as $file) {
             if(count(parse_url($file)) > 1 || file_exists($file)) {
                 echo "\t" . '<script src="' . $file . '"></script>' . "\n";
             }

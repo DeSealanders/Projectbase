@@ -12,7 +12,7 @@ class IncludesConfig {
     /**
      * The constructor contains a list of all includes which should be printed by the IncludeLoader
      */
-    public function __construct() {
+    private function __construct() {
 
         // Start of with two empty arrays
         $this->cssIncludes = $this->jsIncludes = array();
@@ -44,6 +44,19 @@ class IncludesConfig {
          * --- End of configuration options ---
          */
 
+    }
+
+    /**
+     * Function for creating only 1 instance and return that each time its called (singleton)
+     * @return IncludesConfig
+     */
+    public static function getInstance()
+    {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new IncludesConfig();
+        }
+        return $instance;
     }
 
     /**
@@ -130,6 +143,14 @@ class IncludesConfig {
      */
     public function getJsIncludes() {
         return $this->jsIncludes;
+    }
+
+    /**
+     * Getter for JS and CSS includes
+     * @return array list of all js and css includes
+     */
+    public function getAllIncludes() {
+        return array_merge($this->getJsIncludes(), $this->getCssIncludes());
     }
 
     /**

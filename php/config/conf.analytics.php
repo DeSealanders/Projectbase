@@ -8,7 +8,7 @@ class AnalyticsConfig {
     private $analyticsId;
     private $enabled;
 
-    public function __construct() {
+    private function __construct() {
         /*
          * --- Configuration options here ---
          */
@@ -19,6 +19,19 @@ class AnalyticsConfig {
         /*
          * --- End of configuration options ---
          */
+    }
+
+    /**
+     * Function for creating only 1 instance and return that each time its called (singleton)
+     * @return AnalyticsConfig
+     */
+    public static function getInstance()
+    {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new AnalyticsConfig();
+        }
+        return $instance;
     }
 
     /**

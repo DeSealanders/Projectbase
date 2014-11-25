@@ -5,17 +5,17 @@
  */
 class RouterConfig {
 
-    private $defaultPage;
+    private $wrapperPage;
     private $routes;
 
-    public function __construct() {
+    private function __construct() {
         /*
          * --- Configuration options here ---
          */
 
         // The page to be loaded by default
         // Set to false if none should be loaded
-        $this->defaultPage = 'php/pages/default.php';
+        $this->wrapperPage = 'php/pages/wrapper.php';
 
         /* Alternative routes
          * The key is the incoming page (visible to the client)
@@ -32,8 +32,21 @@ class RouterConfig {
          */
     }
 
-    public function getDefaultPage() {
-        return $this->defaultPage;
+    /**
+     * Function for creating only 1 instance and return that each time its called (singleton)
+     * @return RouterConfig
+     */
+    public static function getInstance()
+    {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new RouterConfig();
+        }
+        return $instance;
+    }
+
+    public function getWrapperPage() {
+        return $this->wrapperPage;
     }
 
     public function getRoutes() {

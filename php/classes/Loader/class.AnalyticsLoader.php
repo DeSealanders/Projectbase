@@ -6,11 +6,9 @@
 class AnalyticsLoader
 {
 
-    private $analyticsConfig;
-
     private function __construct()
     {
-        $this->analyticsConfig = new AnalyticsConfig();
+
     }
 
     /**
@@ -32,13 +30,13 @@ class AnalyticsLoader
     public function printTrackingCode()
     {
         // Only print if enabled
-        if($this->analyticsConfig->isEnabled()) {
+        if(AnalyticsConfig::getInstance()->isEnabled()) {
 
             // Only print on live
             if (isLive()) {
 
                 // Only print if an id has been entered
-                if ($this->analyticsConfig->getAnalyticsId()) {
+                if ($analyticsId = AnalyticsConfig::getInstance()->getAnalyticsId()) {
 
                     // Print tracking code using id from config
                     echo "
@@ -48,7 +46,7 @@ class AnalyticsLoader
                           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                          ga('create', '" . $this->analyticsConfig->getAnalyticsId() . "', 'auto');
+                          ga('create', '" . $analyticsId . "', 'auto');
                           ga('send', 'pageview');
 
                         </script>

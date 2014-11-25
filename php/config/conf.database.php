@@ -34,6 +34,19 @@ class DatabaseConfig {
     }
 
     /**
+     * Function for creating only 1 instance and return that each time its called (singleton)
+     * @return DatabaseConfig
+     */
+    public static function getInstance()
+    {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new DatabaseConfig();
+        }
+        return $instance;
+    }
+
+    /**
      * Return database details on basis of host location
      * @return array database details
      */
