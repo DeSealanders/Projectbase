@@ -96,22 +96,35 @@ class Router {
 
     /**
      * Load a page and check if a wrapper should be used
-     * @param $matchedRoute
+     * @param $matchedRoute the route which will be loaded
      */
     private function loadPageRoute($matchedRoute) {
+        $wrap = true;
 
-        // Load the default page if it is set
-        if($wrapperPage = RouterConfig::getInstance()->getWrapperPage()) {
+        // Check if an image is configured
+        $routeExtension = strtolower(pathinfo($matchedRoute, PATHINFO_EXTENSION));
+        foreach(array('png','jpg','jpeg','gif') as $extension) {
+            if($routeExtension == $extension) {
 
-            // Set the route so it can be used in the wrapper page
-            $_SERVER['ROUTE'] = $matchedRoute;
-            require($wrapperPage);
+                // Use the proper header for images
+                header('Content-Type: image/' . $extension);
+                $wrap = false;
+            }
         }
 
-        // Load the found route without a default page
-        else {
-            require($matchedRoute);
+        // Load the wrapper page if it is set
+        if($wrap) {
+            if($wrapperPage = RouterConfig::getInstance()->getWrapperPage()) {
+
+                // Set the route so it can be used in the wrapper page
+                $_SERVER['ROUTE'] = $matchedRoute;
+                require($wrapperPage);
+                return;
+            }
         }
+
+        // Require the matched route
+        require($matchedRoute);
     }
 
 } 

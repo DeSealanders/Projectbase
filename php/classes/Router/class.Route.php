@@ -72,8 +72,8 @@ class Route {
         // First check if the route is configured
         if($matchedRoute = $this->isConfiguredRoute($routePath)) {
             $this->type = 'configured';
-
         }
+
         // Secondly check if an image is specified
         else if($matchedRoute = $this->isImage($route)) {
             $this->type = 'image';
@@ -114,6 +114,7 @@ class Route {
 
                 // Check if the route file actually exists
                 if(file_exists($destination)) {
+
                     return $destination;
                 }
                 else {
@@ -162,7 +163,7 @@ class Route {
 
     /**
      * Check the conf.includes.php file for any includes
-     * @param $route the route to be matched
+     * @param $routePath the route to be matched
      * @return bool|string the include if one could be found, false otherwise
      */
     private function isInclude($routePath) {
