@@ -17,10 +17,10 @@
     <li><strike>Logger naar db (file fallback)</strike></li>
     <li><strike>Router (voor page redirects)</strike></li>
     <li><strike>Image resizer</strike></li>
+    <li><strike>Frontend helpers (image, menu, footer etc)</strike></li>
     <li>Slimme caching gebruiken voor image resizer</li>
-    <li>Frontend helpers (image, menu, footer etc)</li>
-    <li>Formbulider fileupload</li>
-    <li>Formbulider config</li>
+    <li>Formbuilder fileupload</li>
+    <li>Formbuilder config</li>
     <li>Formbuilder ajax submit</li>
     <li>Dataprovider</li>
     <li>Better database debugging</li>
@@ -31,6 +31,7 @@
     <li>Content pages?</li>
     <li>Templating gebruiken</li>
     <li>Required sterretjes bij formuliervelden</li>
+    <li>Open graph opties</li>
     </ol>
 <a href="demoform/">demoform</a>
 </p>
