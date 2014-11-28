@@ -69,14 +69,14 @@ class IncludesConfig {
         // Setup the default includes list
         $includelist = array(
             'jquery' => array(
-                'js' => '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'
+                'js' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'
             ),
             'twitterbootstrap' => array(
                 'css' => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css',
                 'js' =>  'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
             ),
             'fontawesome' => array(
-                'css' => '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
+                'css' => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
             ),
             'lightbox' => array(
                 'css' => 'css/lightbox.css',
