@@ -32,6 +32,7 @@ class Query {
     private $groupBy;
     private $orderBy;
     private $insert;
+    private $update;
 
     public function __construct() {
 
@@ -43,7 +44,8 @@ class Query {
         $this->where =
         $this->groupBy =
         $this->orderBy =
-        $this->insert = array();
+        $this->insert =
+        $this->update = array();
     }
 
     /**
@@ -120,6 +122,13 @@ class Query {
         );
     }
 
+    public function update($table, $data) {
+        $this->update = array(
+            'table' => $table,
+            'data' => $data
+        );
+    }
+
     /**
      * Used to see if a select statement has been built
      * @return bool true if a select statement has been built
@@ -134,6 +143,10 @@ class Query {
      */
     public function hasInsert() {
         return !empty($this->insert);
+    }
+
+    public function hasUpdate() {
+        return !empty($this->update);
     }
 
     /**
@@ -152,6 +165,7 @@ class Query {
     {
         return $this->groupBy;
     }
+
     /**
      * Return the insert query part
      * @return mixed array containing the insert part
@@ -159,6 +173,15 @@ class Query {
     public function getInsert()
     {
         return $this->insert;
+    }
+
+    /**
+     * Return the update query part
+     * @return mixed array containing the update part
+     */
+    public function getUpdate()
+    {
+        return $this->update;
     }
 
     /**

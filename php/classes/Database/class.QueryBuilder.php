@@ -30,7 +30,7 @@ class QueryBuilder {
      */
     public function build($query) {
 
-        // Check if a select or insert query has to be generated
+        // If a select statement should be generated
         if($query->hasSelect()) {
             $sql = $this->getSelectPart($query->getSelect());
             $sql .= $this->getFromPart($query->getFrom());
@@ -40,8 +40,18 @@ class QueryBuilder {
             $sql .= $this->getOrderByPart($query->getOrderBy());
             return $sql;
         }
+
+        // If an insert statement should be generated
         else if($query->hasInsert()) {
-            return $this->getInsertPart($query->getInsert());
+            $sql = $this->getInsertPart($query->getInsert());
+            return $sql;
+        }
+
+        // If an update statement should be generated
+        else if($query->hasUpdate()) {
+            $sql = $this->getUpdatePart($query->getUpdate());
+            $sql .= $this->getWherePart($query->getWhere());
+            return $sql;
         }
         else {
             Logger::getInstance()->writeMessage('Unable to execute query which has not been built yet!');
@@ -124,7 +134,23 @@ class QueryBuilder {
         $sql .= " (" . implode(', ', array_keys($insert['data'])) . ")";
 
         // VALUES ("Henk", "De tank", "26-10-1991", "henk@tank.de");
-        $sql .= ' VALUES ("' . implode('", "', array_values($insert['data'])) . '");';
+        $sql .= ' VALUES ("' . implode('", "', array_values($insert['data'])) . '")';
+        return $sql;
+    }
+
+    /**
+     * Create an update statement based on a query object
+     * @param $update the update string from the query object
+     * @return string the sql generated based on the query object
+     */
+    private function getUpdatePart($update) {
+        $sql = "UPDATE "  . $update['table'];
+        $sql .= " SET ";
+        $updates = array();
+        foreach($update['data'] as $column => $value) {
+            $updates[] = $column . ' = "' . $value . '"';
+        }
+        $sql .= implode(',', $updates);
         return $sql;
     }
 
@@ -138,6 +164,7 @@ class QueryBuilder {
      * @param $keyword keyword to be put in front of sql (SELECT, WHERE, FROM, GROUP BY, ORDER BY etc)
      * @param $values a string or array of values which need to be split by commas
      * @param bool $required when true is given an error will be thrown if no values are found
+     * @param string $seperator the seperator used in combining all values
      * @return string an sql valid string
      */
     private function formatSql($keyword, $values, $required = false, $seperator = ', ') {
