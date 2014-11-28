@@ -16,7 +16,8 @@
     <li><strike>Querybuilder</strike></li>
     <li><strike>Logger naar db (file fallback)</strike></li>
     <li><strike>Router (voor page redirects)</strike></li>
-    <li>Image resizer</li>
+    <li><strike>Image resizer</strike></li>
+    <li>Slimme caching gebruiken voor image resizer</li>
     <li>Frontend helpers (image, menu, footer etc)</li>
     <li>Formbulider fileupload</li>
     <li>Formbulider config</li>

@@ -25,40 +25,21 @@ class ImageLoader {
 
     /**
      * Load an image path in specific dimensions
-     * @param $imagePath the path to the image which should be loaded
+     * @param $fileName the path to the image which should be loaded
      * @param $width the desired width of the image
      * @param $height the desired height of the image
      */
-    public function loadImage($imagePath, $width, $height) {
+    public function loadImage($fileName, $width, $height) {
 
         // First try loading the image from cache
-        if(!$image = $this->isCached($imagePath, $width, $height)) {
+        if(!$image = CacheLoader::getInstance()->loadImage($fileName, $width, $height)) {
 
             // Load image from imageresizer if cache isn't available
-            $image = ImageResizer::getInstance()->resizeImage($imagePath, $width, $height);
+            $image = ImageResizer::getInstance()->resizeImage($fileName, $width, $height);
         }
 
         // Display image on the page
         $this->displayImageResource($image);
-    }
-
-    /**
-     * Check if in image is cached in the specified format
-     * @param $imagePath the path to the image
-     * @param $width the desired width of the image
-     * @param $height the desired height of the image
-     * @return bool|Image returns an image object if cached, false otherwise
-     */
-    private function isCached($imagePath, $width, $height) {
-        $fileInfo = pathinfo($imagePath);
-        $cacheFileName = $fileInfo['filename'] . '_' . $width . 'x' . $height . '.' . $fileInfo['extension'];
-        $cachePath = 'image/cache/' . $cacheFileName;
-        if(file_exists($cachePath)) {
-            return new Image($cachePath);
-        }
-        else {
-            return false;
-        }
     }
 
     /**

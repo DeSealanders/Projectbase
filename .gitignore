@@ -7,3 +7,4 @@
 .idea/vcs.xml
 .idea/workspace.xml
 .idea/dictionaries/Peter.xml
+php/config/conf.database.php

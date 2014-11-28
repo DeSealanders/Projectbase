@@ -1,0 +1,187 @@
+
+
+------- Page refreshed -------
+Message -  test
+File -  G:\Webdev\usbwebserver\root\Projectbase\index.php
+Line -  20
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-15 11:08:57
+
+
+
+------- Page refreshed -------
+Message -  Failed to connect to MySQL: Unknown database 'test2'
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Database\class.DatabaseManager.php
+Line -  57
+Class -  DatabaseManager
+Function -  init
+Timestamp -  2014-11-15 11:43:28
+
+Message -  test
+File -  G:\Webdev\usbwebserver\root\Projectbase\index.php
+Line -  20
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-15 11:43:28
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (firstname, lastname, dob, email) VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:23:22
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (firstname, lastname, dob, email) VALUES ();"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:24:32
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (''firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:20
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (''firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:22
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (''firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:23
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (''firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:26
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (''firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:27
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (''firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:27
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (''firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:31
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people ('firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:45
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people ('firstname','lastname','dob','email) VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:53
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people ('firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:29:59
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people ('firstname','lastname','dob','email) VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:30:09
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people ('firstname','lastname','dob','email') VALUES (Henk, De tank, 26-10-1991, henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:30:13
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (firstname, lastname, dob, email) VALUES (Henk", "De tank", "26-10-1991", "henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:30:46
+
+
+
+------- Page refreshed -------
+Message -  Unable to execute query: "INSERT INTO people (firstname, lastname, dob, email) VALUES ("Henk", "De tank", "26-10-1991", "henk@tank.de);"
+File -  G:\Webdev\usbwebserver\root\Projectbase\php\classes\Debug\class.Logger.php
+Line -  45
+Class -  Logger
+Function -  writeMessage
+Timestamp -  2014-11-16 13:31:06
+

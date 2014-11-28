@@ -10,6 +10,7 @@ class Image {
     private $height;
     private $resource;
     private $extension;
+    private $fileName;
     private $filePath;
 
     /**
@@ -18,18 +19,19 @@ class Image {
      * 2. By specifying dimensions and a desired filepath
      * When a source file is given it will be used to create a resource
      * When dimensions are given a blank resource is created
+     * @param bool $fileName the filename to the source file (false if none provided)
      * @param bool $filePath the path to the source file (false if none provided)
      * @param bool $width the desired width of the blank resource (false if source image is provided)
      * @param bool $height the desired height of the blank resource (false if source image is provided)
      */
-    public function __construct($filePath = false, $width = false, $height = false) {
+    public function __construct($fileName = false, $filePath = false, $width = false, $height = false) {
 
         // Create a blank resource
         if($width && $height) {
 
             // Format a new imagename like demo200x200.jpg
-            $fileInfo = pathinfo($filePath);
-            $this->filePath = $fileInfo['filename'] . '_' . $width . 'x' . $height . '.' . $fileInfo['extension'];
+            $fileInfo = pathinfo($fileName);
+            $this->setFileName($fileInfo['filename'], $width, $height, $fileInfo['extension']);
 
             // Create a blank resource
             $image = $this->createImageFromDimensions($width, $height, strtolower($fileInfo['extension']));
@@ -37,15 +39,17 @@ class Image {
 
         // Create a resource from the source file
         else {
-            $this->filePath = $filePath;
-            $image = $this->createImageFromPath($filePath);
+            $this->fileName = $fileName;
+            $image = $this->createImageFromFileName($fileName, $filePath);
         }
 
+        // Set filepath from constructor
+        $this->filePath = $filePath;
 
         // Set all values from the retrieved image
         $this->resource = $image['resource'];
-        $this->width = $image['width'];
-        $this->height = $image['height'];
+        $this->width = (int)$image['width'];
+        $this->height = (int)$image['height'];
         $this->extension = $image['extension'];
     }
 
@@ -74,6 +78,30 @@ class Image {
 
         // Return false if no valid extension is found
         return false;
+    }
+
+    /**
+     * Setter for the image resource
+     * @param $resource the resource to be linked to this image
+     */
+    public function setResource($resource) {
+        $this->resource = $resource;
+    }
+
+    /**
+     * Setter for the image width
+     * @param $width the width of the image
+     */
+    public function setWidth($width) {
+        $this->width = $width;
+    }
+
+    /**
+     * Setter for the image height
+     * @param $height the height of the image
+     */
+    public function setHeight($height) {
+        $this->height = $height;
     }
 
     /**
@@ -109,19 +137,15 @@ class Image {
     }
 
     /**
-     * Setter for the image resource
-     * @param $resource the resource to be linked to this image
+     * Getter for the filename to the iamge
+     * @return string filename to the image
      */
-    public function setResource($resource) {
-        $this->resource = $resource;
+    public function getFileName() {
+        return $this->fileName;
     }
 
-    /**
-     * Getter for the filepath to the iamge
-     * @return string filepath to the image
-     */
-    public function getFilePath() {
-        return $this->filePath;
+    private function setFileName($fileName, $width, $height, $extension) {
+        $this->fileName = $fileName . '_' . $width . 'x' . $height . '.' . $extension;
     }
 
     /**
@@ -142,23 +166,24 @@ class Image {
 
     /**
      * Create a list of image options along with its resource
+     * @param $fileName the filename of the source file
      * @param $filePath the path of the source file
      * @return array an array with all the resource its options
      */
-    private function createImageFromPath($filePath) {
+    private function createImageFromFileName($fileName, $filePath) {
         // Check if file exists
-        if(file_exists($filePath)) {
+        if(file_exists($filePath . $fileName)) {
 
             // Retrieve and store image details
-            $imageDetails = getimagesize($filePath);
+            $imageDetails = getimagesize($filePath . $fileName);
             if(count($imageDetails) > 0) {
 
                 // Retrieve extension in lowercase
-                $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+                $extension = strtolower(pathinfo($filePath . $fileName, PATHINFO_EXTENSION));
 
                 // Return the details for the source image
                 return array(
-                    'resource' => $this->createResource($filePath, $extension),
+                    'resource' => $this->createResource($filePath . $fileName, $extension),
                     'width' => $imageDetails[0],
                     'height' => $imageDetails[1],
                     'extension' => $extension
@@ -166,31 +191,31 @@ class Image {
             }
         }
         else {
-            Logger::getInstance()->writeMessage('No valid file given: ' . $filePath);
+            Logger::getInstance()->writeMessage('No valid file given: ' . $fileName);
         }
     }
 
     /**
      * Create a resource from a specified image
-     * @param $filePath the path of the source file
+     * @param $fullFilePath the path and filename of the source file
      * @param $extension the extension of the source file
      * @return bool|resource return a resource if successfull, false otherwise
      */
-    private function createResource($filePath, $extension) {
+    private function createResource($fullFilePath, $extension) {
 
         // jpg or jpeg images
         if($extension == 'jpg' || $this->extension == 'jpeg') {
-            return imagecreatefromjpeg($filePath);
+            return imagecreatefromjpeg($fullFilePath);
         }
 
         // png images
         else if ($extension == 'png') {
-            return imagecreatefrompng($filePath);
+            return imagecreatefrompng($fullFilePath);
         }
 
         // gif images
         else if($extension == 'gif') {
-            return imagecreatefromgif($filePath);
+            return imagecreatefromgif($fullFilePath);
         }
         else {
             Logger::getInstance()->writeMessage('Specified image is not a valid jpg, png or gif image');
