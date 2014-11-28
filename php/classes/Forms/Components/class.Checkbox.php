@@ -16,11 +16,11 @@ class Checkbox extends FormComponent{
 
     public function printHtml() {
         echo '<div class="component">';
-        echo '<label for="'. $this->id . '">' . $this->label . '</label>';
+        echo '<label for="'. $this->id . '">' . $this->label . $this->getRequiredLabelHtml() . '</label>';
         echo '<div class="checkboxgroup">';
         foreach($this->options as $label => $option) {
             echo '<div class="checkbox">';
-            echo '<input  ' . $this->getRequiredHtml() . ' type="checkbox" name="' . $option . '" value="checked">';
+            echo '<input  ' . $this->getRequiredInputHtml() . ' type="checkbox" name="' . $option . '" value="checked">';
             echo '<label for id="' . $option . '">' . $label . '</label>';
             echo '</div>';
         }

@@ -14,7 +14,6 @@ class FormComponent {
         $this->id = $id;
         $this->label = $label;
         $this->required = $required;
-
     }
 
     public function printHtml() {
@@ -25,9 +24,18 @@ class FormComponent {
         return $this->id;
     }
 
-    protected function getRequiredHtml() {
+    protected function getRequiredInputHtml() {
         if($this->required) {
             return 'required';
+        }
+        else {
+            return '';
+        }
+    }
+
+    public function getRequiredLabelHtml() {
+        if($this->required) {
+            return '<span class="required">*</span>';
         }
         else {
             return '';

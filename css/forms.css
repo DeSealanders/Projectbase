@@ -20,7 +20,10 @@
     float: left;
     width: 60%;
 }
-
+.customForm .required {
+    color: red;
+    font-size: 140%;
+}
 
 /** Borders **/
 .customForm input[type=text],

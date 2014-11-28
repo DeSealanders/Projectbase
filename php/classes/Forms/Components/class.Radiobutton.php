@@ -16,13 +16,13 @@ class Radiobutton extends FormComponent{
 
     public function printHtml() {
         echo '<div class="component">';
-        echo '<label for="'. $this->id . '">' . $this->label . '</label>';
+        echo '<label for="'. $this->id . '">' . $this->label . $this->getRequiredLabelHtml() . '</label>';
         echo '<div class="checkboxgroup">';
 
         // Print all values as an option
         foreach($this->options as $label => $option) {
             echo '<div class="checkbox">';
-            echo '<input  ' . $this->getRequiredHtml() . ' type="radio" name="' . $this->id . '" value="' . $option . '">';
+            echo '<input  ' . $this->getRequiredInputHtml() . ' type="radio" name="' . $this->id . '" value="' . $option . '">';
             echo '<label for id="' . $option . '">' . $label . '</label>';
             echo '</div>';
         }

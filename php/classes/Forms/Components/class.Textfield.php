@@ -17,9 +17,9 @@ class Textfield extends FormComponent{
 
     public function printHtml() {
         echo '<div class="component">';
-        echo '<label for="'. $this->id . '">' . $this->label . '</label>';
+        echo '<label for="'. $this->id . '">' . $this->label . $this->getRequiredLabelHtml() . '</label>';
         echo '<div class="inputwrapper">';
-        echo '<input  ' . $this->getRequiredHtml() . ' name="' . $this->id . '" id="' . $this->id . '" type="text" placeholder="' . $this->placeholder . '" value="' . $this->value . '"></input>';
+        echo '<input  ' . $this->getRequiredInputHtml() . ' name="' . $this->id . '" id="' . $this->id . '" type="text" placeholder="' . $this->placeholder . '" value="' . $this->value . '"></input>';
         echo '</div>';
         echo '</div>';
     }

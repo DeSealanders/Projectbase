@@ -16,9 +16,9 @@ class Dropdown extends FormComponent{
 
     public function printHtml() {
         echo '<div class="component">';
-        echo '<label for="'. $this->id . '">' . $this->label . '</label>';
+        echo '<label for="'. $this->id . '">' . $this->label . $this->getRequiredLabelHtml() . '</label>';
         echo '<div class="inputwrapper">';
-        echo '<select  ' . $this->getRequiredHtml() . ' name="' . $this->id . '" id="' . $this->id . '">';
+        echo '<select  ' . $this->getRequiredInputHtml() . ' name="' . $this->id . '" id="' . $this->id . '">';
 
         // If the dropdown is required add a first option without a value
         if($this->required) {

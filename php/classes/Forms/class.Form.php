@@ -20,6 +20,7 @@ class Form {
         foreach($this->components as $component) {
             $component->printHtml();
         }
+        echo '<p><span class="required">*</span> = verplicht </p>';
         echo '</form>';
 
     }
