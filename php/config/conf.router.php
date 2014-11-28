@@ -24,7 +24,10 @@ class RouterConfig {
          *      'henk/de/tank' => 'php/pages/sjonbontebal.php'
          */
         $this->routes = array(
-
+            'image/lightbox/prev.png' => 'image/lightbox/prev.png',
+            'image/lightbox/next.png' => 'image/lightbox/next.png',
+            'image/lightbox/loading.gif' => 'image/lightbox/loading.gif',
+            'image/lightbox/close.png' => 'image/lightbox/close.png',
         );
 
         /*
