@@ -61,14 +61,6 @@ class DatabaseManager
     }
 
     /**
-     * Getter to see wether a database connection has been made
-     * @return bool true if a database connection is found
-     */
-    public function isConnected() {
-        return $this->connected;
-    }
-
-    /**
      * Execute a specified query
      * @param $query the query to be executed
      * @param bool $params a list of parameters for prepared statements
@@ -88,18 +80,29 @@ class DatabaseManager
             }
             //$this->printDebugInfo($query, $params);
             $statement->execute();
-            $result = $statement->get_result();
-            if ($result) {
-                while ($returnValue = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                    $results[] = $returnValue;
-                }
-                if (isset($results)) {
-                    return $results;
-                } else {
-                    return false;
+
+            // Check if mysqlnd drivers are installed
+            if(function_exists('mysqli_fetch_all')) {
+
+                // Get results from statement through the (easy) mysqli way
+                $result = $statement->get_result();
+                if ($result) {
+                    while ($returnValue = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                        $results[] = $returnValue;
+                    }
                 }
             }
             else {
+
+                // Get results from statement through the (hard) way, by binding variables to each field
+                $results = $this->getResultFromArray($statement);
+            }
+
+
+            // Return results
+            if (isset($results)) {
+                return $results;
+            } else {
                 return false;
             }
         }
@@ -113,6 +116,54 @@ class DatabaseManager
             Logger::getInstance()->writeMessage('Unable to execute query: "' . $query . '"' . $params);
             //$this->printDebugInfo($query, $params);
         }
+    }
+
+    /**
+     * Getter to see wether a database connection has been made
+     * @return bool true if a database connection is found
+     */
+    public function isConnected() {
+        return $this->connected;
+    }
+
+    /**
+     * Alternative (and outdated) way of getting results from a mysqli statement
+     * @param $statement the statement which results will be extracted from
+     * @return array the results of the query related to the statement
+     */
+    private function getResultFromArray($statement) {
+
+        // Convert results into array
+        $statement->store_result();
+        $results = array();
+        $allResults = array();
+        $params = array();
+        $meta = $statement->result_metadata();
+        if ($meta)
+        {
+            // Get all fieldnames
+            while ($field = $meta->fetch_field())
+            {
+                $allResults[$field->name] = null;
+                $params[] = &$allResults[$field->name];
+            }
+
+            // Bind fieldnames to statement
+            call_user_func_array(array($statement, 'bind_result'), $params);
+        }
+
+        // Create a copy function
+        $copy = create_function('$a', 'return $a;');
+
+        // Copy results into results
+        while ($statement->fetch())
+        {
+            $results[] = array_map($copy, $allResults);
+        }
+
+        $statement->free_result();
+
+        return $results;
     }
 
     /**
