@@ -4,23 +4,10 @@
  * This class is responsible for loading specified images in certain dimensions
  * It will use cached images if available, otherwise the images will be loaded via the ImageResizer class
  */
-class ImageLoader {
+class ImageLoader extends Singleton {
 
-    private function __construct() {
+    protected function __construct() {
     
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return ImageLoader
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new ImageLoader();
-        }
-        return $instance;
     }
 
     /**

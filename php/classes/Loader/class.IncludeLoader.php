@@ -3,23 +3,10 @@
  * Class IncludeLoader
  * This class is responsible for loading all css and js includes from conf.includes.php
  */
-class IncludeLoader {
+class IncludeLoader extends Singleton {
 
-    private function __construct() {
+    protected function __construct() {
 
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return IncludeLoader
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new IncludeLoader();
-        }
-        return $instance;
     }
 
     /**

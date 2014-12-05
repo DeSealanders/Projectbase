@@ -4,12 +4,12 @@
  * This class is responsible for creating a log file
  *
  */
-class Logger {
+class Logger extends Singleton {
 
     private $sessionLog;
     private $logFile;
 
-    private function __construct() {
+    protected  function __construct() {
 
         // Setup log file path from conf.default.php
         $this->logFile = DefaultConfig::getInstance()->getLogfile();
@@ -19,21 +19,9 @@ class Logger {
     }
 
     /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return DatabaseManager
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new Logger();
-        }
-        return $instance;
-    }
-
-    /**
      * Write a log message to a text file and
-     * @param $message
+     * @param $message the message to be written
+     * @param bool $logtodb flag to see if db logging is prefered
      */
     public function writeMessage($message, $logtodb = true) {
 
@@ -117,13 +105,15 @@ class Logger {
     }
 
     /**
+    /**
      * Generate a debugreport from the message
      * This includes the last called class,
      * the file from which it is called,
      * the corresponding line
      * and a timestamp
      * @param $message the message to be reported
-     * @return string a message enriched with debug information
+     * @param bool $asString a message enriched with debug information
+     * @return array|string the debug report
      */
     private function generateDebugReport($message, $asString = false) {
 

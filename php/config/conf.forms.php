@@ -3,11 +3,11 @@
  * Class FormConfig
  * This class is repsonsible for all form-related settings
  */
-class FormConfig {
+class FormConfig extends Singleton {
 
     private $useAjax;
 
-    public function __construct() {
+    protected function __construct() {
         /*
          * --- Configuration options here ---
          */
@@ -22,19 +22,6 @@ class FormConfig {
         /*
          * --- End of configuration options ---
          */
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return FormConfig
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new FormConfig();
-        }
-        return $instance;
     }
 
     public function useAjax() {

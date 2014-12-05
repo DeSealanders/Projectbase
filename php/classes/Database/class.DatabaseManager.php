@@ -3,30 +3,16 @@
  * Class DatabaseManager
  * This class is used for establishing a database connection and executing queries
  */
-class DatabaseManager
+class DatabaseManager extends Singleton
 {
 
     private $connection;
-    private $databaseConfig;
     private $connected;
 
-    private function __construct()
+    protected function __construct()
     {
         $this->connected = false;
         $this->init();
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return DatabaseManager
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new DatabaseManager();
-        }
-        return $instance;
     }
 
     /**

@@ -4,28 +4,15 @@
  * This class is repsonsible for auto loading classes if enabled
  * It will check a list of directories and filenames to see wether a class can be found
  */
-class Autoloader {
+class Autoloader extends Singleton {
 
     private $autoloadActive;
 
     /**
      * The constructor disables autoloading by default
      */
-    private function __construct() {
+    protected function __construct() {
         $this->autoloadActive = false;
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return Autoloader
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new Autoloader();
-        }
-        return $instance;
     }
 
     /**

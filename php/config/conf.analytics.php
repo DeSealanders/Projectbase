@@ -3,12 +3,12 @@
  * Class AnalyticsConfig
  * This class is repsonsible for setting up the correct google analytics tracking id
  */
-class AnalyticsConfig {
+class AnalyticsConfig extends Singleton {
 
     private $analyticsId;
     private $enabled;
 
-    private function __construct() {
+    protected function __construct() {
         /*
          * --- Configuration options here ---
          */
@@ -19,19 +19,6 @@ class AnalyticsConfig {
         /*
          * --- End of configuration options ---
          */
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return AnalyticsConfig
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new AnalyticsConfig();
-        }
-        return $instance;
     }
 
     /**

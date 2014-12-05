@@ -3,23 +3,10 @@
  * Class CacheLoader
  * This class is responsible for loading cached images if available
  */
-class CacheLoader {
+class CacheLoader extends Singleton {
 
-    private function __construct() {
+    protected function __construct() {
     
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return CacheLoader
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new CacheLoader();
-        }
-        return $instance;
     }
 
     /**

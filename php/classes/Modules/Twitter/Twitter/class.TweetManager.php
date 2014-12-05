@@ -5,30 +5,17 @@
  * The account is set in /Modules/Moduleconfig/conf.twitter.php, which needs to be set before sending tweets
  */
 
-class TweetManager {
+class TweetManager extends Singleton {
 
     private $hasConfig;
     private $urlLength;
 
-    private function __construct() {
+    protected function __construct() {
         $this->hasConfig = false;
         $this->urlLength;
         $this->twitter = \Codebird\Codebird::getInstance();
         $config = new TwitterConfig();
         $this->loadConfig($config->getConfig());
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return TweetManager
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new TweetManager();
-        }
-        return $instance;
     }
 
     /**

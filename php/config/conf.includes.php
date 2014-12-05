@@ -3,7 +3,7 @@
  * Class IncludesConfig
  * This class is responsible for maintaining a list of css and js includes
  */
-class IncludesConfig {
+class IncludesConfig extends Singleton {
 
     private $cssIncludes;
     private $jsIncludes;
@@ -12,7 +12,7 @@ class IncludesConfig {
     /**
      * The constructor contains a list of all includes which should be printed by the IncludeLoader
      */
-    private function __construct() {
+    protected function __construct() {
 
         // Start of with two empty arrays
         $this->cssIncludes = $this->jsIncludes = array();
@@ -39,6 +39,7 @@ class IncludesConfig {
         $this->addCssInclude('css/default.css');
         $this->addCssInclude('css/forms.css');
         $this->addCssInclude('css/content.css');
+        $this->addCssInclude('css/experiment.css');
 
         /*
          * --- End of configuration options ---

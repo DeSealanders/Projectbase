@@ -9,23 +9,10 @@
  * will be redirected to
  *      /php/pages/henkdetank.php
  */
-class Router {
+class Router extends Singleton {
 
-    private function __construct() {
+    protected function __construct() {
 
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return Router
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new Router();
-        }
-        return $instance;
     }
 
     /**
@@ -58,7 +45,16 @@ class Router {
 
             // Let the image loader handle the rest of this request
             $imageDetails = $route->getImageDetails();
-            ImageLoader::getInstance()->loadImage($route->getMatchedRoute(), $imageDetails['width'], $imageDetails['height']);
+
+            // See if dimensions are provied
+            if($imageDetails) {
+                ImageLoader::getInstance()->loadImage($route->getMatchedRoute(), $imageDetails['width'], $imageDetails['height']);
+            }
+
+            // Otherwise load image directly
+            else {
+                $this->loadPageRoute($route->getMatchedRoute());
+            }
         }
 
         // Load a configured or regular page

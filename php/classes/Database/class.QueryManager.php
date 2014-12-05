@@ -2,24 +2,12 @@
 /**
  * Class QueryManager
  * This class is responsible for executing all database queries
+ * It will be filled with queries with project specific purposes
  */
-class QueryManager {
+class QueryManager extends Singleton {
 
-    private function __construct() {
+    protected function __construct() {
 
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return DatabaseManager
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new QueryManager();
-        }
-        return $instance;
     }
 
     /**

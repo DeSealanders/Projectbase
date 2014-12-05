@@ -155,6 +155,17 @@ class Route {
                     return implode('/', array_slice($route, 2));
                 }
             }
+
+            // See if supplied image is a direct path (without dimenision parameters)
+            else {
+                $imagepath = implode('/', $route);
+                if(file_exists($imagepath)) {
+
+                    // No image details need to be used
+                    $this->imageDetails = false;
+                    return $imagepath;
+                }
+            }
         }
 
         // Return false if no image could be found

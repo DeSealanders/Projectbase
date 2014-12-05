@@ -4,23 +4,10 @@
  * This class is responsible for resizing images to specified dimensions
  * Note: it only scales the images, they are not cropped (yet)
  */
-class ImageResizer {
+class ImageResizer extends Singleton {
 
-    private function __construct() {
+    protected function __construct() {
     
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return ImageResizer
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new ImageResizer();
-        }
-        return $instance;
     }
 
     /**
@@ -84,7 +71,7 @@ class ImageResizer {
 
         }
         else {
-            Logger::getInstance()->writeMessage('Could not find image: ' . $fileName . ' in images/' . $fileName);
+            Logger::getInstance()->writeMessage('Could not find image: ' . $fileName . ' in image/' . $fileName);
             return false;
         }
     }

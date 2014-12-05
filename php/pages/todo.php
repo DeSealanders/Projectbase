@@ -18,6 +18,7 @@
     <li><strike>Router (voor page redirects)</strike></li>
     <li><strike>Image resizer</strike></li>
     <li><strike>Frontend helpers (image, menu, footer etc)</strike></li>
+    <li><strike>Required sterretjes bij formuliervelden</strike></li>
     <li>Slimme caching gebruiken voor image resizer</li>
     <li>Formbuilder fileupload</li>
     <li>Formbuilder config</li>
@@ -26,12 +27,16 @@
     <li>Better database debugging</li>
     <li>Abstract classes (factory & manager)</li>
     <li>Phpstorm template comments</li>
-    <li>Improved get parameters</li>
+    <li>Pretty get parameters</li>
     <li>Javascript default functions/setups</li>
     <li>Content pages?</li>
     <li>Templating gebruiken</li>
-    <li>Required sterretjes bij formuliervelden</li>
-    <li>Open graph opties</li>
+    <li>SEO opties (meta settings & Open graph mogelijkheden)</li>
+    <li>Website title, favicon en algemene opties in conf.default</li>
+    <li>Modules</li>
+    <li>Paginering</li>
+    <li>Image resizer max afbl groote + </li>
+    <li>Singleton als klasse + extends</li>
     </ol>
 <a href="demoform/">demoform</a>
 </p>

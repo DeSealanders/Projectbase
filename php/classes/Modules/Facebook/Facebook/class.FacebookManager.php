@@ -9,7 +9,7 @@ use Facebook\FacebookRequestException;
  * Class FacebookManager
  * This class is used for posting messages to facebook
  */
-class FacebookManager {
+class FacebookManager extends Singleton {
 
     private $hasConfig;
     private $session;
@@ -17,23 +17,10 @@ class FacebookManager {
     /**
      * Load the config from conf.facebook.php
      */
-    private function __construct() {
+    protected function __construct() {
         $this->hacConfig = false;
         $config = new FacebookConfig();
         $this->loadConfig($config->getConfig());
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return TweetManager
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new FacebookManager();
-        }
-        return $instance;
     }
 
     /**

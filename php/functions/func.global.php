@@ -7,7 +7,6 @@
  */
 function __autoload($className)
 {
-    require_once('php/classes/Loader/class.Autoloader.php');
     Autoloader::getInstance()->autoload($className);
 }
 

@@ -1,10 +1,16 @@
 <?php
+
+// Require files used before autoloader can assist
+require_once('php/classes/Misc/class.Singleton.php');
+require_once('php/classes/Loader/class.Autoloader.php');
+require_once('php/functions/func.global.php');
+
 /**
  * Class DefaultConfig
  * This file should be loaded into every page by default
  * It is responsible for loading in global functions and setting up auto inclusion
  */
-class DefaultConfig {
+class DefaultConfig extends Singleton {
 
     private $initialized;
     private $pageNotFoundMessage;
@@ -12,8 +18,6 @@ class DefaultConfig {
 
     public function init() {
         if(!$this->initialized) {
-
-            require_once('php/functions/func.global.php');
 
             // Only initialize once
             $this->initialized = true;
@@ -29,8 +33,16 @@ class DefaultConfig {
             // The messsage for the 404 page
             $this->pageNotFoundMessage = 'Unable to find the specified page';
 
-            // Log file for errors
+            // Errors will be logged to the database by default
+            // Logging to a text file is a backup
+            // This is the location of said text file
             $this->logfile = 'txt/errorlog.txt';
+
+            // The website title
+            $this->title = 'Projectbase';
+
+            // The favicon which will be shown for the website
+            $this->favicon = 'favicon.ico';
 
             // Set the default timezone
             date_default_timezone_set('Europe/Amsterdam');
@@ -42,20 +54,7 @@ class DefaultConfig {
         }
     }
 
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return DefaultConfig
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new DefaultConfig();
-        }
-        return $instance;
-    }
-
-    private function __construct() {
+    protected function __construct() {
         $this->initialized = false;
         $this->init();
     }

@@ -3,12 +3,12 @@
  * Class RouterConfig
  * This class is repsonsible for setting up alternative routes
  */
-class RouterConfig {
+class RouterConfig extends Singleton {
 
     private $wrapperPage;
     private $routes;
 
-    private function __construct() {
+    protected function __construct() {
         /*
          * --- Configuration options here ---
          */
@@ -24,10 +24,7 @@ class RouterConfig {
          *      'henk/de/tank' => 'php/pages/sjonbontebal.php'
          */
         $this->routes = array(
-            'image/lightbox/prev.png' => 'image/lightbox/prev.png',
-            'image/lightbox/next.png' => 'image/lightbox/next.png',
-            'image/lightbox/loading.gif' => 'image/lightbox/loading.gif',
-            'image/lightbox/close.png' => 'image/lightbox/close.png',
+
         );
 
         /*

@@ -3,25 +3,12 @@
  * Class AnalyticsLoader
  * This class is responsible for printing the google analytics tracking code
  */
-class AnalyticsLoader
+class AnalyticsLoader extends Singleton
 {
 
-    private function __construct()
+    protected function __construct()
     {
 
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return AnalyticsLoader
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new AnalyticsLoader();
-        }
-        return $instance;
     }
 
     /**

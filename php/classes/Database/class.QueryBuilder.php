@@ -5,22 +5,10 @@
  * This class is repsonsible for converting a Query object into actual SQL
  * It does so by constructing the query part by part
  */
-class QueryBuilder {
+class QueryBuilder extends Singleton {
 
-    private function __construct() {
+    protected function __construct() {
 
-    }
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return QueryBuilder
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new QueryBuilder();
-        }
-        return $instance;
     }
 
     /**

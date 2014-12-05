@@ -3,12 +3,12 @@
  * Class DatabaseConfig
  * This class is the config file for the database
  */
-class DatabaseConfig {
+class DatabaseConfig extends Singleton {
 
     private $localDetails;
     private $liveDetails;
 
-    public function __construct() {
+    protected function __construct() {
 
         /*
          * --- Configuration options here ---
@@ -21,9 +21,9 @@ class DatabaseConfig {
             'address' => 'localhost'
         );
         $this->liveDetails = array(
-            'password' => 'abc',
-            'username' => 'abc',
-            'database' => 'abc',
+            'password' => '21c5NHG07',
+            'username' => 'tonpeter_pjb',
+            'database' => 'tonpeter_pjb',
             'address' => 'localhost'
         );
 
@@ -31,19 +31,6 @@ class DatabaseConfig {
          * --- End of configuration options ---
          */
 
-    }
-
-    /**
-     * Function for creating only 1 instance and return that each time its called (singleton)
-     * @return DatabaseConfig
-     */
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new DatabaseConfig();
-        }
-        return $instance;
     }
 
     /**
