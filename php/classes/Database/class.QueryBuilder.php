@@ -41,6 +41,12 @@ class QueryBuilder extends Singleton {
             $sql .= $this->getWherePart($query->getWhere());
             return $sql;
         }
+
+        // If an create statement should be generated
+        else if($query->hasCreate()) {
+            $sql = $this->getCreatePart($query->getCreate());
+            return $sql;
+        }
         else {
             Logger::getInstance()->writeMessage('Unable to execute query which has not been built yet!');
         }
@@ -139,6 +145,16 @@ class QueryBuilder extends Singleton {
             $updates[] = $column . ' = "' . $value . '"';
         }
         $sql .= implode(',', $updates);
+        return $sql;
+    }
+
+    private function getCreatePart($create) {
+        $sql = "CREATE TABLE " . $create['table'] . " (" ;
+        $columns = array();
+        foreach($create['columns'] as $columnName => $columnType) {
+            $columns[] = $columnName . " " . $columnType;
+        }
+        $sql .= implode(',', $columns) . ")";
         return $sql;
     }
 

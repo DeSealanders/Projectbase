@@ -129,6 +129,13 @@ class Query {
         );
     }
 
+    public function create($table, $columns) {
+        $this->create = array(
+            'table' => $table,
+            'columns' => $columns
+        );
+    }
+
     /**
      * Used to see if a select statement has been built
      * @return bool true if a select statement has been built
@@ -147,6 +154,10 @@ class Query {
 
     public function hasUpdate() {
         return !empty($this->update);
+    }
+
+    public function hasCreate() {
+        return !empty($this->create);
     }
 
     /**
@@ -182,6 +193,11 @@ class Query {
     public function getUpdate()
     {
         return $this->update;
+    }
+
+    public function getCreate()
+    {
+        return $this->create;
     }
 
     /**
