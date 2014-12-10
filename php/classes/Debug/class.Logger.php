@@ -132,7 +132,7 @@ class Logger extends Singleton {
 
         // Return formatted debug information
         $debugArray = array(
-            'Message' => $message,
+            'Message' => addslashes($message),
             'File' => $debuginfo[1]['file'],
             'Line' => $debuginfo[1]['line'],
             'Class' => $class,
