@@ -9,6 +9,7 @@ class Route {
     private $type;
     private $matchedRoute;
     private $imageDetails;
+    private $moduleDetails;
 
     public function __construct($request, $script) {
         $this->route = $this->parseUrl($request, $script);
@@ -38,6 +39,10 @@ class Route {
      */
     public function getImageDetails() {
         return $this->imageDetails;
+    }
+
+    public function getModuleDetails() {
+        return $this->moduleDetails;
     }
 
     /**
@@ -82,6 +87,11 @@ class Route {
         // Thirdly check if route is a CSS or JS inlcude
         else if($matchedRoute = $this->isInclude($routePath)) {
             $this->type = 'include';
+        }
+
+        // Otherwise check for a page matching this route
+        else if($matchedRoute = $this->isModule($route)) {
+            $this->type = 'module';
         }
 
         // Otherwise check for a page matching this route
@@ -190,6 +200,39 @@ class Route {
 
         // Return false if no include could be found
         return false;
+    }
+
+    private function isModule($route) {
+
+        // See if url starts with module
+        if(isset($route[0]) && $route[0] == 'module') {
+
+            // If a module main page is called
+            if(count($route) == 2 || count($route) == 3) {
+
+                // See if the called module exists
+                if($moduleName = ModuleManager::getInstance()->isModule($route[1])) {
+                    $this->moduleDetails = array(
+                        'module' =>   $moduleName
+                    );
+                    if(count($route) == 2) {
+                        $this->moduleDetails['view'] = 'multi';
+                    }
+                    if(count($route) == 3) {
+                        $this->moduleDetails['view'] = 'single';
+                        $this->moduleDetails['itemid'] = $route[2];
+                    }
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+
     }
 
     /**

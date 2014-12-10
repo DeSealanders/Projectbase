@@ -57,6 +57,15 @@ class Router extends Singleton {
             }
         }
 
+        else if($route->getType() == 'module') {
+            $wrapperPage = 'php/pages/default/module_wrapper.php';
+
+            // Set the moduledetails so it can be used in the wrapper page
+            $moduleDetails = $route->getModuleDetails();
+            $_SERVER['ROUTE'] = $moduleDetails;
+            require($wrapperPage);
+        }
+
         // Load a configured or regular page
         else if($route->getType() == 'configured' || $route->getType() == 'page') {
             $this->loadPageRoute($route->getMatchedRoute());
@@ -64,7 +73,7 @@ class Router extends Singleton {
 
         // If no route could be found, serve up the 404 page
         else if($route->getType() == 'none') {
-            require 'php/pages/404.php';
+            require 'php/pages/default/404.php';
         }
     }
 

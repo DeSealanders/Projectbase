@@ -15,7 +15,7 @@ class RouterConfig extends Singleton {
 
         // The page to be loaded by default
         // Set to false if none should be loaded
-        $this->wrapperPage = 'php/pages/wrapper.php';
+        $this->wrapperPage = 'php/pages/default/front_wrapper.php';
 
         /* Alternative routes
          * The key is the incoming page (visible to the client)
@@ -24,7 +24,7 @@ class RouterConfig extends Singleton {
          *      'henk/de/tank' => 'php/pages/sjonbontebal.php'
          */
         $this->routes = array(
-
+            'backend' => 'php/pages/default/backend.php'
         );
 
         /*
