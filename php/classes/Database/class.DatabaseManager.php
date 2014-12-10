@@ -50,9 +50,10 @@ class DatabaseManager extends Singleton
      * Execute a specified query
      * @param $query the query to be executed
      * @param bool $params a list of parameters for prepared statements
+     * @param bool $silent wether or not to report errors
      * @return array|null returns the result of the query in the form of an array
      */
-    public function executeQuery($query, $params = false)
+    public function executeQuery($query, $params = false, $silent = false)
     {
         $statement = $this->connection->prepare($query);
         if (isset($statement) && $statement) {
@@ -99,8 +100,14 @@ class DatabaseManager extends Singleton
             else {
                 $params = '';
             }
-            Logger::getInstance()->writeMessage('Unable to execute query: "' . $query . '"' . $params);
-            //$this->printDebugInfo($query, $params);
+            if(!$silent) {
+                Logger::getInstance()->writeMessage('Unable to execute query: "' . $query . '"' . $params, false);
+                //$this->printDebugInfo($query, $params);
+            }
+            else {
+                return false;
+            }
+
         }
     }
 
