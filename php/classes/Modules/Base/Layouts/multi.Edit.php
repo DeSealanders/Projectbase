@@ -1,33 +1,35 @@
 <?php
 echo '<h1>Multi edit</h1>';
 
-echo '<table>';
-echo '<tr>';
 
 $components = array();
 $components[] = 'edit';
 $components[] = 'itemid';
-foreach($this->module->getComponents() as $component) {
-    $components[] = strtolower($component->getId());
-}
+$components = array_merge($components, $this->module->getMultiComponents());
 
-foreach($components as $component) {
-    echo '<th>' . ucfirst($component) . '</th>';
+// Add headers for each component
+echo '<table>';
+echo '<tr>';
+foreach($components as $componentName) {
+    echo '<th>' . ucfirst($componentName) . '</th>';
 }
 echo '</tr>';
 
-if($records = $this->module->getRecords()) {
+// If any records exist, create a table row for each one
+if($records = $this->module->getCleanRecords()) {
     foreach($records as $record) {
         echo '<tr>';
         foreach($components as $component) {
-            if($component == 'edit') {
+
+            // Add an edit button to each row
+            if($component  == 'edit') {
                 $link = '/projectbase/module/' . strtolower($this->module->getName()) . '/' . $record['itemid'];
                 echo '<td><a href="' . $link . '"><span class="fa fa-edit fa-1x fa-fw"></span></a></td>';
             }
-            else {
-                if(isset($record[$component])) {
-                    echo '<td>' . $record[$component] . '</td>';
-                }
+
+            // Show the value for each component per row
+            if(isset($record[$component])) {
+                echo '<td>' . $record[$component] . '</td>';
             }
         }
         echo '</tr>';

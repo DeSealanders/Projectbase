@@ -11,6 +11,7 @@ class ModuleDataProvider extends Singleton {
         $query = new Query();
         $query->select('*');
         $query->from('module_' . strtolower($moduleName));
+        $query->orderBy('itemid');
         $records = DatabaseManager::getInstance()->executeQuery($query);
         return $records;
     }
