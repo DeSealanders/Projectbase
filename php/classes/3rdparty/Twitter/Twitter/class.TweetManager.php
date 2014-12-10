@@ -2,7 +2,7 @@
 /**
  * Class TweetManager
  * This class is responsible for sending out tweets to a specified twitter account
- * The account is set in /Modules/Moduleconfig/conf.twitter.php, which needs to be set before sending tweets
+ * The account is set in /3rdparty/Configurations/conf.twitter.php, which needs to be set before sending tweets
  */
 
 class TweetManager extends Singleton {
