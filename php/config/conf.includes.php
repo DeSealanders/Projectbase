@@ -25,7 +25,7 @@ class IncludesConfig extends Singleton {
         $this->setDefaultIncludes(array(
                 'jquery' => true,
                 'twitterbootstrap' => false,
-                'fontawesome' => false,
+                'fontawesome' => true,
                 'lightbox' => true
             ));
 
