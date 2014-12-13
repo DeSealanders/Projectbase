@@ -19,5 +19,4 @@ class ModuleBackend {
     public function getComponents() {
         return $this->module->getComponents();
     }
-
 } 

@@ -22,7 +22,14 @@ IncludeLoader::getInstance()->printIncludes();
     <div class="container">
         <?php
         // Load the specified module from the router
-        ModuleManager::getInstance()->loadModule($_SERVER['ROUTE']['module']);
+        if(!empty($_POST)) {
+            ModuleManager::getInstance()->loadModule($_SERVER['ROUTE']['module'], $_SERVER['ROUTE']['itemid']);
+        }
+        else {
+            ModuleManager::getInstance()->loadModule($_SERVER['ROUTE']['module']);
+        }
+
+        // Load the correct layout item
         if($module = ModuleManager::getInstance()->getModule($_SERVER['ROUTE']['module'])) {
             if($_SERVER['ROUTE']['view'] == 'multi') {
                 echo $module->printBackendHtml('multi');

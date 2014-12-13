@@ -46,7 +46,7 @@ class ModuleManager extends Singleton {
         return $moduleList;
     }
 
-    public function loadModule($moduleName) {
+    public function loadModule($moduleName, $itemid = false) {
 
         // Create a classname for the module
         $moduleClassName = 'Module' . $moduleName;
@@ -61,6 +61,11 @@ class ModuleManager extends Singleton {
                 // Compare module components and database columns
                 // Alter table if needed
                 ModuleDataProvider::getInstance()->alterModTable($moduleName, $module->getComponentNames(), $dbColums);
+
+                // Save module data if previous action was a save
+                if(!empty($_POST) && $itemid) {
+                    ModuleDataSender::getInstance()->saveModuleData($module, $itemid, $_POST);
+                }
 
                 // Retrieve records for specified module
                 $records = ModuleDataProvider::getInstance()->getModuleData($moduleName);
