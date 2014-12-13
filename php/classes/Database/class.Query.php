@@ -33,6 +33,7 @@ class Query {
     private $orderBy;
     private $insert;
     private $update;
+    private $describe;
 
     public function __construct() {
 
@@ -45,7 +46,10 @@ class Query {
         $this->groupBy =
         $this->orderBy =
         $this->insert =
-        $this->update = array();
+        $this->update =
+        $this->create =
+        $this->alter =
+        $this->describe = array();
     }
 
     /**
@@ -136,6 +140,18 @@ class Query {
         );
     }
 
+    public function describe($table) {
+        $this->describe = $table;
+    }
+
+    public function alter($table, $columns) {
+        $this->alter = array(
+            'table' => $table,
+            'add' => $columns['add'],
+            'remove' => $columns['remove']
+        );
+    }
+
     /**
      * Used to see if a select statement has been built
      * @return bool true if a select statement has been built
@@ -158,6 +174,14 @@ class Query {
 
     public function hasCreate() {
         return !empty($this->create);
+    }
+
+    public function hasDescribe() {
+        return !empty($this->describe);
+    }
+
+    public function hasAlter() {
+        return !empty($this->alter);
     }
 
     /**
@@ -198,6 +222,15 @@ class Query {
     public function getCreate()
     {
         return $this->create;
+    }
+
+    public function getDescribe()
+    {
+        return $this->describe;
+    }
+
+    public function getAlter() {
+        return $this->alter;
     }
 
     /**
