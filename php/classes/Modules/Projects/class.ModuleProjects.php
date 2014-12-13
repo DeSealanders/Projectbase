@@ -7,11 +7,6 @@ class ModuleProjects extends Module {
         $this->addLayout('multi');
         $this->addComponent(new TextComponent('Name', 'name'));
         $this->addComponent(new TextComponent('Description', 'description'));
-        $this->addComponent(new DropdownComponent('Category', 'category', array(
-                'games' => 'Games',
-                'development' => 'Development',
-                'frontend' => 'Front-end'
-            )));
         $this->addComponent(new RadioComponent('Status', 'status', array(
                 'construction' => 'Under construction',
                 'finished' => 'Finished',

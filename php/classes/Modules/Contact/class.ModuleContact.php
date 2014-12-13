@@ -7,6 +7,6 @@ class ModuleContact extends Module {
         $this->addLayout('single');
         $this->addComponent(new TextComponent('First name', 'firstname'));
         $this->addComponent(new TextComponent('Last name', 'lastname'));
+        $this->addComponent(new EditorComponent('Extra', 'extra'));
     }
-
 } 
