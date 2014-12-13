@@ -43,6 +43,7 @@ class IncludesConfig extends Singleton {
         $this->addCssInclude('css/content.css');
         $this->addCssInclude('css/experiment.css');
         $this->addCssInclude('css/jhtmlarea.css');
+        $this->addCssInclude('css/module.css');
 
         /*
          * --- End of configuration options ---

@@ -1,5 +1,6 @@
+<div class="multi">
 <?php
-echo '<h1>Multi edit</h1>';
+echo '<h2>' . $this->module->getName() . '</h2>';
 
 
 $components = array();
@@ -8,10 +9,15 @@ $components[] = 'itemid';
 $components = array_merge($components, $this->module->getMultiComponents());
 
 // Add headers for each component
-echo '<table>';
+echo '<table class="edit">';
 echo '<tr>';
 foreach($components as $componentName) {
-    echo '<th>' . ucfirst($componentName) . '</th>';
+    if($componentName == 'edit') {
+        echo '<th class="edit"></th>';
+    }
+    else {
+        echo '<th>' . ucfirst($componentName) . '</th>';
+    }
 }
 echo '</tr>';
 
@@ -36,3 +42,5 @@ if($records = $this->module->getCleanRecords()) {
     }
 }
 echo '</table>';
+?>
+</div>

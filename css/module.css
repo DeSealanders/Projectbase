@@ -1,0 +1,62 @@
+/** Page layout **/
+.backend {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    overflow: auto;
+}
+.menu {
+    float: left;
+    width: 15%;
+    margin-right: calc(5% - 1px);
+    border-right: 1px solid black;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+}
+.container {
+    width: 80%;
+    float: left;
+    padding-top: 3%;
+}
+
+/** Menu **/
+.menu ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.menu li {
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+.menu a {
+    text-decoration: none;
+    color: gray;
+}
+.menu a:hover {
+    color: black;
+}
+
+/** Multi editor **/
+.multi table {
+    width: 100%;
+}
+.multi td, th {
+    padding-right: 10px;
+}
+.multi td {
+    padding-bottom: 10px;
+}
+.multi th {
+    text-align: left;
+}
+.multi th.edit {
+    width: 12px;
+}
+
+
+/** Editors **/
+.multi h2, .single #edit h2 {
+    padding-bottom: 20px;
+}

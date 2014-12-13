@@ -1,10 +1,11 @@
+<div class="single">
 <?php
 
 // Retrieve the record for this view
 $record = $this->module->getRecord($itemid);
 
 // Create a form for all module components
-$form = new Form('Single Edit', 'edit');
+$form = new Form($this->module->getName(), 'edit');
 
 // Add all components to the form
 foreach($this->module->getComponents() as $component) {
@@ -25,3 +26,5 @@ $form->addComponent(new Button('Save', 'save'));
 
 // Show the form
 $form->printHtml();
+?>
+</div>
