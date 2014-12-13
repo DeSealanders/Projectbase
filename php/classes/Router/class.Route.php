@@ -148,8 +148,17 @@ class Route {
         // See if url starts with image
         if(isset($route[0]) && $route[0] == 'image') {
 
+            // See if supplied image is a direct path (without dimenision parameters)
+            $imagepath = implode('/', $route);
+            if(file_exists($imagepath)) {
+
+                // No image details need to be used
+                $this->imageDetails = false;
+                return $imagepath;
+            }
+
             // Check for right amount of parameters
-            if(count($route) >= 3) {
+            else if(count($route) >= 3) {
 
                 // If a width and height can be found
                 $dimensions = explode('x', $route[1]);
@@ -163,17 +172,6 @@ class Route {
 
                     // Return image url
                     return implode('/', array_slice($route, 2));
-                }
-            }
-
-            // See if supplied image is a direct path (without dimenision parameters)
-            else {
-                $imagepath = implode('/', $route);
-                if(file_exists($imagepath)) {
-
-                    // No image details need to be used
-                    $this->imageDetails = false;
-                    return $imagepath;
                 }
             }
         }
