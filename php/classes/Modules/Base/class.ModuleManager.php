@@ -54,9 +54,18 @@ class ModuleManager extends Singleton {
         // Create a module from the classname if it exists
         if(class_exists($moduleClassName)) {
             $module = new $moduleClassName;
+
             // Get data and load for the module (if it exists)
-            if(ModuleDataProvider::getInstance()->hasTable($moduleName)) {
+            if($dbColums = ModuleDataProvider::getInstance()->getColumns($moduleName)) {
+
+                // Compare module components and database columns
+                // Alter table if needed
+                ModuleDataProvider::getInstance()->alterModTable($moduleName, $module->getComponentNames(), $dbColums);
+
+                // Retrieve records for specified module
                 $records = ModuleDataProvider::getInstance()->getModuleData($moduleName);
+
+                // Load records into module
                 $module->setRecords($records);
             }
 
@@ -74,5 +83,4 @@ class ModuleManager extends Singleton {
             Logger::getInstance()->writeMessage('No class found for module "' . $moduleName . '"');
         }
     }
-
 } 
