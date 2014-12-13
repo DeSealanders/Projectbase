@@ -33,6 +33,8 @@ class IncludesConfig extends Singleton {
         $this->addJsInclude('js/documentready.js');
         $this->addJsInclude('js/index.js');
         $this->addJsInclude('https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js');
+        $this->addJsInclude('js/jhtmlarea.js');
+        $this->addJsInclude('js/texteditor.js');
 
         // Add all Css includes here
         $this->addCssInclude('css/variables.php.css');
@@ -40,6 +42,7 @@ class IncludesConfig extends Singleton {
         $this->addCssInclude('css/forms.css');
         $this->addCssInclude('css/content.css');
         $this->addCssInclude('css/experiment.css');
+        $this->addCssInclude('css/jhtmlarea.css');
 
         /*
          * --- End of configuration options ---

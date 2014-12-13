@@ -64,6 +64,9 @@
 .customForm textarea {
     height: 100px;
 }
+.customForm textarea.textEditor {
+    height: inherit;
+}
 
 /** Checkbox **/
 .customForm .checkbox {
