@@ -73,7 +73,7 @@
                 elem.jhtmlareaObject = this;
 
                 var textarea = this.textarea = $(elem);
-                var container = this.container = $("<div/>").addClass("jHtmlArea").width('98%').insertAfter(textarea);
+                var container = this.container = $("<div/>").addClass("jHtmlArea").insertAfter(textarea);
 
                 var toolbar = this.toolbar = $("<div/>").addClass("ToolBar").appendTo(container);
                 priv.initToolBar.call(this, opts);
