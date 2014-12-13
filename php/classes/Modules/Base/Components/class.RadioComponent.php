@@ -4,6 +4,7 @@ class RadioComponent extends ModuleComponent {
 
     private $label;
     private $id;
+    private $options;
 
     public function __construct($label, $id = false, $options, $showInMulti = true) {
         parent::__construct($showInMulti);

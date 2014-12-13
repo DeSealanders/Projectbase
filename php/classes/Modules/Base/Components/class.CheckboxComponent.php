@@ -4,6 +4,7 @@ class CheckboxComponent extends ModuleComponent {
 
     private $label;
     private $id;
+    private $options;
 
     public function __construct($label, $id = false, $options, $showInMulti = true) {
         parent::__construct($showInMulti);
@@ -38,5 +39,9 @@ class CheckboxComponent extends ModuleComponent {
         else {
             return $value;
         }
+    }
+
+    public function getOptions() {
+        return $this->options;
     }
 } 
