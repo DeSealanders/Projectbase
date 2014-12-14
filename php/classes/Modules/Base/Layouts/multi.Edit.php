@@ -43,13 +43,13 @@ if($records = $this->module->getCleanRecords()) {
             }
 
             // Add an edit button to each row
-            if($component  == 'delete') {
+            else if($component  == 'delete') {
                 $link = '/projectbase/module/' . strtolower($this->module->getName()) . '/delete/' . $record['itemid'];
                 echo '<td><a href="' . $link . '"><span class="fa fa-trash fa-1x fa-fw"></span></a></td>';
             }
 
             // Show the value for each component per row
-            if(isset($record[$component])) {
+            else if(isset($record[$component])) {
                 echo '<td>' . $record[$component] . '</td>';
             }
             else {
