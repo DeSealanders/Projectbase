@@ -34,6 +34,9 @@ class Query {
     private $insert;
     private $update;
     private $describe;
+    private $alter;
+    private $delete;
+    private $create;
 
     public function __construct() {
 
@@ -49,6 +52,7 @@ class Query {
         $this->update =
         $this->create =
         $this->alter =
+        $this->delete =
         $this->describe = array();
     }
 
@@ -152,6 +156,10 @@ class Query {
         );
     }
 
+    public function delete($table) {
+        $this->delete = $table;
+    }
+
     /**
      * Used to see if a select statement has been built
      * @return bool true if a select statement has been built
@@ -182,6 +190,10 @@ class Query {
 
     public function hasAlter() {
         return !empty($this->alter);
+    }
+
+    public function hasDelete() {
+        return !empty($this->delete);
     }
 
     /**
@@ -231,6 +243,10 @@ class Query {
 
     public function getAlter() {
         return $this->alter;
+    }
+
+    public function getDelete() {
+        return $this->delete;
     }
 
     /**

@@ -55,6 +55,11 @@ class QueryBuilder extends Singleton {
             $sql = $this->getAlterPart($query->getAlter());
             return $sql;
         }
+        else if($query->hasDelete()) {
+            $sql = $this->getDeletePart($query->getDelete());
+            $sql .= $this->getWherePart($query->getWhere());
+            return $sql;
+        }
         else {
             Logger::getInstance()->writeMessage('Unable to execute query which has not been built yet!');
         }
@@ -181,6 +186,11 @@ class QueryBuilder extends Singleton {
             $removed[] = "DROP COLUMN " . $remove;
         }
         $sql .= implode(', ', array_merge($added, $removed));
+        return $sql;
+    }
+
+    private function getDeletePart($delete) {
+        $sql = "DELETE FROM " . $delete;
         return $sql;
     }
 
