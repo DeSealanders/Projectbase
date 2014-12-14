@@ -52,6 +52,9 @@ if($records = $this->module->getCleanRecords()) {
             if(isset($record[$component])) {
                 echo '<td>' . $record[$component] . '</td>';
             }
+            else {
+                echo '<td></td>';
+            }
         }
         echo '</tr>';
     }
