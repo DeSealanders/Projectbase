@@ -62,11 +62,6 @@ class ModuleManager extends Singleton {
                 // Alter table if needed
                 ModuleDataProvider::getInstance()->alterModTable($moduleName, $module->getComponentNames(), $dbColums);
 
-                // Save module data if previous action was a save
-                if(!empty($_POST) && $itemid) {
-                    ModuleDataSender::getInstance()->saveModuleData($module, $itemid, $_POST);
-                }
-
                 // Retrieve records for specified module
                 $records = ModuleDataProvider::getInstance()->getModuleData($moduleName);
 
@@ -87,5 +82,31 @@ class ModuleManager extends Singleton {
         else {
             Logger::getInstance()->writeMessage('No class found for module "' . $moduleName . '"');
         }
+    }
+
+    public function saveItem($moduleName, $itemid) {
+
+        // Create a classname for the module
+        $moduleClassName = 'Module' . $moduleName;
+
+        // Create a module from the classname if it exists
+        if(class_exists($moduleClassName)) {
+            $module = new $moduleClassName;
+
+            // Save module data if previous action was a save
+            if(!empty($_POST) && $itemid) {
+                ModuleDataSender::getInstance()->saveModuleData($module, $itemid, $_POST);
+            }
+        }
+    }
+
+    public function deleteItem($moduleName, $itemid) {
+        ModuleDataSender::getInstance()->deleteModuleItem($moduleName, $itemid);
+    }
+
+    public function newItem($moduleName) {
+        $itemid = ModuleDataProvider::getInstance()->getNewItemId($moduleName);
+        ModuleDataSender::getInstance()->createNewItem($moduleName, $itemid);
+        return $itemid;
     }
 } 

@@ -4,6 +4,14 @@
     padding-left: 5%;
     padding-right: 5%;
     overflow: auto;
+    color: dimgray;
+}
+.backend a {
+    color: gray;
+    text-decoration: none;
+}
+.backend a:hover {
+    color: black;
 }
 .menu {
     float: left;
@@ -34,6 +42,9 @@
     text-decoration: none;
     color: gray;
 }
+.menu .active a {
+    font-weight: bold;
+}
 .menu a:hover {
     color: black;
 }
@@ -45,16 +56,18 @@
 .multi td, th {
     padding-right: 10px;
 }
-.multi td {
+.multi td, th {
     padding-bottom: 10px;
 }
 .multi th {
     text-align: left;
 }
-.multi th.edit {
+.multi th.edit, .multi th.delete {
     width: 12px;
 }
-
+.multi .newentry.fa {
+    padding-right: 10px;
+}
 
 /** Editors **/
 .multi h2, .single #edit h2 {

@@ -206,29 +206,51 @@ class Route {
         if(isset($route[0]) && $route[0] == 'module') {
 
             // If a module main page is called
-            if(count($route) == 2 || count($route) == 3) {
+            if(count($route) == 2 || count($route) == 3 || count($route) == 4) {
 
                 // See if the called module exists
                 if($moduleName = ModuleManager::getInstance()->isModule($route[1])) {
                     $this->moduleDetails = array(
                         'module' =>   $moduleName
                     );
+
+                    // Module main page
                     if(count($route) == 2) {
                         $this->moduleDetails['view'] = 'multi';
                     }
+
+                    // Module details page
                     if(count($route) == 3) {
-                        $this->moduleDetails['view'] = 'single';
-                        $this->moduleDetails['itemid'] = $route[2];
+
+                        // Module single view
+                        if(is_numeric($route[2])) {
+                            $this->moduleDetails['view'] = 'single';
+                            $this->moduleDetails['itemid'] = $route[2];
+                        }
+
+                        // Add a new module item
+                        if($route[2] == 'new') {
+                            $this->moduleDetails['action'] = 'new';
+                        }
                     }
-                    return true;
-                }
-                else {
-                    return false;
+
+                    // Delete a specific module item
+                    if(count($route) == 4) {
+                        if($route[2] == 'delete') {
+                            $this->moduleDetails['action'] = 'delete';
+                            $this->moduleDetails['itemid'] = $route[3];
+                        }
+                    }
                 }
             }
-            else {
-                return false;
-            }
+        }
+
+        // Return true if a route could be found
+        if(isset($this->moduleDetails['action']) || isset($this->moduleDetails['view'])) {
+            return true;
+        }
+        else {
+            return false;
         }
 
     }

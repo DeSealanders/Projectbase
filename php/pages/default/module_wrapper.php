@@ -14,23 +14,50 @@ IncludeLoader::getInstance()->printIncludes();
         <ul>
         <?php
         foreach(ModuleManager::getInstance()->getModuleList() as $moduleName) {
-            echo '<li><a href="/projectbase/module/' . $moduleName . '">' . ucfirst($moduleName) . '</a></li>';
+            if($moduleName == $_SERVER['ROUTE']['module']) {
+                $class = 'active';
+            }
+            else {
+                $class = '';
+            }
+            echo '<li class=' . $class . '><a href="/projectbase/module/' . $moduleName . '">' . ucfirst($moduleName) . '</a></li>';
         }
         ?>
         </ul>
     </div>
     <div class="container">
         <?php
-        // Load the specified module from the router
+
+        // Save module data if anything is posted
         if(!empty($_POST)) {
-            ModuleManager::getInstance()->loadModule($_SERVER['ROUTE']['module'], $_SERVER['ROUTE']['itemid']);
-        }
-        else {
-            ModuleManager::getInstance()->loadModule($_SERVER['ROUTE']['module']);
+            ModuleManager::getInstance()->saveItem($_SERVER['ROUTE']['module'], $_SERVER['ROUTE']['itemid']);
         }
 
-        // Load the correct layout item
+        // Check for a specified action
+        if(isset($_SERVER['ROUTE']['action'])) {
+
+            // Create a new entry and redirect to single view
+            if($_SERVER['ROUTE']['action'] == 'new') {
+                $itemId = ModuleManager::getInstance()->newItem($_SERVER['ROUTE']['module']);
+                header('location: /projectbase/module/' . $_SERVER['ROUTE']['module'] . '/' . $itemId);
+                die('redirecting');
+            }
+
+            // Delete specified entry and redirect to multi view
+            else if($_SERVER['ROUTE']['action'] == 'delete') {
+                ModuleManager::getInstance()->deleteItem($_SERVER['ROUTE']['module'], $_SERVER['ROUTE']['itemid']);
+                header('location: /projectbase/module/' . $_SERVER['ROUTE']['module']);
+                die('redirecting');
+            }
+        }
+
+        // Load the module (including data) specified by the router
+        ModuleManager::getInstance()->loadModule($_SERVER['ROUTE']['module']);
+
+        // Get the loaded module if everything went correctly
         if($module = ModuleManager::getInstance()->getModule($_SERVER['ROUTE']['module'])) {
+
+            // Load the correct layout file
             if($_SERVER['ROUTE']['view'] == 'multi') {
                 echo $module->printBackendHtml('multi');
             }

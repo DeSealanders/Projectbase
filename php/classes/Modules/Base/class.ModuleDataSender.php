@@ -32,6 +32,19 @@ class ModuleDataSender extends Singleton {
         DatabaseManager::getInstance()->executeQuery($query);
     }
 
+    public function deleteModuleItem($moduleName, $itemId) {
+        $query = new Query();
+        $query->delete('module_' . strtolower($moduleName));
+        $query->where('itemid = ' . $itemId);
+        DatabaseManager::getInstance()->executeQuery($query);
+    }
+
+    public function createNewItem($moduleName, $itemId) {
+        $query = new Query();
+        $query->insert('module_' . strtolower($moduleName), array('itemid' => $itemId));
+        DatabaseManager::getInstance()->executeQuery($query);
+    }
+
     private function setCheckboxFields($component, $fields) {
 
         // Set the correct data for checkboxes

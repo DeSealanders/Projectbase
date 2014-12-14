@@ -37,7 +37,6 @@ class Module {
 
     public function setRecords($records) {
         $this->records = $records;
-
     }
 
     public function getRecords() {
