@@ -20,7 +20,7 @@ class TextComponent extends ModuleComponent {
         return $this->id;
     }
 
-    public function getFormCompontent($value) {
+    public function getFormComponent($value) {
         return new Textfield($this->label, $this->id, '', $value);
     }
 } 

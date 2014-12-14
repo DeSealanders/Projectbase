@@ -20,7 +20,7 @@ class TextareaComponent extends ModuleComponent {
         return $this->id;
     }
 
-    public function getFormCompontent($value) {
+    public function getFormComponent($value) {
         return new Textbox($this->label, $this->id, '', $value);
     }
 } 

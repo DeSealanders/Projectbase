@@ -22,7 +22,7 @@ class DropdownComponent extends ModuleComponent {
         return $this->id;
     }
 
-    public function getFormCompontent($value) {
+    public function getFormComponent($value) {
         return new Dropdown($this->label, $this->id, $this->options, $value);
     }
 

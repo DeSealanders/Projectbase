@@ -22,7 +22,7 @@ class CheckboxComponent extends ModuleComponent {
         return $this->id;
     }
 
-    public function getFormCompontent($value) {
+    public function getFormComponent($value) {
         return new Checkbox($this->label, $this->id, $this->options, $value);
     }
 

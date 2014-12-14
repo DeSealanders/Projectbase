@@ -20,7 +20,7 @@ class EditorComponent extends ModuleComponent {
         return $this->id;
     }
 
-    public function getFormCompontent($value) {
+    public function getFormComponent($value) {
         return new Texteditor($this->label, $this->id, '', $value);
     }
 } 

@@ -22,7 +22,7 @@ class RadioComponent extends ModuleComponent {
         return $this->id;
     }
 
-    public function getFormCompontent($value) {
+    public function getFormComponent($value) {
         return new Radiobutton($this->label, $this->id, $this->options, $value);
     }
 

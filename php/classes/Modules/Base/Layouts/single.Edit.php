@@ -18,7 +18,7 @@ if($record) {
             if($field == strtolower($component->getId())) {
 
                 // Add a formcomponent to the form
-                $form->addComponent($component->getFormCompontent($value));
+                $form->addComponent($component->getFormComponent($value));
             }
         }
     }
