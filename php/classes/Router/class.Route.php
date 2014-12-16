@@ -10,8 +10,10 @@ class Route {
     private $matchedRoute;
     private $imageDetails;
     private $moduleDetails;
+    private $wrap;
 
     public function __construct($request, $script) {
+        $this->wrap = true;
         $this->route = $this->parseUrl($request, $script);
         $this->matchedRoute = $this->getDestination($this->route);
     }
@@ -43,6 +45,14 @@ class Route {
 
     public function getModuleDetails() {
         return $this->moduleDetails;
+    }
+
+    public function getWrap() {
+        return $this->wrap;
+    }
+
+    public function setWrap($wrap) {
+        $this->wrap = $wrap;
     }
 
     /**
@@ -117,18 +127,20 @@ class Route {
     private function isConfiguredRoute($routePath) {
 
         // Go through all configured routes
-        foreach(RouterConfig::getInstance()->getRoutes() as $origin => $destination) {
+        foreach(RouterConfig::getInstance()->getRoutes() as $route) {
+            if(isset($route['origin']) && isset($route['destination']) && isset($route['wrap'])) {
 
-            // Compare each to the route entered by the user
-            if($origin == $routePath) {
+                // Compare each to the route entered by the user
+                if($route['origin'] == $routePath) {
 
-                // Check if the route file actually exists
-                if(file_exists($destination)) {
-
-                    return $destination;
-                }
-                else {
-                    Logger::getInstance()->writeMessage('Unable to find configured route: ' . $destination);
+                    // Check if the route file actually exists
+                    if(file_exists($route['destination'])) {
+                        $this->setWrap($route['wrap']);
+                        return $route['destination'];
+                    }
+                    else {
+                        Logger::getInstance()->writeMessage('Unable to find configured route: ' . $route['destination']);
+                    }
                 }
             }
         }
@@ -204,6 +216,7 @@ class Route {
 
         // See if url starts with module
         if(isset($route[0]) && $route[0] == 'module') {
+            var_dump($route);
 
             // If a module main page is called
             if(count($route) == 2 || count($route) == 3 || count($route) == 4) {

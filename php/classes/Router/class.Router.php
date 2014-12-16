@@ -68,7 +68,7 @@ class Router extends Singleton {
 
         // Load a configured or regular page
         else if($route->getType() == 'configured' || $route->getType() == 'page') {
-            $this->loadPageRoute($route->getMatchedRoute());
+            $this->loadPageRoute($route->getMatchedRoute(), $route->getWrap());
         }
 
         // If no route could be found, serve up the 404 page
@@ -102,9 +102,9 @@ class Router extends Singleton {
     /**
      * Load a page and check if a wrapper should be used
      * @param $matchedRoute the route which will be loaded
+     * @param $wrap wether to wrap the page or not
      */
-    private function loadPageRoute($matchedRoute) {
-        $wrap = true;
+    private function loadPageRoute($matchedRoute, $wrap) {
 
         // Check if an image is configured
         $routeExtension = strtolower(pathinfo($matchedRoute, PATHINFO_EXTENSION));
