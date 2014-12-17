@@ -4,10 +4,14 @@ echo '<h2>' . $this->module->getName() . '</h2>';
 
 // Build a list of components
 $components = array();
-$components[] = 'edit';
-$components[] = 'itemid';
+if($this->module->isAllowedEdit()) {
+    $components['edit'] = 'edit';
+}
+$components['itemid'] = 'itemid';
 $components = array_merge($components, $this->module->getMultiComponents());
-$components[] = 'delete';
+if($this->module->isAllowedDelete()) {
+    $components['delete'] = 'delete';
+}
 
 // Add headers for each component
 echo '<table class="edit">';
@@ -34,23 +38,23 @@ if($records = $this->module->getCleanRecords()) {
         echo '<tr>';
 
         // Create a table cell for each component
-        foreach($components as $component) {
+        foreach($components as $componentId => $componentLabel) {
 
             // Add an edit button to each row
-            if($component  == 'edit') {
+            if($componentId  == 'edit') {
                 $link = '/projectbase/module/' . strtolower($this->module->getName()) . '/' . $record['itemid'];
                 echo '<td><a href="' . $link . '"><span class="fa fa-edit fa-1x fa-fw"></span></a></td>';
             }
 
             // Add an edit button to each row
-            else if($component  == 'delete') {
+            else if($componentId  == 'delete') {
                 $link = '/projectbase/module/' . strtolower($this->module->getName()) . '/delete/' . $record['itemid'];
                 echo '<td><a href="' . $link . '"><span class="fa fa-trash fa-1x fa-fw"></span></a></td>';
             }
 
             // Show the value for each component per row
-            else if(isset($record[$component])) {
-                echo '<td>' . $record[$component] . '</td>';
+            else if(isset($record[$componentId])) {
+                echo '<td>' . $record[$componentId] . '</td>';
             }
             else {
                 echo '<td></td>';
@@ -61,11 +65,14 @@ if($records = $this->module->getCleanRecords()) {
 }
 
 // Add a button for new module items
-$newLink = '/projectbase/module/' . strtolower($this->module->getName()) . '/new';
-echo '<tr><td colspan="' .  count($components) . '">';
-echo '<a href="' . $newLink . '">';
-echo '<span class="fa fa-plus fa-1x fa-fw newentry"></span>';
-echo 'Add a new entry<td></a></tr>';
+
+if($this->module->isAllowedNew()) {
+    $newLink = '/projectbase/module/' . strtolower($this->module->getName()) . '/new';
+    echo '<tr><td colspan="' .  count($components) . '">';
+    echo '<a href="' . $newLink . '">';
+    echo '<span class="fa fa-plus fa-1x fa-fw newentry"></span>';
+    echo 'Add a new entry<td></a></tr>';
+}
 
 echo '</table>';
 ?>

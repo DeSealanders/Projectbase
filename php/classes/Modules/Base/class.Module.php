@@ -8,6 +8,10 @@ class Module {
     private $frontend;
     private $records;
     private $cleanRecords;
+    private $description;
+    private $allowDelete;
+    private $allowNew;
+    private $allowEdit;
 
     public function __construct($name) {
         $this->name = $name;
@@ -15,12 +19,23 @@ class Module {
         $this->backend = new ModuleBackend($this);
         $this->frontend = new ModuleFrontend($this);
         $this->cleanRecords = false;
+        $this->allowDelete = true;
+        $this->allowNew = true;
+        $this->allowEdit = true;
     }
 
     /* -------------- Shared -------------- */
 
     public function addComponent($component) {
         $this->components[$component->getId()] = $component;
+    }
+
+    public function setDescription($description) {
+        $this->description = $description;
+    }
+
+    public function getDescription() {
+        return $this->description;
     }
 
     public function getModulePath() {
@@ -67,7 +82,7 @@ class Module {
         $components = array();
         foreach($this->components as $component) {
             if($component->showInMulti()) {
-                $components[] = $component->getId();
+                $components[$component->getId()] = $component->getLabel();
             }
         }
         return $components;
@@ -79,23 +94,27 @@ class Module {
         }
         else {
 
-            // Clone the original records
-            $cleanRecords = $this->records;
+            // If any records have been found
+            if($this->records) {
 
-            // Replace values with component values if possible
-            foreach($this->records as $num => $record) {
-                foreach($this->components as $key => $component) {
-                    if(isset($record[$component->getId()])) {
+                // Clone the original records
+                $cleanRecords = $this->records;
 
-                        // Get the value from the database
-                        $databaseValue = $record[$component->getId()];
+                // Replace values with component values if possible
+                foreach($this->records as $num => $record) {
+                    foreach($this->components as $key => $component) {
+                        if(isset($record[$component->getId()])) {
 
-                        // Translate the database value into a display value
-                        $cleanRecords[$num][$key] = $component->getValue($databaseValue);
+                            // Get the value from the database
+                            $databaseValue = $record[$component->getId()];
+
+                            // Translate the database value into a display value
+                            $cleanRecords[$num][$key] = $component->getValue($databaseValue);
+                        }
                     }
                 }
+                return $cleanRecords;
             }
-            return $cleanRecords;
         }
     }
 
@@ -103,6 +122,31 @@ class Module {
 
     public function printBackendHtml($layout, $itemid = false) {
         return $this->backend->printHtml($layout, $itemid);
+    }
+
+    public function allowDelete($allowDelete) {
+        $this->allowDelete = $allowDelete;
+    }
+
+    public function allowNew($allowNew) {
+        $this->allowNew = $allowNew;
+    }
+
+    public function allowEdit($allowEdit) {
+        $this->allowEdit = $allowEdit;
+    }
+
+
+    public function isAllowedDelete() {
+        return $this->allowDelete;
+    }
+
+    public function isAllowedNew() {
+        return $this->allowNew;
+    }
+
+    public function isAllowedEdit() {
+        return $this->allowEdit;
     }
 
     /* -------------- Frontend -------------- */
@@ -113,6 +157,10 @@ class Module {
 
     public function addLayout($layout) {
         $this->frontend->addLayout($layout);
+    }
+
+    public function getLayouts() {
+        return $this->frontend->getLayouts();
     }
 
 } 
