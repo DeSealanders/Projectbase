@@ -2,24 +2,11 @@
 
 class DropdownComponent extends ModuleComponent {
 
-    private $label;
-    private $id;
     private $options;
 
     public function __construct($label, $id = false, $options, $showInMulti = true) {
-        parent::__construct($showInMulti);
-        $this->label = $label;
-        if($id) {
-            $this->id = $id;
-        }
-        else {
-            $this->id = $label;
-        }
+        parent::__construct($label, $id, $showInMulti);
         $this->options = $options;
-    }
-
-    public function getId() {
-        return $this->id;
     }
 
     public function getFormComponent($value) {
