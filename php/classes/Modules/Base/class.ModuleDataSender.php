@@ -16,7 +16,7 @@ class ModuleDataSender extends Singleton {
 
             // Only allow posting of component fields
             if(isset($fields[$component->getId()])) {
-                $dbFields[$component->getId()] = ($fields[$component->getId()]);
+                $dbFields[$component->getId()] = htmlentities($fields[$component->getId()]);
             }
 
             // Fix fields for checkboxes
