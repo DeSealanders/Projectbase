@@ -13,9 +13,12 @@ class ModulesConfig extends Singleton {
          */
 
         $this->moduleNames = array(
-            'Blocks',
+            //'Blocks',
+            'Colors',
             'Contact',
-            'Projects',
+            'Content',
+            'Menu',
+            //'Projects',
         );
 
         /*
