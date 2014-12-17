@@ -216,7 +216,6 @@ class Route {
 
         // See if url starts with module
         if(isset($route[0]) && $route[0] == 'module') {
-            var_dump($route);
 
             // If a module main page is called
             if(count($route) == 2 || count($route) == 3 || count($route) == 4) {
