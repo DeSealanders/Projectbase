@@ -13,7 +13,7 @@
 .backend a:hover {
     color: black;
 }
-.menu {
+.backend .menu {
     float: left;
     width: 15%;
     margin-right: calc(5% - 1px);
@@ -22,31 +22,61 @@
     padding-bottom: 3%;
 
 }
-.container {
+.backend .container {
     width: 80%;
     float: left;
     padding-top: 3%;
 }
 
 /** Menu **/
-.menu ul {
+.backend .menu ul {
     list-style: none;
     padding: 0px;
     margin: 0px;
 }
-.menu li {
+.backend .menu li {
     padding-bottom: 10px;
     font-size: 16px;
 }
-.menu a {
+.backend .menu a {
     text-decoration: none;
     color: gray;
 }
-.menu .active a {
+.backend .menu .active a {
     font-weight: bold;
 }
-.menu a:hover {
+.backend .menu a:hover {
     color: black;
+}
+
+/** Backend overview **/
+.backend.overview .moduleBlock {
+    float: left;
+    width: 300px;
+    height: 150px;
+    margin: 20px;
+    background-color: #fbfbfb;
+    border: 1px solid gray;
+    border-radius: 10px;
+    text-align: center;
+}
+.backend.overview .moduleBlock h2 {
+    padding-top: 10px;
+}
+.backend.overview .moduleBlock table {
+    width: 100%;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.backend.overview .moduleBlock th,
+.backend.overview .moduleBlock td  {
+    padding-bottom: 10px;
+}
+
+/** Editors **/
+.multi h2, .single #edit h2 {
+    padding-bottom: 20px;
 }
 
 /** Multi editor **/
@@ -67,9 +97,4 @@
 }
 .multi .newentry.fa {
     padding-right: 10px;
-}
-
-/** Editors **/
-.multi h2, .single #edit h2 {
-    padding-bottom: 20px;
 }
