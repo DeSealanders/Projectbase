@@ -69,6 +69,11 @@ class ModuleDataProvider extends Singleton {
         $query->select('MAX(itemid) + 1 as itemid');
         $query->from('module_' . strtolower($moduleName));
         $result = DatabaseManager::getInstance()->executeQuery($query);
-        return $result[0]['itemid'];
+        if($result[0]['itemid'] == 0) {
+            return 1;
+        }
+        else {
+            return $result[0]['itemid'];
+        }
     }
 } 
