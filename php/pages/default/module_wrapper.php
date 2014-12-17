@@ -7,6 +7,7 @@
 // Print all css and js includes
 IncludeLoader::getInstance()->printIncludes();
 ?>
+    <title><?php echo ucfirst($_SERVER['ROUTE']['module']); ?></title>
 </head>
 <body>
 <div class="backend">
