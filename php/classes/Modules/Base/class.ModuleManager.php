@@ -17,10 +17,10 @@ class ModuleManager extends Singleton {
         }
     }
 
-    public function loadModules() {
+    public function loadModules($loadDb = true) {
         $moduleNames = ModulesConfig::getInstance()->getModuleNames();
         foreach($moduleNames as $moduleName) {
-            $this->loadModule($moduleName);
+            $this->loadModule($moduleName, $loadDb);
         }
     }
 
@@ -46,7 +46,12 @@ class ModuleManager extends Singleton {
         return $moduleList;
     }
 
-    public function loadModule($moduleName, $itemid = false) {
+    public function getPreviewList() {
+        $this->loadModules(false);
+        return $this->modules;
+    }
+
+    public function loadModule($moduleName, $loadDb = true) {
 
         // Create a classname for the module
         $moduleClassName = 'Module' . $moduleName;
@@ -55,25 +60,29 @@ class ModuleManager extends Singleton {
         if(class_exists($moduleClassName)) {
             $module = new $moduleClassName;
 
-            // Get data and load for the module (if it exists)
-            if($dbColums = ModuleDataProvider::getInstance()->getColumns($moduleName)) {
+            // Only load data from database if specified
+            if($loadDb) {
 
-                // Compare module components and database columns
-                // Alter table if needed
-                ModuleDataProvider::getInstance()->alterModTable($moduleName, $module->getComponentNames(), $dbColums);
+                // Get data and load for the module (if it exists)
+                if($dbColums = ModuleDataProvider::getInstance()->getColumns($moduleName)) {
 
-                // Retrieve records for specified module
-                $records = ModuleDataProvider::getInstance()->getModuleData($moduleName);
+                    // Compare module components and database columns
+                    // Alter table if needed
+                    ModuleDataProvider::getInstance()->alterModTable($moduleName, $module->getComponentNames(), $dbColums);
 
-                // Load records into module
-                $module->setRecords($records);
-            }
+                    // Retrieve records for specified module
+                    $records = ModuleDataProvider::getInstance()->getModuleData($moduleName);
 
-            // Create table if it doesn't exist
-            else {
-                $moduleColumns = $module->getComponentNames();
-                ModuleDataProvider::getInstance()->createTable($moduleName, $moduleColumns);
-                $module->setRecords(false);
+                    // Load records into module
+                    $module->setRecords($records);
+                }
+
+                // Create table if it doesn't exist
+                else {
+                    $moduleColumns = $module->getComponentNames();
+                    ModuleDataProvider::getInstance()->createTable($moduleName, $moduleColumns);
+                    $module->setRecords(false);
+                }
             }
 
             // Add module to the module list
@@ -94,19 +103,42 @@ class ModuleManager extends Singleton {
             $module = new $moduleClassName;
 
             // Save module data if previous action was a save
-            if(!empty($_POST) && $itemid) {
+            if(!empty($_POST) && $itemid && $module->isAllowedEdit()) {
                 ModuleDataSender::getInstance()->saveModuleData($module, $itemid, $_POST);
             }
         }
     }
 
     public function deleteItem($moduleName, $itemid) {
-        ModuleDataSender::getInstance()->deleteModuleItem($moduleName, $itemid);
+
+        // Create a classname for the module
+        $moduleClassName = 'Module' . $moduleName;
+
+        // Create a module from the classname if it exists
+        if(class_exists($moduleClassName)) {
+            $module = new $moduleClassName;
+
+            if($module->isAllowedDelete()) {
+                ModuleDataSender::getInstance()->deleteModuleItem($moduleName, $itemid);
+            }
+
+        }
     }
 
     public function newItem($moduleName) {
-        $itemid = ModuleDataProvider::getInstance()->getNewItemId($moduleName);
-        ModuleDataSender::getInstance()->createNewItem($moduleName, $itemid);
+
+        // Create a classname for the module
+        $moduleClassName = 'Module' . $moduleName;
+
+        // Create a module from the classname if it exists
+        if(class_exists($moduleClassName)) {
+            $module = new $moduleClassName;
+
+            if($module->isAllowedNew()) {
+                $itemid = ModuleDataProvider::getInstance()->getNewItemId($moduleName);
+                ModuleDataSender::getInstance()->createNewItem($moduleName, $itemid);
+            }
+        }
         return $itemid;
     }
 } 

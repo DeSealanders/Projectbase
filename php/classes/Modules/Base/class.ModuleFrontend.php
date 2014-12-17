@@ -33,4 +33,8 @@ class ModuleFrontend {
         return $this->module->getRecords();
     }
 
+    public function getLayouts() {
+        return $this->layouts;
+    }
+
 } 
