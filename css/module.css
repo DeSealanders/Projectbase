@@ -48,6 +48,12 @@
 .backend .menu a:hover {
     color: black;
 }
+.backend .menu .padded {
+    padding-left: 2em;
+}
+.backend .menu .fa-fw {
+    width: 2em;
+}
 
 /** Backend overview **/
 .backend.overview .moduleBlock {

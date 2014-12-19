@@ -3,7 +3,6 @@
 <html>
 <head>
 <?php
-
 // Print all css and js includes
 IncludeLoader::getInstance()->printIncludes();
 ?>
@@ -13,6 +12,7 @@ IncludeLoader::getInstance()->printIncludes();
 <div class="backend">
     <div class="menu">
         <ul>
+            <li><a  href="/projectbase/module"><i class="fa fa-fw fa-home"></i>Overview</a></li>
         <?php
         foreach(ModuleManager::getInstance()->getModuleList() as $moduleName) {
             if($moduleName == $_SERVER['ROUTE']['module']) {
@@ -21,7 +21,7 @@ IncludeLoader::getInstance()->printIncludes();
             else {
                 $class = '';
             }
-            echo '<li class=' . $class . '><a href="/projectbase/module/' . $moduleName . '">' . ucfirst($moduleName) . '</a></li>';
+            echo '<li class=' . $class . '><a class="padded" href="/projectbase/module/' . $moduleName . '">' . ucfirst($moduleName) . '</a></li>';
         }
         ?>
         </ul>
@@ -76,6 +76,9 @@ IncludeLoader::getInstance()->printIncludes();
             else if($_SERVER['ROUTE']['view'] == 'single') {
                 echo $module->printBackendHtml('single', $_SERVER['ROUTE']['itemid']);
             }
+        }
+        else {
+            Logger::getInstance()->writeMessage('Could not load module: ' . $module);
         }
         ?>
     </div>
