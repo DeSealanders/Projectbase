@@ -4,7 +4,7 @@ class ModuleProjects extends Module {
 
     public function __construct() {
         parent::__construct('Projects');
-        $this->setDescription('Met deze module kunnen verschillende soorten projecten worden weergegeven');
+        $this->setDescription('Display projects neatly sorted by category and tags');
         $this->addLayout('multi');
         $this->addComponent(new TextComponent('Name', 'name'));
         $this->addComponent(new TextComponent('Description', 'description', false));
