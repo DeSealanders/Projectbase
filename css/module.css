@@ -35,7 +35,8 @@
     margin: 0px;
 }
 .backend .menu li {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     font-size: 16px;
 }
 .backend .menu a {
@@ -53,6 +54,9 @@
 }
 .backend .menu .fa-fw {
     width: 2em;
+}
+.backend .menu .overview {
+    border-bottom: 1px solid black;
 }
 
 /** Backend overview **/
@@ -81,7 +85,9 @@
 }
 
 /** Editors **/
-.multi h2, .single #edit h2 {
+.multi h2,
+.single #edit h2,
+.overview h2 {
     padding-bottom: 20px;
 }
 
@@ -89,16 +95,20 @@
 .multi table {
     width: 100%;
 }
-.multi td, th {
+.multi td,
+.multi th,
+.overview td,
+.overview th {
     padding-right: 10px;
-}
-.multi td, th {
     padding-bottom: 10px;
 }
-.multi th {
+.multi th,
+.overview th {
     text-align: left;
 }
-.multi th.edit, .multi th.delete {
+.multi th.edit,
+.multi th.delete,
+.overview th.edit {
     width: 12px;
 }
 .multi .newentry.fa {

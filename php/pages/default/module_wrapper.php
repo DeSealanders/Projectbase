@@ -6,16 +6,31 @@
 // Print all css and js includes
 IncludeLoader::getInstance()->printIncludes();
 ?>
-    <title><?php echo ucfirst($_SERVER['ROUTE']['module']); ?></title>
+<?php
+if(isset($_SERVER['ROUTE']['module']))
+{
+    $title = ucfirst($_SERVER['ROUTE']['module']);
+}
+else if(isset($_SERVER['ROUTE']['view']) && $_SERVER['ROUTE']['view'] == 'overview') {
+    $title = 'Overview';
+}
+echo '<title>' . $title . '</title>';
+?>
 </head>
 <body>
 <div class="backend">
     <div class="menu">
         <ul>
-            <li><a  href="/projectbase/module"><i class="fa fa-fw fa-home"></i>Overview</a></li>
         <?php
+        if($_SERVER['ROUTE']['view'] == 'overview') {
+            $class = 'active';
+        }
+        else {
+            $class = '';
+        }
+        echo '<li class="overview ' . $class . '"><a href="/projectbase/module"><i class="fa fa-fw fa-home"></i>Overview</a></li>';
         foreach(ModuleManager::getInstance()->getModuleList() as $moduleName) {
-            if($moduleName == $_SERVER['ROUTE']['module']) {
+            if(isset($_SERVER['ROUTE']['module']) && $moduleName == $_SERVER['ROUTE']['module']) {
                 $class = 'active';
             }
             else {
@@ -63,23 +78,31 @@ IncludeLoader::getInstance()->printIncludes();
             }
         }
 
+        // Show the module overview if specified
+        if($_SERVER['ROUTE']['view'] == 'overview') {
+            require('backend.php');
+        }
+
         // Load the module (including data) specified by the router
-        ModuleManager::getInstance()->loadModule($_SERVER['ROUTE']['module']);
+        if(isset($_SERVER['ROUTE']['module'])) {
+            ModuleManager::getInstance()->loadModule($_SERVER['ROUTE']['module']);
 
-        // Get the loaded module if everything went correctly
-        if($module = ModuleManager::getInstance()->getModule($_SERVER['ROUTE']['module'])) {
+            // Get the loaded module if everything went correctly
+            if($module = ModuleManager::getInstance()->getModule($_SERVER['ROUTE']['module'])) {
 
-            // Load the correct layout file
-            if($_SERVER['ROUTE']['view'] == 'multi') {
-                echo $module->printBackendHtml('multi');
+                // Load the correct layout file
+                if($_SERVER['ROUTE']['view'] == 'multi') {
+                    echo $module->printBackendHtml('multi');
+                }
+                else if($_SERVER['ROUTE']['view'] == 'single') {
+                    echo $module->printBackendHtml('single', $_SERVER['ROUTE']['itemid']);
+                }
             }
-            else if($_SERVER['ROUTE']['view'] == 'single') {
-                echo $module->printBackendHtml('single', $_SERVER['ROUTE']['itemid']);
+            else {
+                Logger::getInstance()->writeMessage('Could not load module: ' . $module);
             }
         }
-        else {
-            Logger::getInstance()->writeMessage('Could not load module: ' . $module);
-        }
+
         ?>
     </div>
 </div>

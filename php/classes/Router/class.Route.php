@@ -255,6 +255,11 @@ class Route {
                     }
                 }
             }
+
+            // Show an overview of all modules
+            else if(count($route) == 1) {
+                $this->moduleDetails['view'] = 'overview';
+            }
         }
 
         // Return true if a route could be found

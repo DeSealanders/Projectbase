@@ -1,33 +1,23 @@
-<!DOCTYPE html>
-<meta charset="UTF-8">
-<html>
-<head>
-    <?php
-
-    // Print all css and js includes
-    IncludeLoader::getInstance()->printIncludes();
-    ?>
-</head>
-<body>
-<div class="backend overview">
-    <h1>Modulebeheer</h1>
+<div class="overview">
+    <h2>Module overview</h2>
+    <table>
+        <tr>
+            <th class="edit"></th>
+            <th>Module</th>
+            <th>Description</th>
+        </tr>
     <?php
     $previewList = ModuleManager::getInstance()->getPreviewList();
     foreach($previewList as $module) {
-        echo '<a href="/projectbase/module/' . strtolower($module->getName()) . '">';
-        echo '<div class="moduleBlock">';
-        echo '<h2>' . ucfirst($module->getName()) . '</h2>';
-        echo '<p>' . $module->getDescription() . '</p>';
-        echo '<table>';
-        echo '<tr><th>Layouts</th><th>Columns</th></tr>';
         echo '<tr>';
-        echo  '<td>' . implode(', ', array_map('ucfirst', array_keys($module->getLayouts()))) . '</td>';
-        echo  '<td>' . implode(', ', array_map('ucfirst', array_keys($module->getComponentNames()))) . '</td>';
-        echo '</table>';
-        echo '</div>';
-        echo '</a>';
+        echo '<td><a href="/projectbase/module/' . strtolower($module->getName()) . '">';
+        echo '<span class="fa fa-fw fa-external-link"></a></td>';
+        echo '<td>' . ucfirst($module->getName()) . '</td>';
+        echo '<td>' . $module->getDescription() . '</td>';
+        //echo  '<td>' . implode(', ', array_map('ucfirst', array_keys($module->getLayouts()))) . '</td>';
+        //echo  '<td>' . implode(', ', array_map('ucfirst', array_keys($module->getComponentNames()))) . '</td>';
+        echo '</tr>';
     }
     ?>
-    </div>
-</body>
-</html>
+    </table>
+</div>
