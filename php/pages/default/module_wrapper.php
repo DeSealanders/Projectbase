@@ -30,8 +30,19 @@ IncludeLoader::getInstance()->printIncludes();
         <?php
 
         // Save module data if anything is posted
-        if(!empty($_POST)) {
-            ModuleManager::getInstance()->saveItem($_SERVER['ROUTE']['module'], $_SERVER['ROUTE']['itemid']);
+        if(!empty($_POST) && isset($_POST['button'])) {
+            if($_POST['button'] == 'close') {
+                header('location: /projectbase/module/' . $_SERVER['ROUTE']['module']);
+                die('redirecting');
+            }
+            else if($_POST['button'] == 'save') {
+                ModuleManager::getInstance()->saveItem($_SERVER['ROUTE']['module'], $_SERVER['ROUTE']['itemid']);
+            }
+            else if($_POST['button'] == 'saveclose') {
+                ModuleManager::getInstance()->saveItem($_SERVER['ROUTE']['module'], $_SERVER['ROUTE']['itemid']);
+                header('location: /projectbase/module/' . $_SERVER['ROUTE']['module']);
+                die('redirecting');
+            }
         }
 
         // Check for a specified action
