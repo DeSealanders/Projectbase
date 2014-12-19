@@ -92,7 +92,12 @@ echo '<title>' . $title . '</title>';
 
                 // Load the correct layout file
                 if($_SERVER['ROUTE']['view'] == 'multi') {
-                    echo $module->printBackendHtml('multi');
+                    if(!$module->isAllowedDelete() && !$module->isAllowedNew() && $module->isAllowedEdit() && $record = $module->getSingleRecord()) {
+                        echo $module->printBackendHtml('single', $record['itemid']);
+                    }
+                    else {
+                        echo $module->printBackendHtml('multi');
+                    }
                 }
                 else if($_SERVER['ROUTE']['view'] == 'single') {
                     echo $module->printBackendHtml('single', $_SERVER['ROUTE']['itemid']);

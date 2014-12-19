@@ -136,7 +136,6 @@ class Module {
         $this->allowEdit = $allowEdit;
     }
 
-
     public function isAllowedDelete() {
         return $this->allowDelete;
     }
@@ -147,6 +146,15 @@ class Module {
 
     public function isAllowedEdit() {
         return $this->allowEdit;
+    }
+
+    public function getSingleRecord() {
+        if(count($this->records) == 1) {
+            return $this->records[0];
+        }
+        else {
+            return false;
+        }
     }
 
     /* -------------- Frontend -------------- */
