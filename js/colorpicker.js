@@ -5,12 +5,10 @@ $(document).ready(function () {
         colorScheme:'light',
         layout:'hex',
         onChange:function(hsb,hex,rgb,el) {
-            var color = '#'+hex;
-            var id = $(el).attr('id');
-            $(el).css('background-color', color);
-            $('input#' + id).val(color);
+            setColors(hex, el);
         },
         onSubmit:function(hsb,hex,rbg,el) {
+            setColors(hex, el);
             $(el).colpickHide();
         }
     })
@@ -21,4 +19,11 @@ $(document).ready(function () {
         $(this).css('background-color', '#'+color);
         $(this).colpickSetColor(color, true);
     })
+
+    function setColors(hex, el) {
+        var color = '#'+hex;
+        var id = $(el).attr('id');
+        $(el).css('background-color', color);
+        $('input#' + id).val(color);
+    }
 });
