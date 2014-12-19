@@ -31,13 +31,15 @@ class ModuleDataProvider extends Singleton {
     public function createTable($moduleName, $moduleColumns) {
         $defaultColumns = array(
             'id' => 'INT(10) AUTO_INCREMENT PRIMARY KEY',
-            'created' => 'DATETIME DEFAULT CURRENT_TIMESTAMP',
+            'created' => 'DATETIME',
             'itemid' => 'INT(10)'
         );
         $columns = array_merge($defaultColumns, $moduleColumns);
         $query = new Query();
         $query->create('module_' . strtolower($moduleName), $columns);
-        DatabaseManager::getInstance()->executeQuery($query);
+        if(!DatabaseManager::getInstance()->executeQuery($query)) {
+            Logger::getInstance()->writeMessage('Unable to create moduletable for ' . $moduleName);
+        }
     }
 
     public function alterModTable($moduleName, $modColumns, $colums) {
@@ -60,7 +62,9 @@ class ModuleDataProvider extends Singleton {
                     'add' => $added,
                     'remove' => $removed
                 ));
-            DatabaseManager::getInstance()->executeQuery($query);
+            if(!DatabaseManager::getInstance()->executeQuery($query)) {
+                Logger::getInstance()->writeMessage('Unable to alter moduletable for ' . $moduleName);
+            }
         }
     }
 
@@ -69,6 +73,9 @@ class ModuleDataProvider extends Singleton {
         $query->select('MAX(itemid) + 1 as itemid');
         $query->from('module_' . strtolower($moduleName));
         $result = DatabaseManager::getInstance()->executeQuery($query);
+        if(!$result) {
+            Logger::getInstance()->writeMessage('Unable to get new itemid for ' . $moduleName);
+        }
         if($result[0]['itemid'] == 0) {
             return 1;
         }

@@ -25,7 +25,7 @@ class ModuleManager extends Singleton {
     }
 
     public function isModule($moduleName) {
-        $moduleClassName = 'Module' . $moduleName;
+        $moduleClassName = 'Module' . ucfirst($moduleName);
         $moduleNames = ModulesConfig::getInstance()->getModuleNames();
         if(in_array(strtolower($moduleName), $moduleNames)) {
             if(class_exists($moduleClassName)) {
@@ -38,7 +38,7 @@ class ModuleManager extends Singleton {
         $moduleList = array();
         $moduleNames = ModulesConfig::getInstance()->getModuleNames();
         foreach($moduleNames as $moduleName) {
-            $moduleClassName = 'Module' . $moduleName;
+            $moduleClassName = 'Module' . ucfirst($moduleName);
             if(class_exists($moduleClassName)) {
                 $moduleList[] = $moduleName;
             }
@@ -54,7 +54,7 @@ class ModuleManager extends Singleton {
     public function loadModule($moduleName, $loadDb = true) {
 
         // Create a classname for the module
-        $moduleClassName = 'Module' . $moduleName;
+        $moduleClassName = 'Module' . ucfirst($moduleName);
 
         // Create a module from the classname if it exists
         if(class_exists($moduleClassName)) {
@@ -96,7 +96,7 @@ class ModuleManager extends Singleton {
     public function saveItem($moduleName, $itemid) {
 
         // Create a classname for the module
-        $moduleClassName = 'Module' . $moduleName;
+        $moduleClassName = 'Module' . ucfirst($moduleName);
 
         // Create a module from the classname if it exists
         if(class_exists($moduleClassName)) {
@@ -112,7 +112,7 @@ class ModuleManager extends Singleton {
     public function deleteItem($moduleName, $itemid) {
 
         // Create a classname for the module
-        $moduleClassName = 'Module' . $moduleName;
+        $moduleClassName = 'Module' . ucfirst($moduleName);
 
         // Create a module from the classname if it exists
         if(class_exists($moduleClassName)) {
@@ -128,7 +128,7 @@ class ModuleManager extends Singleton {
     public function newItem($moduleName) {
 
         // Create a classname for the module
-        $moduleClassName = 'Module' . $moduleName;
+        $moduleClassName = 'Module' . ucfirst($moduleName);
 
         // Create a module from the classname if it exists
         if(class_exists($moduleClassName)) {
