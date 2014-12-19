@@ -113,3 +113,13 @@
     height:30px;
     margin:5px;
 }
+
+/** Buttongroup **/
+.customForm .buttongroup .component {
+    clear: none;
+    float: right;
+    padding-left: 20px;
+}
+.customForm .buttongroup {
+    width: calc(94% + 15px);
+}
