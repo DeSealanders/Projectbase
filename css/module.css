@@ -57,37 +57,22 @@
 }
 .backend .menu .overview {
     border-bottom: 1px solid black;
+    overflow: auto;
 }
-
-/** Backend overview **/
-.backend.overview .moduleBlock {
+.backend .overview span,
+.backend .overview i {
     float: left;
-    width: 300px;
-    height: 150px;
-    margin: 20px;
-    background-color: #fbfbfb;
-    border: 1px solid gray;
-    border-radius: 10px;
-    text-align: center;
-}
-.backend.overview .moduleBlock h2 {
-    padding-top: 10px;
-}
-.backend.overview .moduleBlock table {
-    width: 100%;
-    text-align: left;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.backend.overview .moduleBlock th,
-.backend.overview .moduleBlock td  {
-    padding-bottom: 10px;
 }
 
 /** Editors **/
-.multi h2,
-.single #edit h2,
 .overview h2 {
+    padding-bottom: 20px;
+}
+.multi .edit {
+    padding-top: 20px;
+}
+.single #description {
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 

@@ -1,6 +1,7 @@
 <div class="multi">
 <?php
 echo '<h2>' . $this->module->getName() . '</h2>';
+echo '<p>'. $this->module->getDescription() . '</p>';
 
 // Build a list of components
 $components = array();

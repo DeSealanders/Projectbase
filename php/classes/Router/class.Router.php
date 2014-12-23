@@ -58,12 +58,7 @@ class Router extends Singleton {
         }
 
         else if($route->getType() == 'module') {
-            $wrapperPage = 'php/pages/default/module_wrapper.php';
-
-            // Set the moduledetails so it can be used in the wrapper page
-            $moduleDetails = $route->getModuleDetails();
-            $_SERVER['ROUTE'] = $moduleDetails;
-            require($wrapperPage);
+            ModuleRouter::getInstance()->route($route);
         }
 
         // Load a configured or regular page

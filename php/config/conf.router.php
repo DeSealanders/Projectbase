@@ -24,9 +24,9 @@ class RouterConfig extends Singleton {
          *      'henk/de/tank' => 'php/pages/sjonbontebal.php'
          */
         $this->routes = array(
-            array('origin' => 'module',
+            /*array('origin' => 'module',
                   'destination' => 'php/pages/default/backend.php',
-                  'wrap' => false)
+                  'wrap' => false)*/
         );
 
         /*

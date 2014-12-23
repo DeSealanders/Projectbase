@@ -31,9 +31,16 @@
         <li><s>Url parameters (voor single / list)</s></li>
         <li><s>Data opslaan</s></li>
         <li>Relatie componenten toevoegen</li>
+            <li><s>One to One</s></li>
+            <li><s>One to Many</s></li>
+            <li>One to Many (sorteerbaar)</li>
         <li>Stijlen</li>
         <li>Verwijder/sluiten knop maken</li>
         <li>Algemene module pagina maken</li>
+        <li>1 record max</li>
+        <li>Color picker component</li>
+        <li>Sorteerbaar component</li>
+        <li>Sorteermogelijkheden in multiview</li>
     </ul>
     <li>Slimme caching gebruiken voor image resizer</li>
     <li>Formbuilder fileupload</li>
