@@ -43,7 +43,7 @@ class IncludesConfig extends Singleton {
         $this->addCssInclude('css/default.css');
         $this->addCssInclude('css/forms.css');
         $this->addCssInclude('css/content.css');
-        $this->addCssInclude('css/experiment.css');
+//        $this->addCssInclude('css/experiment.css');
         $this->addCssInclude('css/jhtmlarea.css');
         $this->addCssInclude('css/module.css');
         $this->addCssInclude('css/colpick.css');
