@@ -82,18 +82,33 @@
     float: left;
 }
 
-/** Button **/
-.customForm button {
-    line-height: 1.5em;
-    float: right;
-    background-color: #ddd;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: 2px solid #ddd;
-    margin-right: 4%;
+.customForm button{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    float: left;
+    margin: 0 1em 1em 0;
+    padding: 0 3em;
+    height: 3.5em;
+    font: 300 1em/3.5em 'Open Sans', sans-serif;
+    text-decoration: none;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    letter-spacing: .08em;
+    color: #fff;
+    background: #0090C0;
+    border: solid 1px #fff;
+    border-radius: 2px;
+    -moz-transition: 0.35s ease all;
+    -o-transition: 0.35s ease all;
+    -webkit-transition: 0.35s ease all;
+    transition: 0.35s ease all;
 }
-.customForm button:hover {
-    border-color: #b2b2b2;
+
+.customForm button:hover{
+    background: #007DA7;
+    box-shadow: 1px 1px 10px #007DA7;
+    text-shadow: 0 3px 3px #07295E;
+    cursor: pointer;
 }
 
 /** Dropdown **/
@@ -117,9 +132,8 @@
 /** Buttongroup **/
 .customForm .buttongroup .component {
     clear: none;
-    float: right;
-    padding-left: 20px;
+    float: left;
 }
 .customForm .buttongroup {
-    width: calc(94% + 15px);
+    float: right;
 }

@@ -26,9 +26,9 @@ if($record) {
 
     // Add a save button
     $form->addComponent(new ButtonGroup('buttons', array(
-            new Button('Close', 'button', 'close'),
-            new Button('Save & close', 'button', 'saveclose'),
             new Button('Save', 'button', 'save'),
+            new Button('Save & close', 'button', 'saveclose'),
+            new Button('Close', 'button', 'close'),
         )));
 
 }

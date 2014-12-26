@@ -55,6 +55,10 @@ html, body {
 }
 .backend .menu li {
     font-size: 16px;
+    display: block;
+    text-decoration: none;
+    padding: 10px 25px;
+    border: 1px solid #1c88f7;
 }
 
 .backend .menu .fa-fw {
@@ -76,13 +80,11 @@ html, body {
 }
 
 .backend .menu a {
-    display: block;
-    text-decoration: none;
+
     color: #EFEFEF;
-    padding: 10px 25px;
-    border: 1px solid #1c88f7;
+
 }
-.backend .menu .active a {
+.backend .menu .active {
     color: white;
     font-weight: bold;
     background: #037DF4;
@@ -92,7 +94,7 @@ html, body {
     -moz-box-shadow: 0px 3px 20px #1953BB;
     text-shadow: 0px 0px 10px #003DFF;
 }
-.backend .menu a:hover {
+.backend .menu li:hover {
     color: white;
     background: #03a9f4;
     -webkit-transition: background-color 350ms linear;
@@ -103,6 +105,10 @@ html, body {
     box-shadow: 0px 0px 10px #03a9f4;
     -webkit-box-shadow: 0px 0px 10px #03a9f4;
     -moz-box-shadow: 0px 0px 10px #03a9f4;
+}
+
+.backend .menu .padded a{
+    margin-left: 2em;
 }
 
 

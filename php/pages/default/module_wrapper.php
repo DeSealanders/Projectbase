@@ -31,7 +31,7 @@ echo '<title>' . $this->getTitle() . '</title>';
             else {
                 $link = '/projectbase/module/' . $menuItem;
                 $text = ucfirst($menuItem);
-                $class .= '';
+                $class .= ' padded';
             }
             echo '<li class="' . $class . '"><a href="' . $link . '">' . $text . '</a></li>';
         }
