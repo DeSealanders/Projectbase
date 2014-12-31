@@ -2,14 +2,17 @@
 <meta charset="UTF-8">
 <html>
 <head>
-<?php
+    <title>Projectbase</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="image/favicon.png" type="image/x-icon">
+    <?php
 
-// Print all css and js includes
-IncludeLoader::getInstance()->printIncludes();
+    // Print all css and js includes
+    IncludeLoader::getInstance()->printIncludes();
 
-// Print analytics tracking code
-AnalyticsLoader::getInstance()->printTrackingCode();
-?>
+    // Print analytics tracking code
+    AnalyticsLoader::getInstance()->printTrackingCode();
+    ?>
 </head>
 <body>
 <?php
