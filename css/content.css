@@ -23,6 +23,9 @@
     padding-bottom: 20px;
     border-bottom: 1px solid black;
 }
+.infoblock {
+    padding-bottom: 20px;
+}
 
 .infoblock img {
     padding: 10px;
@@ -33,4 +36,7 @@
         padding-left: 3%;
         padding-right: 3%;
     }
+}
+.intro {
+    padding-bottom: 20px;
 }
