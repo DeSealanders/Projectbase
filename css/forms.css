@@ -27,6 +27,7 @@
 
 /** Borders **/
 .customForm input[type=text],
+.customForm input[type=password],
 .customForm input[type=email],
 .customForm textarea,
 .customForm select,
@@ -36,6 +37,7 @@
 }
 
 .customForm input[type=text]:focus,
+.customForm input[type=password]:focus,
 .customForm input[type=email]:focus,
 .customForm textarea:focus,
 .customForm select:focus {
@@ -44,6 +46,7 @@
 
 /** Layout **/
 .customForm input[type=text],
+.customForm input[type=password],
 .customForm input[type=email],
 .customForm textarea {
     font: 14px "Lato",sans-serif;
@@ -56,6 +59,7 @@
 
 /** Specific options **/
 .customForm input[type=text],
+.customForm input[type=password],
 .customForm input[type=email],
 .customForm textarea {
     padding-left: 10px;
@@ -114,6 +118,43 @@
 /** Dropdown **/
 .customForm select {
     padding: 5px;
+}
+
+/** MultiDropdown **/
+.customForm .multidropdown select {
+    float: left;
+    margin-right: 20px;
+}
+.customForm .multidropdown {
+    clear: both;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+.customForm .multidropdown .remove.undeleteable {
+    display: none;
+}
+.customForm .remove a,
+.customForm .add a {
+    color: #757575;
+    text-decoration: none;
+}
+.customForm .add a:hover,
+.customForm .remove a:hover {
+    color: #545454;
+}
+.customForm .remove {
+    float: left;
+    padding-left: 10px;
+    padding-top: 8px;
+}
+.customForm .add {
+    clear: both;
+}
+.customForm .add i {
+    padding-right: 5px;
+}
+.customForm .multidropdown .hidden {
+    display: none;
 }
 
 /** Radio button **/
