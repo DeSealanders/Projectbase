@@ -34,12 +34,7 @@ class MultiDropdown extends FormComponent{
             $this->printDropdown(array(), $this->id . '-id', $this->id . '[0][itemid]');
             ?>
             <script>
-                /*if(typeof options == 'undefined') {
-                    var options = [];
-                }*/
-                var options = ({"<?php echo $this->id; ?>" : <?php echo json_encode($innerOptions, JSON_FORCE_OBJECT); ?> });
-
-
+                addOptions("<?php echo $this->id; ?>", <?php echo json_encode($innerOptions, JSON_FORCE_OBJECT); ?>);
             </script>
             <?php
         }

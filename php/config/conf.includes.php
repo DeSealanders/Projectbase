@@ -37,7 +37,7 @@ class IncludesConfig extends Singleton {
         $this->addJsInclude('js/texteditor.js');
         $this->addJsInclude('js/colpick.js');
         $this->addJsInclude('js/colorpicker.js');
-        $this->addJsInclude('js/forms.js');
+        $this->addJsInclude('js/multidropdown.js');
 
         // Add all Css includes here
         $this->addCssInclude('css/variables.php.css');

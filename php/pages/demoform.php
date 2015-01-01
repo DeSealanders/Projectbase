@@ -37,7 +37,7 @@ $form->addComponent(new MultiDropdown('Contentblok', 'content',
         )
     )
 ));
-/*$form->addComponent(new MultiDropdown('Projecten', 'pro',
+$form->addComponent(new MultiDropdown('Projecten', 'pro',
     array(
         2 => array(
             'Construction' =>
@@ -55,7 +55,7 @@ $form->addComponent(new MultiDropdown('Contentblok', 'content',
                 )
         )
     )
-));*/
+));
 
 
 $form->addComponent(new CustomHtml('subtitle', '<h3>Persoonlijke voorkeuren</h3>'));

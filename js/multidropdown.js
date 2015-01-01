@@ -1,4 +1,5 @@
-
+// Initiate the options list for multidropdowns
+var options = [];
 
 $(document).ready(function () {
 
@@ -35,13 +36,13 @@ $(document).ready(function () {
         }
     });
 
+    // Initialize each list by updating them
     $('.multidropdown select').each(function() {
         var id = $(this).attr('id');
         if(id.substr(id.length-3,3) != "-id") {
             updateSelectList($(this));
         }
     });
-    //alert(JSON.stringify(options["pro"][2][0]));
 
     // Update each multidropdown selectlist when options change
     $(document.body).on('change', '.multidropdown select' ,function(){
@@ -80,4 +81,8 @@ function updateSelectList(categorySelect) {
     $.each(options[id][category], function(index, value) {
         selectlist.append('<option selected="selected" value=' + index + '>' + value + '</option>');
     });
+}
+
+function addOptions(id, optionlist) {
+    options[id] = optionlist;
 }
