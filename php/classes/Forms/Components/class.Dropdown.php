@@ -23,7 +23,7 @@ class Dropdown extends FormComponent{
 
         // If the dropdown is required add a first option without a value
         if($this->required) {
-            $this->options = array('Selecteer een optie' => '') + $this->options;
+            $this->options = array('Select an option' => '') + $this->options;
         }
         // Print all values as an option
         foreach($this->options as $option => $label) {
