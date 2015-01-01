@@ -4,6 +4,7 @@
 require_once('php/classes/Misc/class.Singleton.php');
 require_once('php/classes/Loader/class.Autoloader.php');
 require_once('php/functions/func.global.php');
+require_once('php/classes/3rdparty/Password/password.php');
 
 /**
  * Class DefaultConfig

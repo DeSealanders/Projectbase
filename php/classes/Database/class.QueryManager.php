@@ -22,4 +22,18 @@ class QueryManager extends Singleton {
         $query->insert('debug', $debugreport);
         return DatabaseManager::getInstance()->executeQuery($query);
     }
+
+    public function saveUser($user) {
+        $query = new Query();
+        $query->insert('users', array('username' => $user->getUsername(), 'password' => $user->getPassword()));
+        return DatabaseManager::getInstance()->executeQuery($query);
+    }
+
+    public function getHashedPassword($username) {
+        $query = new Query();
+        $query->select('password');
+        $query->from('users');
+        $query->where('username = "' .  $username . '"');
+        return DatabaseManager::getInstance()->executeQuery($query);
+    }
 } 
