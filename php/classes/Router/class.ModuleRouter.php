@@ -22,6 +22,15 @@ class ModuleRouter extends Singleton{
         if(!empty($post) && isset($post['button'])) {
 
             if($post['button'] == 'close') {
+                ModuleManager::getInstance()->loadModule($moduleDetails['module']);
+
+                // Get the loaded module if everything went correctly
+                if($module = ModuleManager::getInstance()->getModule($moduleDetails['module'])) {
+                    if($module->isSingleRecord()) {
+                        header('location: /projectbase/module/');
+                        die('redirecting');
+                    }
+                }
                 header('location: /projectbase/module/' . $moduleDetails['module']);
                 die('redirecting');
             }
@@ -33,6 +42,15 @@ class ModuleRouter extends Singleton{
 
             else if($post['button'] == 'saveclose') {
                 ModuleManager::getInstance()->saveItem($moduleDetails['module'], $moduleDetails['itemid']);
+                ModuleManager::getInstance()->loadModule($moduleDetails['module']);
+
+                // Get the loaded module if everything went correctly
+                if($module = ModuleManager::getInstance()->getModule($moduleDetails['module'])) {
+                    if($module->isSingleRecord()) {
+                        header('location: /projectbase/module/');
+                        die('redirecting');
+                    }
+                }
                 header('location: /projectbase/module/' . $moduleDetails['module']);
                 die('redirecting');
             }
@@ -63,7 +81,7 @@ class ModuleRouter extends Singleton{
 
         if(isset($moduleDetails['view'])) {
             if($moduleDetails['view'] == 'overview') {
-                require('/php/pages/default/backend.php');
+                require('php/pages/default/backend.php');
             }
 
 
@@ -76,7 +94,7 @@ class ModuleRouter extends Singleton{
 
                     // Load the correct layout file
                     if($moduleDetails['view'] == 'multi') {
-                        if(!$module->isAllowedDelete() && !$module->isAllowedNew() && $module->isAllowedEdit() && $record = $module->getSingleRecord()) {
+                        if($module->isSingleRecord() && $record = $module->getSingleRecord()) {
                             //echo $module->printBackendHtml('single', $record['itemid']);
                             header('location: /projectbase/module/' . $moduleDetails['module'] . '/' . $record['itemid']);
                         }

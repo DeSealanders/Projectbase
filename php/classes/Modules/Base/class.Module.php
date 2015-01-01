@@ -157,6 +157,10 @@ class Module {
         }
     }
 
+    public function isSingleRecord() {
+        return !$this->isAllowedDelete() && $this->isAllowedEdit() && !$this->isAllowedNew();
+    }
+
     /* -------------- Frontend -------------- */
 
     public function printFrontendHtml($layout, $itemid = false) {
