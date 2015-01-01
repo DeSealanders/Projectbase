@@ -22,7 +22,10 @@ class MultiDropdown extends FormComponent{
         echo '<div class="inputwrapper">';
         echo '<div class="multidropdown">';
 
+        // If a multidimensional array is provided create a linked dropdown
         if($this->hasMultipleOptions($this->options)) {
+
+            // Build key value pairs of id and option
             foreach($this->options as $outerId => $outerNames) {
                 foreach($outerNames as $name => $options) {
                     $outerOptions[$outerId] = $name;
@@ -30,14 +33,22 @@ class MultiDropdown extends FormComponent{
                     $innerOptions[$outerId] = $options;
                 }
             }
-            $this->printDropdown($outerOptions, $this->id, $this->id . '[0][module]', $this->selected, $this->required);
-            $this->printDropdown(array(), $this->id . '-id', $this->id . '[0][itemid]');
+
+            // Print dropdown with category options
+            $this->printDropdown($outerOptions, $this->id, $this->id . '[0][cat]', $this->selected, $this->required);
+
+            // Print an empty dropdown for the linked dropdown
+            $this->printDropdown(array(), $this->id . '-id', $this->id . '[0][sub]');
+
+            // Print javascript options so the linked dropdown can be filled dynamically
             ?>
             <script>
                 addOptions("<?php echo $this->id; ?>", <?php echo json_encode($innerOptions, JSON_FORCE_OBJECT); ?>);
             </script>
             <?php
         }
+
+        // Otherwise create a single dropdown
         else {
             $this->printDropdown($this->options, $this->id, $this->selected, $this->required);
         }
