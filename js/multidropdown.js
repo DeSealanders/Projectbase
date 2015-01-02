@@ -40,7 +40,12 @@ $(document).ready(function () {
     $('.multidropdown select').each(function() {
         var id = $(this).attr('id');
         if(id.substr(id.length-3,3) != "-id") {
-            updateSelectList($(this));
+            var subselect = $(this).next($('#' + id + '-id'));
+
+            // Update the subselectlist if it does not have values
+            if(subselect.val() == null) {
+                updateSelectList($(this));
+            }
         }
     });
 
