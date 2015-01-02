@@ -21,7 +21,7 @@ class ModuleComponent {
         return 'VARCHAR(255)';
     }
 
-    public function getValue($value) {
+    public function getPreview($value) {
         return $value;
     }
 

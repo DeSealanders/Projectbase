@@ -13,7 +13,7 @@ class CheckboxComponent extends ModuleComponent {
         return new Checkbox($this->label, $this->id, $this->options, $value);
     }
 
-    public function getValue($value) {
+    public function getPreview($value) {
         $options = array();
         foreach(explode(',', $value) as $value) {
             if(isset($this->options[$value])) {

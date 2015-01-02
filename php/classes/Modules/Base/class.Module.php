@@ -109,7 +109,7 @@ class Module {
                             $databaseValue = $record[$component->getId()];
 
                             // Translate the database value into a display value
-                            $cleanRecords[$num][$key] = $component->getValue($databaseValue);
+                            $cleanRecords[$num][$key] = $component->getPreview($databaseValue);
                         }
                     }
                 }

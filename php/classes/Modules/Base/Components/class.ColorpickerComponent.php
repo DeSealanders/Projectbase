@@ -10,7 +10,7 @@ class ColorpickerComponent extends ModuleComponent {
         return new Colorpicker($this->label, $this->id, $value);
     }
 
-    public function getValue($value) {
+    public function getPreview($value) {
         return '<div class="color-preview" style="background-color: ' . $value . ';"></div>';
     }
 } 

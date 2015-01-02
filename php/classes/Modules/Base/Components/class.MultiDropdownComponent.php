@@ -13,7 +13,7 @@ class MultiDropdownComponent extends ModuleComponent {
         return new MultiDropdown($this->label, $this->id, $this->options, $value);
     }
 
-    public function getValue($value) {
+    public function getPreview($value) {
         $values = array();
 
         // Translate database array to readable option values

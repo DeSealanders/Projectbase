@@ -13,7 +13,7 @@ class RadioComponent extends ModuleComponent {
         return new Radiobutton($this->label, $this->id, $this->options, $value);
     }
 
-    public function getValue($value) {
+    public function getPreview($value) {
         if(isset($this->options[$value])) {
             return $this->options[$value];
         }
