@@ -31,4 +31,13 @@ class CheckboxComponent extends ModuleComponent {
     public function getOptions() {
         return $this->options;
     }
+
+    /**
+     * Fix post data for checkboxes (since they are posted seperately)
+     * @param $data
+     * @return string
+     */
+    public function saveData($data) {
+        return implode(',', $data);
+    }
 } 

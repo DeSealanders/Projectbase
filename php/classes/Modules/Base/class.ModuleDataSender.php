@@ -12,16 +12,11 @@ class ModuleDataSender extends Singleton {
         // Sanitize posted data
         $components = $module->getComponents();
         $dbFields = array();
-        foreach($components as $compName => $component) {
+        foreach($components as $component) {
 
-            // Only allow posting of component fields
+            // See if matching post field is found
             if(isset($fields[$component->getId()])) {
                 $dbFields[$component->getId()] = $component->saveData($fields[$component->getId()]);
-            }
-
-            // Fix fields for checkboxes
-            if($component instanceof CheckboxComponent) {
-                $dbFields[$component->getId()] = $this->setCheckboxFields($component, $fields);
             }
         }
 
@@ -43,21 +38,5 @@ class ModuleDataSender extends Singleton {
         $query = new Query();
         $query->insert('module_' . strtolower($moduleName), array('itemid' => $itemId));
         DatabaseManager::getInstance()->executeQuery($query);
-    }
-
-    private function setCheckboxFields($component, $fields) {
-
-        // Set the correct data for checkboxes
-        $checked = array();
-        $options = array_keys($component->getOptions());
-        foreach($options as $option) {
-            if(isset($fields[$option])) {
-                if($fields[$option] == 'checked') {
-                    $checked[] = $option;
-                }
-            }
-        }
-
-        return implode(',', $checked);
     }
 } 

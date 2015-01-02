@@ -29,7 +29,7 @@ class Checkbox extends FormComponent{
                 $selectedHtml = '';
             }
             echo '<div class="checkbox">';
-            echo '<input  ' . $this->getRequiredInputHtml() . ' ' . $selectedHtml . ' type="checkbox" name="' . $option . '" value="checked">';
+            echo '<input  ' . $this->getRequiredInputHtml() . ' ' . $selectedHtml . ' type="checkbox" name="' . $this->id . '[]" value="' . $option . '">';
             echo '<label for id="' . $option . '">' . $label . '</label>';
             echo '</div>';
         }
