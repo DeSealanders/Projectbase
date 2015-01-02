@@ -37,4 +37,8 @@ class ModuleComponent {
         return $this->id;
     }
 
+    public function saveData($data) {
+        return htmlentities($data);
+    }
+
 } 
