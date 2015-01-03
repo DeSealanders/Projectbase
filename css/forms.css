@@ -28,6 +28,7 @@
 /** Borders **/
 .customForm input[type=text],
 .customForm input[type=email],
+.customForm input[type=password],
 .customForm textarea,
 .customForm select,
 .customForm .color-box {
@@ -37,6 +38,7 @@
 
 .customForm input[type=text]:focus,
 .customForm input[type=email]:focus,
+.customForm input[type=password]:focus,
 .customForm textarea:focus,
 .customForm select:focus {
     border-color: #b2b2b2;
@@ -45,6 +47,7 @@
 /** Layout **/
 .customForm input[type=text],
 .customForm input[type=email],
+.customForm input[type=password],
 .customForm textarea {
     font: 14px "Lato",sans-serif;
     width: 90%;
@@ -57,6 +60,7 @@
 /** Specific options **/
 .customForm input[type=text],
 .customForm input[type=email],
+.customForm input[type=password],
 .customForm textarea {
     padding-left: 10px;
 }
