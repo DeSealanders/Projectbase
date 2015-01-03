@@ -1,5 +1,6 @@
 .idea/
 image/
+misc/
 php/config/conf.database.php
 Module ontwerp.vsd
 txt/errorlog.txt
