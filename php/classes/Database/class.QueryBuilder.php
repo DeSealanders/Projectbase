@@ -41,6 +41,25 @@ class QueryBuilder extends Singleton {
             $sql .= $this->getWherePart($query->getWhere());
             return $sql;
         }
+
+        // If an create statement should be generated
+        else if($query->hasCreate()) {
+            $sql = $this->getCreatePart($query->getCreate());
+            return $sql;
+        }
+        else if($query->hasDescribe()) {
+            $sql = $this->getDescribePart($query->getDescribe());
+            return $sql;
+        }
+        else if($query->hasAlter()) {
+            $sql = $this->getAlterPart($query->getAlter());
+            return $sql;
+        }
+        else if($query->hasDelete()) {
+            $sql = $this->getDeletePart($query->getDelete());
+            $sql .= $this->getWherePart($query->getWhere());
+            return $sql;
+        }
         else {
             Logger::getInstance()->writeMessage('Unable to execute query which has not been built yet!');
         }
@@ -139,6 +158,39 @@ class QueryBuilder extends Singleton {
             $updates[] = $column . ' = "' . $value . '"';
         }
         $sql .= implode(',', $updates);
+        return $sql;
+    }
+
+    private function getCreatePart($create) {
+        $sql = "CREATE TABLE " . $create['table'] . " (" ;
+        $columns = array();
+        foreach($create['columns'] as $columnName => $columnType) {
+            $columns[] = $columnName . " " . $columnType;
+        }
+        $sql .= implode(',', $columns) . ")";
+        return $sql;
+    }
+
+    private function getDescribePart($describe) {
+        $sql = "DESCRIBE " . $describe;
+        return $sql;
+    }
+
+    private function getAlterPart($alter) {
+        $sql = "ALTER TABLE " . $alter['table'] . " ";
+        $added = $removed = array();
+        foreach($alter['add'] as $add => $dataType) {
+            $added[] = "ADD " . $add . " " . $dataType;
+        }
+        foreach($alter['remove'] as $remove => $dataType) {
+            $removed[] = "DROP COLUMN " . $remove;
+        }
+        $sql .= implode(', ', array_merge($added, $removed));
+        return $sql;
+    }
+
+    private function getDeletePart($delete) {
+        $sql = "DELETE FROM " . $delete;
         return $sql;
     }
 

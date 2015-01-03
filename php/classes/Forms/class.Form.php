@@ -16,12 +16,21 @@ class Form {
         echo '<form method="POST" class="customForm" id="' . $this->id . '">';
         echo '<h2>' . $this->name . '</h2>';
 
+        $required = false;
+
         // Print html for each individual form component
         foreach($this->components as $component) {
+            if($component->isRequired()) {
+                $required = true;
+            }
             $component->printHtml();
         }
-        echo '<p><span class="required">*</span> = verplicht </p>';
-        echo '</form>';
+
+        // Display required explaination if one or more required fields are present
+        if($required) {
+            echo '<p><span class="required">*</span> = verplicht </p>';
+            echo '</form>';
+        }
 
     }
 

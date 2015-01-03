@@ -57,14 +57,18 @@ class Router extends Singleton {
             }
         }
 
+        else if($route->getType() == 'module') {
+            ModuleRouter::getInstance()->route($route);
+        }
+
         // Load a configured or regular page
         else if($route->getType() == 'configured' || $route->getType() == 'page') {
-            $this->loadPageRoute($route->getMatchedRoute());
+            $this->loadPageRoute($route->getMatchedRoute(), $route->getWrap());
         }
 
         // If no route could be found, serve up the 404 page
         else if($route->getType() == 'none') {
-            require 'php/pages/404.php';
+            require 'php/pages/default/404.php';
         }
     }
 
@@ -93,9 +97,9 @@ class Router extends Singleton {
     /**
      * Load a page and check if a wrapper should be used
      * @param $matchedRoute the route which will be loaded
+     * @param $wrap bool wether to wrap the page or not
      */
-    private function loadPageRoute($matchedRoute) {
-        $wrap = true;
+    private function loadPageRoute($matchedRoute, $wrap = false) {
 
         // Check if an image is configured
         $routeExtension = strtolower(pathinfo($matchedRoute, PATHINFO_EXTENSION));

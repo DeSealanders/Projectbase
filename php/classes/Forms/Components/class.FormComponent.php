@@ -24,6 +24,10 @@ class FormComponent {
         return $this->id;
     }
 
+    public function isRequired() {
+        return $this->required;
+    }
+
     protected function getRequiredInputHtml() {
         if($this->required) {
             return 'required';

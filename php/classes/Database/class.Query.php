@@ -33,6 +33,10 @@ class Query {
     private $orderBy;
     private $insert;
     private $update;
+    private $describe;
+    private $alter;
+    private $delete;
+    private $create;
 
     public function __construct() {
 
@@ -45,7 +49,11 @@ class Query {
         $this->groupBy =
         $this->orderBy =
         $this->insert =
-        $this->update = array();
+        $this->update =
+        $this->create =
+        $this->alter =
+        $this->delete =
+        $this->describe = array();
     }
 
     /**
@@ -129,6 +137,29 @@ class Query {
         );
     }
 
+    public function create($table, $columns) {
+        $this->create = array(
+            'table' => $table,
+            'columns' => $columns
+        );
+    }
+
+    public function describe($table) {
+        $this->describe = $table;
+    }
+
+    public function alter($table, $columns) {
+        $this->alter = array(
+            'table' => $table,
+            'add' => $columns['add'],
+            'remove' => $columns['remove']
+        );
+    }
+
+    public function delete($table) {
+        $this->delete = $table;
+    }
+
     /**
      * Used to see if a select statement has been built
      * @return bool true if a select statement has been built
@@ -147,6 +178,22 @@ class Query {
 
     public function hasUpdate() {
         return !empty($this->update);
+    }
+
+    public function hasCreate() {
+        return !empty($this->create);
+    }
+
+    public function hasDescribe() {
+        return !empty($this->describe);
+    }
+
+    public function hasAlter() {
+        return !empty($this->alter);
+    }
+
+    public function hasDelete() {
+        return !empty($this->delete);
     }
 
     /**
@@ -182,6 +229,24 @@ class Query {
     public function getUpdate()
     {
         return $this->update;
+    }
+
+    public function getCreate()
+    {
+        return $this->create;
+    }
+
+    public function getDescribe()
+    {
+        return $this->describe;
+    }
+
+    public function getAlter() {
+        return $this->alter;
+    }
+
+    public function getDelete() {
+        return $this->delete;
     }
 
     /**
