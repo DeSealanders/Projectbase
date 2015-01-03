@@ -39,7 +39,7 @@ class IncludeLoader extends Singleton {
         // Print local includes
         if(isset($splitIncludes['local']) && count($splitIncludes['local']) > 0) {
             $includeText = implode(',', $splitIncludes['local']);
-            echo "\t" . '<link type="text/css" rel="stylesheet" href="/min/b=projectbase/css&amp;f=' . $includeText . '" />'. "\n";
+            echo "\t" . '<link type="text/css" rel="stylesheet" href="/projectbase/min/b=projectbase/css&amp;f=' . $includeText . '" />'. "\n";
         }
     }
 
@@ -55,7 +55,7 @@ class IncludeLoader extends Singleton {
         // Print local includes
         if(isset($splitIncludes['local']) && count($splitIncludes['local']) > 0) {
             $includeText = implode(',', $splitIncludes['local']);
-            echo "\t" . '<script type="text/javascript" src="/min/b=projectbase/js&amp;f=' . $includeText . '"></script>'. "\n";
+            echo "\t" . '<script type="text/javascript" src="/projectbase/min/b=projectbase/js&amp;f=' . $includeText . '"></script>'. "\n";
         }
     }
 
