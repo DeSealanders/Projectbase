@@ -30,24 +30,24 @@ class IncludesConfig extends Singleton {
             ));
 
         // Add all Javascript includes here
-        $this->addJsInclude('js/documentready.js');
-        $this->addJsInclude('js/index.js');
+        $this->addJsInclude('documentready.js');
+        $this->addJsInclude('index.js');
         $this->addJsInclude('https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js');
-        $this->addJsInclude('js/jhtmlarea.js');
-        $this->addJsInclude('js/texteditor.js');
-        $this->addJsInclude('js/colpick.js');
-        $this->addJsInclude('js/colorpicker.js');
-        $this->addJsInclude('js/multidropdown.js');
+        $this->addJsInclude('jhtmlarea.js');
+        $this->addJsInclude('texteditor.js');
+        $this->addJsInclude('colpick.js');
+        $this->addJsInclude('colorpicker.js');
+        $this->addJsInclude('multidropdown.js');
 
         // Add all Css includes here
-        $this->addCssInclude('css/variables.php.css');
-        $this->addCssInclude('css/default.css');
-        $this->addCssInclude('css/forms.css');
-        $this->addCssInclude('css/content.css');
+        //$this->addCssInclude('variables.php.css');
+        $this->addCssInclude('default.css');
+        $this->addCssInclude('forms.css');
+        $this->addCssInclude('content.css');
 //        $this->addCssInclude('css/experiment.css');
-        $this->addCssInclude('css/jhtmlarea.css');
-        $this->addCssInclude('css/module.css');
-        $this->addCssInclude('css/colpick.css');
+        $this->addCssInclude('jhtmlarea.css');
+        $this->addCssInclude('module.css');
+        $this->addCssInclude('colpick.css');
 
         /*
          * --- End of configuration options ---
