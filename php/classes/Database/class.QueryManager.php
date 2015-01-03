@@ -23,9 +23,9 @@ class QueryManager extends Singleton {
         return DatabaseManager::getInstance()->executeQuery($query);
     }
 
-    public function saveUser($user) {
+    public function saveUser($user, $hash) {
         $query = new Query();
-        $query->insert('users', array('username' => $user->getUsername(), 'password' => $user->getPassword()));
+        $query->insert('users', array('username' => $user->getUsername(), 'password' => $hash));
         return DatabaseManager::getInstance()->executeQuery($query);
     }
 
@@ -35,5 +35,37 @@ class QueryManager extends Singleton {
         $query->from('users');
         $query->where('username = "' .  $username . '"');
         return DatabaseManager::getInstance()->executeQuery($query);
+    }
+
+    public function startSession($username, $sessionId) {
+        $query = new Query();
+        $query->insert('sessions', array(
+                'username' => $username,
+                'session_id' => $sessionId,
+                'expires' => date('Y-m-d H:i:s', strtotime('+ 1 day')),
+            ));
+        DatabaseManager::getInstance()->executeQuery($query);
+    }
+
+    public function stopSession($sessionId) {
+        $query = new Query();
+        $query->delete('sessions');
+        $query->where('session_id = "'. $sessionId . '"');
+        DatabaseManager::getInstance()->executeQuery($query);
+    }
+
+    public function getUserFromSession($sessionId) {
+        $query = new Query();
+        $query->select('username');
+        $query->from('sessions');
+        $query->where('session_id = "' .  $sessionId . '"');
+        $query->where('expires > "' . date('Y-m-d H:i:s') . '"');
+        $result = DatabaseManager::getInstance()->executeQuery($query);
+        if($result) {
+            return reset($result);
+        }
+        else {
+            return $result;
+        }
     }
 } 

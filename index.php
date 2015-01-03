@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Load default config
 require_once('php/config/conf.default.php');
 DefaultConfig::getInstance()->init();

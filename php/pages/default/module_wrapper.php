@@ -37,6 +37,17 @@ echo '<title>' . $this->getTitle() . '</title>';
         }
         ?>
         </ul>
+
+        <span class="user">
+            <?php
+            if($user = UserManager::getInstance()->getCurrentUser()) {
+                echo '<span class="fa fa-fw fa-user"></span><span>' .  ucfirst($user->getUsername()) . '</span><span> <a href="/projectbase/logout">(Logout)</a></span>';
+            }
+            else {
+                echo 'wtf?';
+            }
+            ?>
+        </span>
     </div>
     <div class="container">
         <?php

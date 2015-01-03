@@ -11,6 +11,7 @@
  */
 class Router extends Singleton {
 
+
     protected function __construct() {
 
     }
@@ -24,6 +25,9 @@ class Router extends Singleton {
 
         // Create a router object
         $route = new Route($request, $script);
+
+        // Redirect to login page if needed
+        $this->checkLogin($route, $request);
 
         // Load the correct route by giving it the route
         $this->loadRoute($route);
@@ -125,6 +129,28 @@ class Router extends Singleton {
 
         // Require the matched route
         require($matchedRoute);
+    }
+
+    private function checkLogin($route, $request) {
+
+        // Only check requests to pages, modules and configured redirects
+        if($route->getType() == 'page' || $route->getType() == 'module' || $route->getType() == 'configured') {
+
+            // See if authorization is required for the requested page
+            if($route->isSecured()) {
+
+                // Deny unauthorized access to pages other than the login page
+                if(!UserManager::getInstance()->getCurrentUser()) {
+
+                    // Redirect to login page if not there already
+                    if($request != '/projectbase/login') {
+                        $_SESSION['login_origin'] = $request;
+                        header('location: /projectbase/login');
+                        die('redirect');
+                    }
+                }
+            }
+        }
     }
 
 } 

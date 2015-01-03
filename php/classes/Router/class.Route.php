@@ -11,6 +11,7 @@ class Route {
     private $imageDetails;
     private $moduleDetails;
     private $wrap;
+    private $secured;
 
     public function __construct($request, $script) {
         $this->wrap = true;
@@ -35,6 +36,10 @@ class Route {
         return $this->matchedRoute;
     }
 
+    public function setMatchedRoute($matchedRoute) {
+        $this->matchedRoute = $matchedRoute;
+    }
+
     /**
      * Getter for details for an image url (width, height and filepath)
      * @return mixed a list of details for the image specified in the route
@@ -53,6 +58,29 @@ class Route {
 
     public function setWrap($wrap) {
         $this->wrap = $wrap;
+    }
+
+    public function isSecured() {
+        if(!isset($this->secured)) {
+
+            // Default to false
+            $this->secured = false;
+
+            // See if requested page should be secured
+            $securePages = SecurityConfig::getInstance()->getSecurePages();
+
+            // Check for all configured secure pages if it matches the requested one
+            $route = implode('/',$this->route);
+            foreach($securePages as $securePage) {
+
+                // Return true if requested page is matched
+                if(strpos($route, $securePage) !== false) {
+                    $this->secured = true;
+                }
+            }
+        }
+        return $this->secured;
+
     }
 
     /**
@@ -282,6 +310,14 @@ class Route {
         // Use index.php if route is the root
         if($routePath == '') {
             $routePath = 'index.php';
+        }
+
+        if($routePath == 'login') {
+            $routePath = 'default/login.php';
+        }
+
+        if($routePath == 'logout') {
+            $routePath = 'default/logout.php';
         }
 
         // Add .php extension if not present

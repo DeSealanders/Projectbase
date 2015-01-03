@@ -15,15 +15,32 @@
     ?>
 </head>
 <body>
-<?php
+<div class="content">
+    <?php
 
-/* This page is loaded by the Router by default
- * It can be used to generate a general template
- * The actual requested page is stored in $_SERVER['ROUTE']
- * Requiring it will load the request page within this page
- */
-require($_SERVER['ROUTE']);
+    if($_SERVER['ROUTE'] != 'php/pages/default/login.php') {
+    ?>
+    <span class="user">
+        <?php
+        if($user = UserManager::getInstance()->getCurrentUser()) {
+            echo '<span class="fa fa-fw fa-user"></span><span>' .  ucfirst($user->getUsername()) . '</span><span> <a href="logout">(Logout)</a></span>';
+        }
+        else {
+            echo '<span><a href="login">Login</a></span>';
+        }
+        ?>
+    </span>
+    <?php
+    }
 
-?>
+    /* This page is loaded by the Router by default
+     * It can be used to generate a general template
+     * The actual requested page is stored in $_SERVER['ROUTE']
+     * Requiring it will load the request page within this page
+     */
+    require($_SERVER['ROUTE']);
+
+    ?>
+</div>
 </body>
 </html>
