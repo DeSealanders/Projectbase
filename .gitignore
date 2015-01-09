@@ -4,4 +4,6 @@ misc/
 php/config/conf.database.php
 Module ontwerp.vsd
 txt/errorlog.txt
-php/pages
+
+php/pages/*
+!php/pages/slideshow.php
