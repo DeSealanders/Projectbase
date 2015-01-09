@@ -199,6 +199,14 @@ class Route {
      */
     private function isInclude($routePath) {
 
+        // Allow direct file access to js and css fles
+        $extension = pathinfo($routePath, PATHINFO_EXTENSION);
+        if($extension == 'js' || $extension == 'css') {
+            if(file_exists($routePath)) {
+                return $routePath;
+            }
+        }
+
         // Compare includes to the routePath
         foreach(IncludesConfig::getInstance()->getAllIncludes() as $include) {
 
