@@ -15,6 +15,14 @@ class EditorComponent extends ModuleComponent {
     }
 
     public function getPreview($value) {
-        return html_entity_decode($value);
+
+        // Decode database entries
+        $decoded = html_entity_decode($value);
+
+        // Replace headings with paragraphs
+        $strippedHeadings = preg_replace('/<h([1-6])>(.*)<\/h([1-6])>/', '<p>${2}</p>', $decoded);
+
+        // Remove any other html apart from <br> and <p> tags
+        return strip_tags($strippedHeadings, '<br><p>');
     }
 }
