@@ -4,14 +4,20 @@ class Slide {
 
     private $title;
     private $content;
-    private $xPos;
-    private $yPos;
+    private $options;
 
     public function __construct($slideData) {
         $this->title = $this->getSlideData('title', $slideData);
         $this->content = $this->getSlideData('content', $slideData);
-        $this->xPos = $this->getSlideData('xpos', $slideData);
-        $this->yPos = $this->getSlideData('ypos', $slideData);
+        $this->options = array(
+                    'data-scale' => $this->getSlideData('size', $slideData),
+                    'data-x' => $this->getSlideData('xpos', $slideData),
+                    'data-y' => $this->getSlideData('ypos', $slideData),
+                    'data-z' => $this->getSlideData('zpos', $slideData),
+                    'data-rotate-x' => $this->getSlideData('xrot', $slideData),
+                    'data-rotate-y' => $this->getSlideData('yrot', $slideData),
+                    'data-rotate-z' => $this->getSlideData('zrot', $slideData),
+        );
     }
 
     private function getSlideData($dbField, $slide) {
@@ -24,7 +30,13 @@ class Slide {
     }
 
     public function getHtml() {
-        $html = '<div id="' . $this->title . '" class="step slide" data-x="' . $this->xPos . '" data-y="' . $this->yPos . '">';
+        $html = '<div id="' . $this->title . '" class="step slide"';
+        foreach($this->options as $option => $value) {
+            if(isset($value) && !empty($value)) {
+                $html .= ' ' . $option . '="' . $value . '"';
+            }
+        }
+        $html .= '>';
         $html .= '<q>' . $this->content . '</q>';
         $html .= '</div>';
         return $html;
