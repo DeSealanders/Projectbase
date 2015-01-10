@@ -5,9 +5,11 @@ class ModuleComponent {
     protected $label;
     protected $id;
     protected $showInMulti;
+    protected $defaultValue;
 
-    public function __construct($label, $id, $showInMulti) {
+    public function __construct($label, $id, $showInMulti, $defaultValue = false) {
         $this->showInMulti = $showInMulti;
+        $this->defaultValue = $defaultValue;
         $this->label = $label;
         if($id) {
             $this->id = $id;
@@ -41,4 +43,12 @@ class ModuleComponent {
         return htmlentities($data);
     }
 
+    public function getValue($value) {
+        if(is_null($value)) {
+            if(is_numeric($this->defaultValue)) {
+                return $this->defaultValue;
+            }
+        }
+        return $value;
+    }
 } 
