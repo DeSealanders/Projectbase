@@ -22,6 +22,7 @@ class IncludesConfig extends Singleton {
          */
 
         // Setup default includes
+        $this->enableMinify = false;
         $this->setDefaultIncludes(array(
                 'jquery' => true,
                 'twitterbootstrap' => false,
@@ -38,6 +39,7 @@ class IncludesConfig extends Singleton {
         $this->addJsInclude('colpick.js');
         $this->addJsInclude('colorpicker.js');
         $this->addJsInclude('multidropdown.js');
+        $this->addJsInclude('slider.js');
 
         // Add all Css includes here
         //$this->addCssInclude('variables.php.css');
@@ -174,6 +176,10 @@ class IncludesConfig extends Singleton {
             }
         }
         return false;
+    }
+
+    public function shouldMinify() {
+        return $this->enableMinify;
     }
 }
 

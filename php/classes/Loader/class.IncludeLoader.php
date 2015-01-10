@@ -13,17 +13,59 @@ class IncludeLoader extends Singleton {
      * This function prints all js and css includes specified in conf.includes.php
      */
     public function printIncludes() {
-        $this->printCssMinified();
-        $this->printJsMinified();
+        if(IncludesConfig::getInstance()->shouldMinify()) {
+            $this->printCssMinified();
+            $this->printJsMinified();
+        }
+        else {
+            $this->printCssIncludes();
+            $this->printJsIncludes();
+        }
+
     }
 
 
     /**
      * Print all css includes from conf.includes.php
      */
-    private function printCssIncludes($includes) {
-        foreach($includes as $include) {
-            echo "\t" . '<link rel="stylesheet" type="text/css" href="' . $include . '">' . "\n";
+    private function printCssIncludes($includes = false) {
+        if($includes) {
+            foreach($includes as $include) {
+                echo "\t" . '<link rel="stylesheet" type="text/css" href="' . $include . '">' . "\n";
+            }
+        }
+        else {
+            $includes = IncludesConfig::getInstance()->getCssIncludes();
+            foreach($includes as $include) {
+                if($this->isLocal($include)) {
+                    echo "\t" . '<link rel="stylesheet" type="text/css" href="/projectbase/css/' . $include . '">' . "\n";
+                }
+                else {
+                    echo "\t" . '<link rel="stylesheet" type="text/css" href="' . $include . '">' . "\n";
+                }
+            }
+        }
+    }
+
+    /**
+     * Print all js includes from conf.includes.php
+     */
+    private function printJsIncludes($includes = false) {
+        if($includes) {
+            foreach($includes as $include) {
+                echo "\t" . '<script src="' . $include . '"></script>' . "\n";
+            }
+        }
+        else {
+            $includes = IncludesConfig::getInstance()->getJsIncludes();
+            foreach($includes as $include) {
+                if($this->isLocal($include)) {
+                    echo "\t" . '<script src="/projectbase/js/' . $include . '"></script>' . "\n";
+                }
+                else {
+                    echo "\t" . '<script src="' . $include . '"></script>' . "\n";
+                }
+            }
         }
     }
 
@@ -56,15 +98,6 @@ class IncludeLoader extends Singleton {
         if(isset($splitIncludes['local']) && count($splitIncludes['local']) > 0) {
             $includeText = implode(',', $splitIncludes['local']);
             echo "\t" . '<script type="text/javascript" src="/projectbase/min/b=projectbase/js&amp;f=' . $includeText . '"></script>'. "\n";
-        }
-    }
-
-    /**
-     * Print all js includes from conf.includes.php
-     */
-    private function printJsIncludes($includes) {
-        foreach($includes as $include) {
-            echo "\t" . '<script src="' . $include . '"></script>' . "\n";
         }
     }
 
