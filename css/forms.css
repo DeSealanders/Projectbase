@@ -48,6 +48,7 @@
 .customForm input[type=text],
 .customForm input[type=password],
 .customForm input[type=email],
+.customForm input[type=range],
 .customForm textarea {
     font: 14px "Lato",sans-serif;
     width: 90%;
@@ -177,4 +178,29 @@
 }
 .customForm .buttongroup {
     float: right;
+}
+
+/** Numberslider **/
+
+.customForm input[type=range] {
+    margin: 0px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.slidervalues .mindisplay {
+    text-align: left;
+}
+.slidervalues .maxdisplay {
+    text-align: right;
+}
+.slidervalues .rangedisplay {
+    text-align: center;
+}
+.slidervalues span {
+    float: left;
+    width: calc(100% / 3);
+}
+.slidervalues {
+    width: calc(90% + 10px);
 }
