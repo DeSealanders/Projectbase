@@ -10,6 +10,10 @@ $form->addComponent(new Textbox('Bericht', 'message', 'Type hier uw bericht', ''
         'test1',
         'test2',
     )));*/
+$group = new Groupbox('Nummertjes', 'numbers', '<h1>Nummertjes</h1><p>hier komen nummertjes</p>', '<p>hier stoppen nummertjes</p>');
+$group->addComponent(new Numberslider('Getal', 'nr', 0, 360, 45));
+$group->addComponent(new Numberbox('Getal2', 'nr2', '', '', 100));
+$form->addComponent($group);
 $form->addComponent(new MultiDropdown('Contentblok', 'content',
     array(
         2 => array(
