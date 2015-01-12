@@ -72,11 +72,15 @@ class Autoloader extends Singleton {
     private function getSubfolders($root) {
         $folderList = array();
         foreach(scandir($root) as $subFolder) {
-            $folderPath = $root . $subFolder . '/';
-            if(is_dir($folderPath)) {
-                if($subFolder != '.' && $subFolder != '..') {
-                    $folderList[] = $folderPath;
-                    $folderList = array_merge($folderList, $this->getSubfolders($folderPath));
+
+            // Only allow filepaths without dots
+            if(count(explode('.', $subFolder)) == 1) {
+                $folderPath = $root . $subFolder . '/';
+                if(is_dir($folderPath)) {
+                    if($subFolder != '.' && $subFolder != '..') {
+                        $folderList[] = $folderPath;
+                        $folderList = array_merge($folderList, $this->getSubfolders($folderPath));
+                    }
                 }
             }
         }
