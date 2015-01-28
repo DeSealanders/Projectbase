@@ -51,8 +51,4 @@ class ModuleComponent {
         }
         return $value;
     }
-
-    public function getGroup() {
-        return false;
-    }
 } 
