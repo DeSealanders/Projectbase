@@ -6,6 +6,26 @@ $form->addComponent(new Textfield('Voornaam', 'firstname', 'Peter'));
 $form->addComponent(new Textfield('Achternaam', 'lastname', 'Ton'));
 $form->addComponent(new Emailfield('E-mail adres', 'email', 'mail@peterton.nl'));
 $form->addComponent(new Textbox('Bericht', 'message', 'Type hier uw bericht', ''));
+$form->addComponent(new Canvas('Schermen' , 'screens',
+    array(
+        'screen1' => array(
+            'x' => 0,
+            'y' => 0,
+            'z' => 0
+        ),
+        'screen2' => array(
+            'x' => 200,
+            'y' => 0,
+            'z' => 0
+        ),
+        'screen3' => array(
+            'x' => 50,
+            'y' => 100,
+            'z' => 0
+        )
+    ),
+    'screen2'
+));
 /*$form->addComponent(new MultiDropdown('Contentblok', 'content', array(
         'test1',
         'test2',
