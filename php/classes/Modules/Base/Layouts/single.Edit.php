@@ -12,6 +12,7 @@ if($record) {
 
     // Add all components to the form
     foreach($this->module->getComponents() as $component) {
+
         // Loop through all record fields
         foreach($record as $field => $value) {
 

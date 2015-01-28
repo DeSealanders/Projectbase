@@ -1,6 +1,6 @@
 <?php
 
-$slides = SlideGenerator::getInstance()->getSlidesFromDb($this->module->getCleanRecords());
+$slides = SlideGenerator::getInstance()->convertDbtoSlides($this->module->getCleanRecords());
 foreach($slides as $slide) {
     echo $slide->getHtml();
 }

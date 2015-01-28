@@ -6,7 +6,7 @@ class SlideGenerator extends Singleton {
 
     }
 
-    public function getSlidesFromDb($slides) {
+    public function convertDbtoSlides($slides) {
         $slidelist = array();
         if($slides) {
             foreach($slides as $slide) {
