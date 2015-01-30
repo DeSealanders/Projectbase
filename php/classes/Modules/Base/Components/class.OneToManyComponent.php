@@ -34,4 +34,10 @@ class OneToManyComponent extends ModuleComponent {
         }
         return $compValues;
     }
+
+    public function saveData($data) {
+        return implode(',', $data);
+    }
+
+
 } 

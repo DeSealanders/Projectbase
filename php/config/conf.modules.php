@@ -14,6 +14,7 @@ class ModulesConfig extends Singleton {
 
         $this->moduleNames = array(
             'Slides',
+            'Slideshows',
             'Colors',
         );
 

@@ -24,9 +24,12 @@ class RouterConfig extends Singleton {
          *      'henk/de/tank' => 'php/pages/sjonbontebal.php'
          */
         $this->routes = array(
-            array('origin' => 'slideshow',
-                  'destination' => 'php/pages/slideshow.php',
-                  'wrap' => false)
+            array('origin' => 'slides',
+                  'destination' => 'php/pages/slides.php',
+                  'wrap' => false),
+            array('origin' => 'slideshows',
+                  'destination' => 'php/pages/slideshows.php',
+                  'wrap' => true)
         );
 
         /*
