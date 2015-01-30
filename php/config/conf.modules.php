@@ -18,6 +18,7 @@ class ModulesConfig extends Singleton {
             'Contact',
             'Content',
             'Menu',
+            'Pages',
             //'Projects',
         );
 

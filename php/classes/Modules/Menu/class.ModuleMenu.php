@@ -7,6 +7,6 @@ class ModuleMenu extends Module {
         $this->setDescription('Manage the menu of the website');
         $this->addLayout('single');
         $this->addComponent(new TextComponent('Title', 'title'));
-        $this->addComponent(new TextComponent('Link', 'link'));
+        $this->addComponent(new OneToOneComponent('Page', 'page', 'pages', 'title'));
     }
 } 

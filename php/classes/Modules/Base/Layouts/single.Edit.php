@@ -6,7 +6,7 @@ $record = $this->module->getRecord($itemid);
 
 // Create a form for all module components
 $form = new Form($this->module->getName(), 'edit');
-$form->addComponent(new CustomHtml('description', '<p>' . $this->module->getDescription() . '</p>'));
+$form->addComponent(new CustomHtml('desc', '<p>' . $this->module->getDescription() . '</p>'));
 
 if($record) {
 

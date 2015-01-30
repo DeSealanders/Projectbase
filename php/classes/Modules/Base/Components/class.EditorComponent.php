@@ -14,7 +14,7 @@ class EditorComponent extends ModuleComponent {
         return 'MEDIUMTEXT';
     }
 
-    public function getValue($value) {
+    public function getPreview($value) {
         return html_entity_decode($value);
     }
 }

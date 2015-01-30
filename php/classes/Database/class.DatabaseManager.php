@@ -32,17 +32,13 @@ class DatabaseManager extends Singleton
                 $dbDetails['password'],
                 $dbDetails['database']
             );
+            $this->connected = true;
         }
         catch(Exception $e) {
-            // Do nothing
-        }
+            $this->connected = false;
 
-        // Log the error
-        if (mysqli_connect_errno()) {
-            Logger::getInstance()->writeMessage("Failed to connect to MySQL: " . mysqli_connect_error(), false);
-        }
-        else {
-            $this->connected = true;
+            // Log the error
+            Logger::getInstance()->writeMessage("Failed to connect to database", false);
         }
     }
 
@@ -55,57 +51,60 @@ class DatabaseManager extends Singleton
      */
     public function executeQuery($query, $params = false, $silent = false)
     {
-        $statement = $this->connection->prepare($query);
-        if (isset($statement) && $statement) {
-            if ($params) {
-                $params = array_merge(array(str_repeat('s', count($params))), array_values($params));
-                $refs = array();
-                foreach ($params as $key => $value) {
-                    $refs[$key] = & $params[$key];
+        if($this->connected) {
+            $statement = $this->connection->prepare($query);
+            if (isset($statement) && $statement) {
+                if ($params) {
+                    $params = array_merge(array(str_repeat('s', count($params))), array_values($params));
+                    $refs = array();
+                    foreach ($params as $key => $value) {
+                        $refs[$key] = & $params[$key];
+                    }
+                    call_user_func_array(array(&$statement, 'bind_param'), $params);
                 }
-                call_user_func_array(array(&$statement, 'bind_param'), $params);
-            }
-            //$this->printDebugInfo($query, $params);
-            $statement->execute();
+                //$this->printDebugInfo($query, $params);
+                $statement->execute();
 
-            // Check if mysqlnd drivers are installed
-            if(function_exists('mysqli_fetch_all')) {
+                // Check if mysqlnd drivers are installed
+                if(function_exists('mysqli_fetch_all')) {
 
-                // Get results from statement through the (easy) mysqli way
-                $result = $statement->get_result();
-                if ($result) {
-                    while ($returnValue = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                        $results[] = $returnValue;
+                    // Get results from statement through the (easy) mysqli way
+                    $result = $statement->get_result();
+                    if ($result) {
+                        while ($returnValue = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                            $results[] = $returnValue;
+                        }
                     }
                 }
+                else {
+
+                    // Get results from statement through the (hard) way, by binding variables to each field
+                    $results = $this->getResultFromArray($statement);
+                }
+
+
+                // Return results
+                if (isset($results)) {
+                    return $results;
+                } else {
+                    return false;
+                }
             }
             else {
+                if($params) {
+                    $params = ', with parameters: ' . implode(',', $params);
+                }
+                else {
+                    $params = '';
+                }
+                if(!$silent) {
+                    Logger::getInstance()->writeMessage('Unable to execute query: "' . $query . '"' . $params, false);
+                    //$this->printDebugInfo($query, $params);
+                }
+                else {
+                    return false;
+                }
 
-                // Get results from statement through the (hard) way, by binding variables to each field
-                $results = $this->getResultFromArray($statement);
-            }
-
-
-            // Return results
-            if (isset($results)) {
-                return $results;
-            } else {
-                return false;
-            }
-        }
-        else {
-            if($params) {
-                $params = ', with parameters: ' . implode(',', $params);
-            }
-            else {
-                $params = '';
-            }
-            if(!$silent) {
-                Logger::getInstance()->writeMessage('Unable to execute query: "' . $query . '"' . $params, false);
-                //$this->printDebugInfo($query, $params);
-            }
-            else {
-                return false;
             }
 
         }

@@ -4,7 +4,7 @@ class ModuleProjects extends Module {
 
     public function __construct() {
         parent::__construct('Projects');
-        $this->setDescription('Display projects neatly sorted by category and tags');
+        $this->setDescription('Display projects neatly sorted by category and status');
         $this->addLayout('multi');
         $this->addComponent(new TextComponent('Name', 'name'));
         $this->addComponent(new TextComponent('Description', 'description', false));
@@ -17,13 +17,6 @@ class ModuleProjects extends Module {
                 'construction' => 'Under construction',
                 'finished' => 'Finished',
             )));
-        $this->addComponent(new CheckboxComponent('Tags', 'tags', array(
-                'games' => 'Games',
-                'socialmedia' => 'Social Media',
-                'ownuse' => 'For own use',
-                'collaborated' => 'Collaborated'
-            ), false));
-        //$this->addComponent(new OneToOneComponent('Home display', 'home', 'Blocks', 'name'));
     }
 
-} 
+}

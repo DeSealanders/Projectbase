@@ -13,7 +13,7 @@ class CheckboxComponent extends ModuleComponent {
         return new Checkbox($this->label, $this->id, $this->options, $value);
     }
 
-    public function getValue($value) {
+    public function getPreview($value) {
         $options = array();
         foreach(explode(',', $value) as $value) {
             if(isset($this->options[$value])) {
@@ -30,5 +30,14 @@ class CheckboxComponent extends ModuleComponent {
 
     public function getOptions() {
         return $this->options;
+    }
+
+    /**
+     * Fix post data for checkboxes (since they are posted seperately)
+     * @param $data
+     * @return string
+     */
+    public function saveData($data) {
+        return implode(',', $data);
     }
 } 

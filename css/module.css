@@ -120,7 +120,7 @@ html, body {
 .multi .edit {
     padding-top: 20px;
 }
-.single #description {
+.single #desc {
     padding-top: 0px;
     padding-bottom: 20px;
 }
