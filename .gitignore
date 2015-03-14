@@ -7,3 +7,4 @@ txt/errorlog.txt
 
 php/pages/*
 !php/pages/slideshow.php
+php/config/conf.database.php
