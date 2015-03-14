@@ -11,6 +11,8 @@
  */
 class Router extends Singleton {
 
+    private $route;
+
     protected function __construct() {
 
     }
@@ -23,10 +25,14 @@ class Router extends Singleton {
     public function route($request, $script) {
 
         // Create a router object
-        $route = new Route($request, $script);
+        $this->route = new Route($request, $script);
 
         // Load the correct route by giving it the route
-        $this->loadRoute($route);
+        $this->loadRoute($this->route);
+    }
+
+    public function getParameters() {
+        return $this->route->getParameters();
     }
 
     /**

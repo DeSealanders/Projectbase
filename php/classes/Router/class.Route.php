@@ -11,6 +11,7 @@ class Route {
     private $imageDetails;
     private $moduleDetails;
     private $wrap;
+    private $parameters;
 
     public function __construct($request, $script) {
         $this->wrap = true;
@@ -25,6 +26,10 @@ class Route {
      */
     public function getType() {
         return $this->type;
+    }
+
+    public function getParameters() {
+        return $this->parameters;
     }
 
     /**
@@ -64,8 +69,14 @@ class Route {
     private function parseUrl($request, $script) {
 
         // First create arrays from both urls
-        $request = explode('/', $request);
+        $parsed = parse_url($request);
+
+        if(isset($parsed['query'])) {
+            parse_str($parsed['query'], $this->parameters);
+        }
+        $request = explode('/', $parsed['path']);
         $script = explode('/', $script);
+
 
         // Then compare them (case-insensitive)
         $parsedUrl = array_udiff($request, $script, 'strcasecmp');
