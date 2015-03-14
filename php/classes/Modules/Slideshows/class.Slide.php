@@ -8,7 +8,7 @@ class Slide {
 
     public function __construct($slideData) {
         $this->title = $this->getSlideData('title', $slideData);
-        $this->content = $this->getSlideData('content', $slideData);
+        $this->content = html_entity_decode($this->getSlideData('content', $slideData));
         $this->options = array(
                     'data-scale' => $this->getSlideData('size', $slideData),
                     'data-x' => $this->getSlideData('xpos', $slideData),

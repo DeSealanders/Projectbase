@@ -5,7 +5,6 @@ class ModuleSlides extends Module {
     public function __construct() {
         parent::__construct('Slides');
         $this->setDescription('Manage slides which will form a slideshow');
-        $this->addLayout('multi');
         $this->addComponent(new TextComponent('Title', 'title'));
         $this->addComponent(new EditorComponent('Content', 'content'));
         $this->addComponent(new NumberSliderComponent('Size', 'size', 1, 10, false));

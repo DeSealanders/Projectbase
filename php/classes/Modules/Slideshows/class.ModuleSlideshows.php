@@ -6,6 +6,7 @@ class ModuleSlideshows extends Module {
         parent::__construct('Slideshows');
         $this->setDescription('Manage your slideshows');
         $this->addLayout('multi');
+        $this->addLayout('single');
         $this->addComponent(new TextComponent('Title', 'title'));
         $this->addComponent(new OneToManyComponent('Slides', 'slides', 'slides', 'title'));
     }
