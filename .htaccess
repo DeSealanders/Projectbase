@@ -1,11 +1,11 @@
 # Redirect all errorpages to 404.php
 # Make sure to configure the url correctly
 RewriteEngine on
-ErrorDocument 400 /projectbase/404.php
-ErrorDocument 401 /projectbase/404.php
-ErrorDocument 403 /projectbase/404.php
-ErrorDocument 404 /projectbase/404.php
-ErrorDocument 500 /projectbase/404.php
+ErrorDocument 400 /impressentation/404.php
+ErrorDocument 401 /impressentation/404.php
+ErrorDocument 403 /impressentation/404.php
+ErrorDocument 404 /impressentation/404.php
+ErrorDocument 500 /impressentation/404.php
 
 # Parse all .php.css files as if they were php files
 # This will enable using php variables in css files

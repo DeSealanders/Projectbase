@@ -38,7 +38,7 @@ class IncludeLoader extends Singleton {
             $includes = IncludesConfig::getInstance()->getCssIncludes();
             foreach($includes as $include) {
                 if($this->isLocal($include)) {
-                    echo "\t" . '<link rel="stylesheet" type="text/css" href="/projectbase/css/' . $include . '">' . "\n";
+                    echo "\t" . '<link rel="stylesheet" type="text/css" href="/impressentation/css/' . $include . '">' . "\n";
                 }
                 else {
                     echo "\t" . '<link rel="stylesheet" type="text/css" href="' . $include . '">' . "\n";
@@ -60,7 +60,7 @@ class IncludeLoader extends Singleton {
             $includes = IncludesConfig::getInstance()->getJsIncludes();
             foreach($includes as $include) {
                 if($this->isLocal($include)) {
-                    echo "\t" . '<script src="/projectbase/js/' . $include . '"></script>' . "\n";
+                    echo "\t" . '<script src="/impressentation/js/' . $include . '"></script>' . "\n";
                 }
                 else {
                     echo "\t" . '<script src="' . $include . '"></script>' . "\n";
@@ -81,7 +81,7 @@ class IncludeLoader extends Singleton {
         // Print local includes
         if(isset($splitIncludes['local']) && count($splitIncludes['local']) > 0) {
             $includeText = implode(',', $splitIncludes['local']);
-            echo "\t" . '<link type="text/css" rel="stylesheet" href="/projectbase/min/b=projectbase/css&amp;f=' . $includeText . '" />'. "\n";
+            echo "\t" . '<link type="text/css" rel="stylesheet" href="/impressentation/min/b=impressentation/css&amp;f=' . $includeText . '" />'. "\n";
         }
     }
 
@@ -97,7 +97,7 @@ class IncludeLoader extends Singleton {
         // Print local includes
         if(isset($splitIncludes['local']) && count($splitIncludes['local']) > 0) {
             $includeText = implode(',', $splitIncludes['local']);
-            echo "\t" . '<script type="text/javascript" src="/projectbase/min/b=projectbase/js&amp;f=' . $includeText . '"></script>'. "\n";
+            echo "\t" . '<script type="text/javascript" src="/impressentation/min/b=impressentation/js&amp;f=' . $includeText . '"></script>'. "\n";
         }
     }
 

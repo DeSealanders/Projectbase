@@ -39,7 +39,7 @@ class DefaultConfig extends Singleton {
             $this->logfile = 'txt/errorlog.txt';
 
             // The website title
-            $this->title = 'Projectbase';
+            $this->title = 'impressentation';
 
             // The favicon which will be shown for the website
             $this->favicon = 'favicon.ico';
