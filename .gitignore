@@ -4,7 +4,7 @@ misc/
 php/config/conf.database.php
 Module ontwerp.vsd
 txt/errorlog.txt
-
+conf.database.php
 php/pages/*
 !php/pages/slideshow.php
 php/config/conf.database.php
