@@ -14,6 +14,6 @@ if(!empty($records)) {
         }
         echo '</a>';
     }
-    echo '<a class="link" href="module/">Voeg zelf een slideshow toe!</a>';
+    echo '<a class="link block" href="module/">Voeg zelf een slideshow toe!</a>';
     echo '</div>';
 }

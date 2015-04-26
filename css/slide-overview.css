@@ -18,7 +18,7 @@
     display: block;
     padding: 40px 20%;
 }
-.slideshows .block:nth-of-type(even) {
+.block:nth-of-type(even) {
     background-color: lightgray;
 }
 .slideshows img {
