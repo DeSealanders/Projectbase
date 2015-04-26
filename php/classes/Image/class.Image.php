@@ -80,6 +80,10 @@ class Image {
         return false;
     }
 
+    public function getFullFilepath() {
+        return $this->filePath . $this->fileName;
+    }
+
     /**
      * Setter for the image resource
      * @param $resource the resource to be linked to this image

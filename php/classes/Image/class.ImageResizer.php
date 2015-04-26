@@ -19,6 +19,9 @@ class ImageResizer extends Singleton {
      * @return bool|Image returns an image object if succesfull, false otherwise
      */
     public function resizeImage($fileName, $newWidth, $newHeight, $crop = true) {
+        if(substr($fileName, 0, 6) == 'image/') {
+            $fileName = substr($fileName, 6);
+        }
         if(file_exists('image/' . $fileName)) {
 
             // Create an image object from the source image

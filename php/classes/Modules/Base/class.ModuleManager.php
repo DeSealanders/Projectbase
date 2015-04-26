@@ -68,10 +68,18 @@ class ModuleManager extends Singleton {
 
                     // Compare module components and database columns
                     // Alter table if needed
-                    ModuleDataProvider::getInstance()->alterModTable($moduleName, $module->getComponentNames(), $dbColums);
+                    $components = $module->getComponentNames();
+                    ModuleDataProvider::getInstance()->alterModTable($moduleName, $components, $dbColums);
 
                     // Retrieve records for specified module
-                    $records = ModuleDataProvider::getInstance()->getModuleData($moduleName);
+                    if(isset($components['sequence'])) {
+                        ModuleDataProvider::getInstance()->sortColumns($moduleName);
+                        $orderBy = 'sequence';
+                    }
+                    else {
+                        $orderBy = 'itemid';
+                    }
+                    $records = ModuleDataProvider::getInstance()->getModuleData($moduleName, $orderBy);
 
                     // Load records into module
                     $module->setRecords($records);
@@ -104,7 +112,7 @@ class ModuleManager extends Singleton {
 
             // Save module data if previous action was a save
             if(!empty($_POST) && $itemid && $module->isAllowedEdit()) {
-                ModuleDataSender::getInstance()->saveModuleData($module, $itemid, $_POST);
+                ModuleDataSender::getInstance()->saveModuleData($module, $itemid, $_POST, $_FILES);
             }
         }
     }
