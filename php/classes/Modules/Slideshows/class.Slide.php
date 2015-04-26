@@ -30,7 +30,7 @@ class Slide {
     }
 
     public function getHtml() {
-        $html = '<div id="' . $this->title . '" class="step slide"';
+        $html = '<div id="' . $this->cleanString($this->title) . '" class="step slide"';
         foreach($this->options as $option => $value) {
             if(isset($value) && !empty($value)) {
                 $html .= ' ' . $option . '="' . $value . '"';
@@ -80,6 +80,12 @@ class Slide {
     public function getYPos()
     {
         return $this->yPos;
+    }
+
+    private function cleanString($string)
+    {
+        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
 
 } 
