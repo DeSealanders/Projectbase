@@ -43,13 +43,13 @@ if($records = $this->module->getCleanRecords()) {
 
             // Add an edit button to each row
             if($componentId  == 'edit') {
-                $link = '/impressentation/module/' . strtolower($this->module->getName()) . '/' . $record['itemid'];
+                $link = '/module/' . strtolower($this->module->getName()) . '/' . $record['itemid'];
                 echo '<td><a href="' . $link . '"><span class="fa fa-edit fa-1x fa-fw"></span></a></td>';
             }
 
             // Add an edit button to each row
             else if($componentId  == 'delete') {
-                $link = '/impressentation/module/' . strtolower($this->module->getName()) . '/delete/' . $record['itemid'];
+                $link = '/module/' . strtolower($this->module->getName()) . '/delete/' . $record['itemid'];
                 echo '<td><a href="' . $link . '"><span class="fa fa-trash fa-1x fa-fw"></span></a></td>';
             }
 
@@ -68,7 +68,7 @@ if($records = $this->module->getCleanRecords()) {
 // Add a button for new module items
 
 if($this->module->isAllowedNew()) {
-    $newLink = '/impressentation/module/' . strtolower($this->module->getName()) . '/new';
+    $newLink = '/module/' . strtolower($this->module->getName()) . '/new';
     echo '<tr><td colspan="' .  count($components) . '">';
     echo '<a href="' . $newLink . '">';
     echo '<span class="fa fa-plus fa-1x fa-fw newentry"></span>';

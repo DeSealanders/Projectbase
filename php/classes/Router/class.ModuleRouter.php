@@ -27,11 +27,11 @@ class ModuleRouter extends Singleton{
                 // Get the loaded module if everything went correctly
                 if($module = ModuleManager::getInstance()->getModule($moduleDetails['module'])) {
                     if($module->isSingleRecord()) {
-                        header('location: /impressentation/module/');
+                        header('location: /module/');
                         die('redirecting');
                     }
                 }
-                header('location: /impressentation/module/' . $moduleDetails['module']);
+                header('location: /module/' . $moduleDetails['module']);
                 die('redirecting');
             }
 
@@ -47,11 +47,11 @@ class ModuleRouter extends Singleton{
                 // Get the loaded module if everything went correctly
                 if($module = ModuleManager::getInstance()->getModule($moduleDetails['module'])) {
                     if($module->isSingleRecord()) {
-                        header('location: /impressentation/module/');
+                        header('location: /module/');
                         die('redirecting');
                     }
                 }
-                header('location: /impressentation/module/' . $moduleDetails['module']);
+                header('location: /module/' . $moduleDetails['module']);
                 die('redirecting');
             }
         }
@@ -64,14 +64,14 @@ class ModuleRouter extends Singleton{
             // Create a new entry and redirect to single view
             if($moduleDetails['action'] == 'new') {
                 $itemId = ModuleManager::getInstance()->newItem($moduleDetails['module']);
-                header('location: /impressentation/module/' . $moduleDetails['module'] . '/' . $itemId);
+                header('location: /module/' . $moduleDetails['module'] . '/' . $itemId);
                 die('redirecting');
             }
 
             // Delete specified entry and redirect to multi view
             else if($moduleDetails['action'] == 'delete' && isset($moduleDetails['itemid'])) {
                 ModuleManager::getInstance()->deleteItem($moduleDetails['module'], $moduleDetails['itemid']);
-                header('location: /impressentation/module/' . $moduleDetails['module']);
+                header('location: /module/' . $moduleDetails['module']);
                 die('redirecting');
             }
         }
@@ -96,7 +96,7 @@ class ModuleRouter extends Singleton{
                     if($moduleDetails['view'] == 'multi') {
                         if($module->isSingleRecord() && $record = $module->getSingleRecord()) {
                             //echo $module->printBackendHtml('single', $record['itemid']);
-                            header('location: /impressentation/module/' . $moduleDetails['module'] . '/' . $record['itemid']);
+                            header('location: /module/' . $moduleDetails['module'] . '/' . $record['itemid']);
                         }
                         else {
                             $module->printBackendHtml('multi');

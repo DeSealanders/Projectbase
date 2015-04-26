@@ -10,7 +10,7 @@
     $previewList = ModuleManager::getInstance()->getPreviewList();
     foreach($previewList as $module) {
         echo '<tr>';
-        echo '<td><a href="/impressentation/module/' . strtolower($module->getName()) . '">';
+        echo '<td><a href="/module/' . strtolower($module->getName()) . '">';
         echo '<span class="fa fa-fw fa-external-link"></a></td>';
         echo '<td>' . ucfirst($module->getName()) . '</td>';
         echo '<td>' . $module->getDescription() . '</td>';

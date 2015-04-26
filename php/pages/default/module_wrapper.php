@@ -25,11 +25,11 @@ echo '<title>' . $this->getTitle() . '</title>';
             }
             if($menuItem == 'overview') {
                 $class .= ' overview';
-                $link = '/impressentation/module';
+                $link = '/module';
                 $text = '<i class="fa fa-fw fa-home"></i><span>' . ucfirst($menuItem) . '</span>';
             }
             else {
-                $link = '/impressentation/module/' . $menuItem;
+                $link = '/module/' . $menuItem;
                 $text = ucfirst($menuItem);
                 $class .= ' padded';
             }
