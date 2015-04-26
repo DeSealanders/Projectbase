@@ -111,10 +111,10 @@ class Router extends Singleton {
         $routeExtension = strtolower(pathinfo($matchedRoute, PATHINFO_EXTENSION));
         foreach(array('png','jpg','jpeg','gif') as $extension) {
             if($routeExtension == $extension) {
-
                 // Use the proper header for images
                 header('Content-Type: image/' . $extension);
-                $wrap = false;
+                readfile($matchedRoute);
+                return;
             }
         }
 
@@ -130,7 +130,9 @@ class Router extends Singleton {
         }
 
         // Require the matched route
-        require($matchedRoute);
+        if(is_file($matchedRoute)) {
+            require($matchedRoute);
+        }
     }
 
 } 
