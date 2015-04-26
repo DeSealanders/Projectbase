@@ -50,6 +50,7 @@ class IncludesConfig extends Singleton {
         $this->addCssInclude('jhtmlarea.css');
         $this->addCssInclude('module.css');
         $this->addCssInclude('colpick.css');
+        $this->addCssInclude('slide-overview.css');
 
         /*
          * --- End of configuration options ---

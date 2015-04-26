@@ -8,6 +8,7 @@ class ModuleSlideshows extends Module {
         $this->addLayout('multi');
         $this->addLayout('single');
         $this->addComponent(new TextComponent('Title', 'title'));
+        $this->addComponent(new EditorComponent('Description', 'description'));
         $this->addComponent(new OneToManyComponent('Slides', 'slides', 'slides', 'title'));
         $this->addComponent(new FileuploadComponent('Image', 'image'));
     }

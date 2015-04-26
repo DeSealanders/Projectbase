@@ -1,0 +1,36 @@
+.slideshows {
+}
+.slideshows a {
+    color: black;
+    text-decoration: none;
+}
+.slideshows a:hover {
+    color: black;
+    box-shadow: inset -1px 0 1px 2px black;
+    -webkit-box-shadow: inset -1px 0 1px 2px black;
+    -moz-box-shadow: inset -1px 0 1px 2px black;
+    -o-box-shadow: inset -1px 0 1px 2px black;
+
+}
+.slideshows .block {
+    clear: both;
+    overflow: auto;
+    display: block;
+    padding: 40px 20%;
+}
+.slideshows .block:nth-of-type(even) {
+    background-color: lightgray;
+}
+.slideshows img {
+    width: 30%;
+    float: left;
+}
+.slideshows .desc {
+    float: left;
+    margin-left: 20px;
+}
+.slideshows .link {
+    display: block;
+    text-align: center;
+    padding: 20px 20%;
+}
