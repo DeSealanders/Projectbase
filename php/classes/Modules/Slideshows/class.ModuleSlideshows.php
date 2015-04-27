@@ -4,7 +4,7 @@ class ModuleSlideshows extends Module {
 
     public function __construct() {
         parent::__construct('Slideshows');
-        $this->setDescription('Manage your slideshows');
+        $this->setDescription('Add and remove slides to form a slideshow');
         $this->addLayout('multi');
         $this->addLayout('single');
         $this->addComponent(new TextComponent('Title', 'title'));

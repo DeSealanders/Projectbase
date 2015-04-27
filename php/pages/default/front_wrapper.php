@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <html>
 <head>
-    <title>impressentation</title>
+    <title>Impressentation</title>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="image/favicon.png" type="image/x-icon">
     <?php

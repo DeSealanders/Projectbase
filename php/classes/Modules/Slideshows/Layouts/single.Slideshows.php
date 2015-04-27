@@ -9,7 +9,6 @@ if(isset($record['slides'])) {
     $dbSlides =  DatabaseManager::getInstance()->executeQuery($query);
     $slides = SlideGenerator::getInstance()->convertDbtoSlides($dbSlides);
     foreach($slides as $slide) {
-        //var_dump($slide);
         echo $slide->getHtml();
     }
 }
