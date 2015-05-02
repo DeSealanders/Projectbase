@@ -29,7 +29,10 @@ class RouterConfig extends Singleton {
                   'wrap' => false),
             array('origin' => 'slideshows',
                   'destination' => 'php/pages/slideshows.php',
-                  'wrap' => true)
+                  'wrap' => true),
+            array('origin' => 'api',
+                  'destination' => 'php/pages/api.php',
+                  'wrap' => false)
         );
 
         /*
