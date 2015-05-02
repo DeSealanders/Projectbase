@@ -34,6 +34,8 @@ class IncludesConfig extends Singleton {
         $this->addJsInclude('documentready.js');
         $this->addJsInclude('index.js');
         $this->addJsInclude('https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js');
+        $this->addJsInclude('https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js');
+        $this->addJsInclude('slideshow-controller.js');
         $this->addJsInclude('jhtmlarea.js');
         $this->addJsInclude('texteditor.js');
         $this->addJsInclude('colpick.js');
